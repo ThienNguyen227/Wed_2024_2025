@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>T Coffee & Tea</title>
+    <!-- bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Favicon -->
+    <link rel="icon" href="../Img/ZRvS2r9P.ico" type="image/x-icon" />
+    <!-- Link css -->
+    <link rel="stylesheet" href="../css/index.css" />
+    <!-- Thư viện AOS(Animate on scroll) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  </head>
+  <body>
+    <!-- Header-->
+    <section class="myheader" data-aos="fade-down" data-aos-duration="3000">
+      <div class="container">
+        <div class="container text-center">
+          <div class="row">
+            <!-- Logo -->
+            <div class="col-1">
+              <img
+                src="../Img/Logo-removebg-preview.png"
+                class="img-fluid zoom_up"
+                alt="Logo"
+                height="50"
+              />
+            </div>
+            <!-- Searching Bar -->
+            <div class="col-4">
+              <div class="input-group mb-3 py-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Searching here ...."
+                  aria-label="Bạn muốn mua gì ..."
+                  aria-describedby="button-addon2"
+                />
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  id="button-addon2"
+                >
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+            </div>
+            <!-- Hotline and Login -->
+            <div class="col-4">
+              <div class="row">
+                <!-- Hotline -->
+                <div class="col">
+                  <div class="row">
+                    <!-- Icon Phone -->
+                    <div class="col adjust_phone">
+                      <i class="fa-solid fa-phone fa-2x"></i>
+                    </div>
+                    <!-- HotLine Number -->
+                    <div class="col py-3">
+                      Hotline<br />
+                      <p>9999999</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Login -->
+                <div class="col">
+                  <div class="row">
+                    <!-- Icon User -->
+                    <div class="col adjust_user">
+                      <i class="fa-solid fa-user fa-2x"></i>
+                    </div>
+                    <!-- Login -->
+                    <div class="col py-3">
+                      Welcome<br />
+                      <a href="#" target="_blank"><strong>Login</strong></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Notification -->
+            <div class="col-3">
+              <div class="row">
+                <div class="col mt-4">
+                  <a href="#" class="position-relative text-danger">
+                    <i class="fa-solid fa-heart fa-2x"></i>
+                    <span
+                      class="position-absolute top-8 start-120 translate-middle badge rounded-pill bg-danger"
+                    >
+                      0
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
+                  </a>
+                </div>
+                <div class="col mt-4">
+                  <a href="#" class="position-relative">
+                    <i class="fa-solid fa-cart-shopping fa-2x text-dark"></i>
+                    <span
+                      class="position-absolute top-8 start-110 translate-middle badge rounded-pill bg-danger"
+                    >
+                      0
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
+                  </a>
+                </div>
+                <div class="col mt-4">
+                  <a href="#" class="position-relative text-warning">
+                    <i class="fa-solid fa-bell fa-2x"></i>
+                    <span
+                      class="position-absolute top-8 start-110 translate-middle badge rounded-pill bg-danger"
+                    >
+                      0
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Menu -->
+    <section
+      class="bgg mb-1 sticky-navbar"
+      data-aos="fade-down"
+      data-aos-duration="3000"
+    >
+      <div class="container py-2">
+        <div class="row">
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a
+                class="nav-link w"
+                aria-current="page"
+                href="../html/index.html"
+                ><i class="fa-solid fa-store"></i> Trang chủ</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle w"
+                href="menu.html"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-list"></i> Menu
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="coffee.html"
+                    ><i class="fa-solid fa-mug-hot"></i> COFFEE</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="tea.html"
+                    ><i class="fa-solid fa-leaf"></i> TEA</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="cake.html">
+                    <i class="fa-solid fa-cookie"></i> CAKE</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="ame.html">
+                    <i class="fa-solid fa-glass-water"></i> A-MÊ</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="menu.html"
+                    ><i class="fa-solid fa-list"></i> ALL</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link w" href="spdg.html"
+                ><i class="fa-solid fa-box"></i> Sản Phẩm Đóng Gói</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link active dropdown-toggle w"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-scroll"></i> Về Chúng Tôi
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="gioithieu.html"
+                    ><i class="fa-solid fa-building"></i> Giới Thiệu Công Ty</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="lienhe.html"
+                    ><i class="fa-solid fa-headset"></i> Liên Hệ</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="tuyendung.html">
+                    <i class="fa-solid fa-briefcase"></i> Tuyển Dụng</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link w nb" href="khuyenmai.html"
+                ><i class="fa-solid fa-gift"></i> Khuyến Mãi</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- Main -->
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-3 bor">
+            <div
+              class="list-group"
+              id="list-tab"
+              role="tablist"
+              data-aos="slide-up"
+              data-aos-duration="3000"
+            >
+              <a
+                class="list-group-item list-group-item-action active"
+                href="gioithieu.html"
+                ><i class="fa-solid fa-building"></i> Giới thiệu công ty
+              </a>
+              <a
+                class="list-group-item list-group-item-action"
+                href="lienhe.html"
+                ><i class="fa-solid fa-headset"></i> Liên hệ</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                href="tuyendung.html"
+                ><i class="fa-solid fa-briefcase"></i> Tuyển dụng</a
+              >
+            </div>
+          </div>
+          <div class="col-9 border-div">
+            <div>
+              <h2 class="adjust-tcoffe">T COFFE</h2>
+            </div>
+            <nav
+              class="navbar navbar-expand-lg bg-nav-gioithieu mt-2"
+              data-aos="zoom-in-down"
+              data-aos-duration="3000"
+            >
+              <div class="container-fluid">
+                <ul class="navbar-nav mx-auto">
+                  <li class="nav-item br-navbar-gioithieu">
+                    <a
+                      class="nav-link text-white active-nav-gioithieu"
+                      href="#lich-su"
+                      >Lịch Sử Công Ty</a
+                    >
+                  </li>
+                  <li class="nav-item br-navbar-gioithieu">
+                    <a
+                      class="nav-link text-white active-nav-gioithieu"
+                      href="#tam-nhin"
+                      >Tầm Nhìn</a
+                    >
+                  </li>
+                  <li class="nav-item br-navbar-gioithieu">
+                    <a
+                      class="nav-link text-white active-nav-gioithieu"
+                      href="#su-menh"
+                      >Sứ Mệnh</a
+                    >
+                  </li>
+                  <li class="nav-item br-navbar-gioithieu">
+                    <a
+                      class="nav-link text-white active-nav-gioithieu"
+                      href="#gia-tri"
+                      >Giá Trị Cốt Lõi</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link text-white active-nav-gioithieu"
+                      href="#linh-vuc"
+                      >Lĩnh Vực Hoạt Động</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </nav>
+
+            <div class="mt-4">
+              <h4 id="lich-su" class="text-color-gioithieu">
+                1. Lịch Sử Công Ty
+              </h4>
+              <p>
+                Năm 1968, tại cao nguyên chè danh tiếng Bảo Lộc (Lâm Đồng), Phúc
+                Long được ra đời với kỳ vọng mang đến những sản phẩm trà và cà
+                phê chất lượng. Vào những năm 80, Phúc Long khai trương ba cửa
+                hàng đầu tiên tại Thành phố Hồ Chí Minh trên đường Lê Văn Sỹ,
+                Trần Hưng Đạo và Mạc Thị Bưởi nhằm giới thiệu sản phẩm trà và cà
+                phê thuần Việt đến với khách hàng trong nước cũng như quốc tế.
+                Đặc biệt, cửa hàng Phúc Long Mạc Thị Bưởi toạ lạc tại trung tâm
+                Quận 1 là cửa hàng đầu tiên phục vụ các thức uống Trà pha chế
+                đặc trưng của Phúc Long và Cà-phê pha máy cao cấp thường chỉ
+                được phục vụ tại các nhà hàng sang trọng vào giai đoạn đó. Năm
+                2000, công ty TNHH Sản Xuất Thương Mại Phúc Long chính thức được
+                thành lập. Năm 2007, Phúc Long sở hữu đồi chè tại Thái Nguyên.
+                Bởi chính bản thân tôi nhận thấy Trà Thái Nguyên cạnh tranh được
+                về hương vị, hình thức và chất nước đặc trưng nhưng cũng giống
+                như các loại trà ở các địa phương khác, việc kiểm soát các thành
+                phần dư lượng theo tiêu chuẩn vệ sinh an toàn thực phẩm của thế
+                giới thì trà Thái Nguyên vẫn chịu chung số phận “chưa phù hợp
+                tiêu chuẩn”. Xác định rõ mục tiêu cần duy trì và bảo vệ chất
+                lượng tự nhiên vốn có của trà Thái Nguyên, chính vì vậy tôi
+                nhanh chóng quyết định đầu tư xây dựng nhà máy chế biến trà ngay
+                tại Thái Nguyên. Phúc Long mong muốn qua việc đặt nhà máy ngay
+                tại vùng nguyên liệu, chúng tôi có thể duy trì được cái “chất”
+                của trà Thái một cách trọn vẹn đồng thời hạn chế tối đa các điều
+                kiện nuôi trồng, thu hoạch và chế biến trà nhằm đảm bảo tốt nhất
+                các vấn đề quản lý chất lượng tổng thể. Đồng thời trong năm
+                2007, Phúc Long đầu tư nhà máy chế biến trà và cà phê tại Bình
+                Dương được trang bị nhiều thiết bị và máy móc hiện đại, có chứng
+                nhận HACCP- quy trình đảm bảo đủ tiêu chuẩn an toàn vệ sinh thực
+                phẩm, với mục tiêu đảm bảo cung ứng nguồn sản phẩm chất lượng,
+                phục vụ thị trường trong nước và đáp ứng nhu cầu xuất khẩu. Cũng
+                từ đây, Trà Phúc Long đã đáp ứng đầy đủ tiêu chuẩn để có mặt tại
+                các thị trường khó tính như: Mỹ, Nhật Bản, Indonesia,
+                Philippines… Năm 2012, cửa hàng Phúc Long Coffee & Tea tại TTTM
+                Crescent Mall Quận 7 ra mắt đánh dấu việc Phúc Long chính thức
+                mở rộng vào ngành đồ ăn & thức uống (Food & Beverage) với cửa
+                hàng Phúc Long hoạt động theo mô hình tự phục vụ trong không
+                gian hiện đại. Cùng với đội ngũ cộng sự đắc lực của mình, chúng
+                tôi làm nên sự kiện đánh dấu bước chuyển mình trong lịch sự phát
+                triển của Phúc Long. Năm 2015, Phúc Long xây dựng được 10 cửa
+                hàng tại Thành Phố Hồ Chí Minh. Từng bước định vị thương hiệu
+                gắn liền với những sản phẩm và thức uống trà và cà phê đậm vị
+                trong tâm trí khách hàng. Năm 2018, xây dựng nhà máy thứ 2 tại
+                Bình Dương, sở hữu hai đồi chè Thái Nguyên và Bảo Lộc. Đồng thời
+                hơn 40 cửa hàng Phúc Long được xây dựng tại: Thành phố Hồ Chí
+                Minh, Bình Dương, Nha Trang, Đà Nẵng, Hà Nội. Năm 2018 cũng là
+                năm tôi quyết định mở rộng thương hiệu ra phía Bắc, sau thời
+                gian tìm hiểu và khảo sát thị trường với cửa hàng đầu tiên của
+                Phúc Long đặt tại Hà Nội. Năm 2019, phát triển 70 cửa hàng và
+                tiếp tục định hướng phát triển mở rộng hệ thống cửa hàng trải
+                dài từ Nam ra Bắc. Bên cạnh đó, tăng độ phủ của sản phẩm trà và
+                cà phê đến tất cả các hệ thống: siêu thị, cửa hàng tiện lợi,
+                kênh thương mại điện tử…
+              </p>
+
+              <h3 id="tam-nhin" class="text-color-gioithieu">2. Tầm Nhìn</h3>
+              <p>
+                1. Với khát vọng không ngừng mở rộng thị trường - phát triển bền
+                vững, Phúc Long phấn đấu trở thành công ty chuyên sản xuất và
+                xuất khẩu trà, cà phê có giá trị cao tại Việt Nam. <br />2. Phúc
+                Long mong muốn tạo nên một thương hiệu Việt với đẳng cấp và chất
+                lượng được thể hiện trong từng sản phẩm, qua đó từng bước khẳng
+                định vị thế trên thị trường quốc tế.
+              </p>
+
+              <h3 id="su-menh" class="text-color-gioithieu">3. Sứ Mệnh</h3>
+              <p>
+                1. Trở thành người tiên phong của thời đại với những ý tưởng
+                sáng tạo đi đầu trong ngành trà và cà phê.<br />
+                2. Cùng đưa thương hiệu tỏa sáng, tạo động lực cho nhau, cùng
+                biến ý tưởng thành hiện thực bằng tinh thần gắn kết, tương tác,
+                biết lắng nghe và tôn trọng.<br />
+                3. Để tạo niềm vui và tình cảm cho khách hàng, mỗi chúng ta phải
+                thường xuyên liên tục tỏa sáng. Không được để cho năng lực của
+                bản thân bị ngủ quên, không ngừng thách thức khó khăn, phải luôn
+                luôn tự đổi mới bản thân.<br />
+                4. Tạo ra giá trị cao bằng sự thấu hiểu, đồng cảm và những đề
+                xuất có giá trị thật sự, thỏa mãn sự hài lòng cho khách hàng.
+              </p>
+
+              <h3 id="gia-tri" class="text-color-gioithieu">
+                4. Giá Trị Cốt Lõi
+              </h3>
+              <p>
+                Chúng tôi luôn tuân theo các giá trị: Uy tín, chất lượng, sáng
+                tạo...
+              </p>
+
+              <h3 id="linh-vuc" class="text-color-gioithieu">
+                5. Lĩnh Vực Hoạt Động
+              </h3>
+              <p>Hiện tại công ty đang hoạt động trong các lĩnh vực như...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <section
+      data-aos="fade-up"
+      data-aos-duration="3000"
+      class="myfooter bg-dark text-white py-3"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <ul class="list-menu">
+              <h4 class="mb-3">Giới Thiệu</h4>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Sản Phẩm</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Khuyến Mãi</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Chuyện cà phê</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Cửa hàng</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Tuyển dụng</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-3">
+            <ul class="list-menu">
+              <h4 class="mb-3">Về Chúng Tôi</h4>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Coffeeholic</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Teaholic</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Blog</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-3">
+            <ul class="list-menu">
+              <h4 class="mb-3">Chính Sách Bán Hàng</h4>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Thanh Toán</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Giao Hàng</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Đổi Trả Hàng</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Bảo Hành</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Bảo Mật Thông Tin Khách Hàng</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Hoàn Tiền</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-3">
+            <ul class="list-menu">
+              <h4 class="mb-3">Theo Dõi Chúng Tôi</h4>
+              <li class="li_menu mb-2">
+                <a href="#" title="Facebook"
+                  ><i class="fa-brands fa-facebook"></i> Facebook</a
+                >
+              </li>
+              <li class="li_menu mb-2">
+                <a href="#" title="Instagram"
+                  ><i class="fa-brands fa-instagram"></i> Instagram</a
+                >
+              </li>
+              <li class="li_menu mb-2">
+                <a href="#" title="Tiktok"
+                  ><i class="fa-brands fa-tiktok"></i> Tiktok</a
+                >
+              </li>
+              <li class="li_menu mb-2">
+                <a href="#" title="Youtube"
+                  ><i class="fa-brands fa-youtube"></i> Youtube</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-6 mt-5">
+            <h5>T+ COFFEE</h5>
+            <p>
+              Copyright@ 2025 Công ty cổ phần thương mại COFFEE Chứng nhận ĐKKD
+              số: 0388282938 do sở KH & ĐT TP.HCM cấp <br />Địa chỉ: Tòa nhà 123
+              Đường 3 tháng 2, TP.HCM<br />
+              Điện thoại: 190099999 - Email: tcoffee@sapo.vn
+            </p>
+          </div>
+          <div class="col-6 py-5">
+            <h5>Nhận VouCher Siêu Khủng</h5>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nhập Email của bạn"
+                aria-label="Nhập Email của bạn"
+                aria-describedby="button-addon2"
+              />
+              <button
+                class="btn btn-outline-secondary bg-danger text-white"
+                type="button"
+                id="button-addon2"
+              >
+                Đăng Kí Ngay
+              </button>
+            </div>
+            <div>
+              <span class=".box40 bg-danger"> </span>
+            </div>
+            <div class="row mt-3">
+              <div class="d-flex align-items-center gap-4">
+                <i class="fa-brands fa-facebook fa-2x"></i>
+                <i class="fa-brands fa-instagram fa-2x"></i>
+                <i class="fa-brands fa-tiktok fa-2x"></i>
+                <i class="fa-brands fa-youtube fa-2x"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-6 mt-2">Bản Quyền</div>
+          <!-- <div class="col-6">
+            <nav class="navbar navbar-expand-lg bg-dark">
+              <div class="container-fluid">
+                <a class="navbar-brand text-white" href="#">Trang Chủ</a>
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarNavAltMarkup"
+                  aria-controls="navbarNavAltMarkup"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                  <div class="navbar-nav">
+                    <a
+                      class="nav-link active bg-dark text-white"
+                      aria-current="page"
+                      href="./GT.html"
+                      target="_blank"
+                      >Giới Thiệu</a
+                    >
+                    <a class="nav-link bg-dark text-white" href="#">Sản Phẩm</a>
+                    <a
+                      class="nav-link bg-dark text-white"
+                      target="_blank"
+                      href="./TD.html"
+                      >Tuyển Dụng</a
+                    >
+                    <a
+                      class="nav-link bg-dark text-white"
+                      target="_blank"
+                      href="./LH.html"
+                      >Liên Hệ</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div> -->
+        </div>
+      </div>
+    </section>
+    <!-- bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Myjs -->
+    <script src="../js/myjs.js"></script>
+  </body>
+</html>

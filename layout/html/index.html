@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>T Coffee & Tea</title>
+    <!-- bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Favicon -->
+    <link rel="icon" href="../Img/ZRvS2r9P.ico" type="image/x-icon" />
+    <!-- Link css -->
+    <link rel="stylesheet" href="../css/index.css" />
+    <!-- Thư viện AOS(Animate on scroll) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  </head>
+  <body>
+    <!-- Header-->
+    <section class="myheader" data-aos="fade-down" data-aos-duration="3000">
+      <div class="container">
+        <div class="container text-center">
+          <div class="row">
+            <!-- Logo -->
+            <div class="col-1">
+              <img
+                src="../Img/Logo-removebg-preview.png"
+                class="img-fluid zoom_up"
+                alt="Logo"
+                height="50"
+              />
+            </div>
+            <!-- Searching Bar -->
+            <div class="col-4">
+              <div class="input-group mb-3 py-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Searching here ...."
+                  aria-label="Bạn muốn mua gì ..."
+                  aria-describedby="button-addon2"
+                />
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  id="button-addon2"
+                >
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+            </div>
+            <!-- Hotline and Login -->
+            <div class="col-4">
+              <div class="row">
+                <!-- Hotline -->
+                <div class="col">
+                  <div class="row">
+                    <!-- Icon Phone -->
+                    <div class="col adjust_phone">
+                      <i class="fa-solid fa-phone fa-2x"></i>
+                    </div>
+                    <!-- HotLine Number -->
+                    <div class="col py-3">
+                      Hotline<br />
+                      <p>9999999</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Login -->
+                <div class="col">
+                  <div class="row">
+                    <!-- Icon User -->
+                    <div class="col adjust_user">
+                      <i class="fa-solid fa-user fa-2x"></i>
+                    </div>
+                    <!-- Login -->
+                    <div class="col py-3">
+                      Welcome<br />
+                      <a href="/html/Login/nhapsodienthoai.html" target="_blank"
+                        ><strong>Login</strong></a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Notification -->
+            <div class="col-3">
+              <div class="row">
+                <div class="col mt-4">
+                  <a href="#" class="position-relative text-danger">
+                    <i class="fa-solid fa-heart fa-2x"></i>
+                    <span
+                      class="position-absolute top-8 start-120 translate-middle badge rounded-pill bg-danger"
+                    >
+                      0
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
+                  </a>
+                </div>
+                <div class="col mt-4">
+                  <a href="#" class="position-relative">
+                    <i class="fa-solid fa-cart-shopping fa-2x text-dark"></i>
+                    <span
+                      class="position-absolute top-8 start-110 translate-middle badge rounded-pill bg-danger"
+                    >
+                      0
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
+                  </a>
+                </div>
+                <div class="col mt-4">
+                  <a href="#" class="position-relative text-warning">
+                    <i class="fa-solid fa-bell fa-2x"></i>
+                    <span
+                      class="position-absolute top-8 start-110 translate-middle badge rounded-pill bg-danger"
+                    >
+                      0
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Menu -->
+    <section
+      class="bgg mb-1 sticky-navbar"
+      data-aos="fade-down"
+      data-aos-duration="3000"
+    >
+      <div class="container py-2">
+        <div class="row">
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a
+                class="nav-link active w"
+                aria-current="page"
+                href="../html/index.html"
+                ><i class="fa-solid fa-store"></i> Trang chủ</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle w"
+                href="menu.html"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-list"></i> Menu
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="coffee.html"
+                    ><i class="fa-solid fa-mug-hot"></i> COFFEE</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="tea.html"
+                    ><i class="fa-solid fa-leaf"></i> TEA</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="cake.html">
+                    <i class="fa-solid fa-cookie"></i> CAKE</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="ame.html">
+                    <i class="fa-solid fa-glass-water"></i> A-MÊ</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="menu.html"
+                    ><i class="fa-solid fa-list"></i> ALL</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link w" href="spdg.html"
+                ><i class="fa-solid fa-box"></i> Sản Phẩm Đóng Gói</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle w"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-scroll"></i> Về Chúng Tôi
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="gioithieu.html"
+                    ><i class="fa-solid fa-building"></i> Giới Thiệu Công Ty</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="lienhe.html"
+                    ><i class="fa-solid fa-headset"></i> Liên Hệ</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="tuyendung.html">
+                    <i class="fa-solid fa-briefcase"></i> Tuyển Dụng</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link w nb" href="khuyenmai.html"
+                ><i class="fa-solid fa-gift"></i> Khuyến Mãi</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- Body -->
+    <section>
+      <!-- Slide -->
+      <div class="container-fluid" data-aos="zoom-in " data-aos-duration="3000">
+        <div
+          id="carouselExampleSlidesOnly"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active zoom_up">
+              <img src="../Img/Slide1.png" class="d-block w-100" alt="..." />
+            </div>
+            <div class="carousel-item zoom_up">
+              <img src="../Img/Slide2.png" class="d-block w-100" alt="..." />
+            </div>
+            <div class="carousel-item zoom_up">
+              <img src="../Img/Slide3.png" class="d-block w-100" alt="..." />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Best Seller -->
+      <div class="container mt-3">
+        <div class="row hf1 mb-4">
+          <!-- Hình quảng cáo -->
+          <div data-aos="fade-right" data-aos-duration="3000" class="col-6">
+            <a href="../html/ame.html"
+              ><img src="../Img/Ad1.png" class="ad1 zoom_up"
+            /></a>
+          </div>
+
+          <!-- Bạc Xĩu -->
+          <div class="col-3">
+            <div
+              class="card radius_shadow position-relative zoom_up"
+              style="width: 16rem"
+              data-aos="zoom-in"
+              data-aos-duration="3000"
+            >
+              <img src="../Img/BX.png" class="card-img-top" alt="..." />
+              <!-- Thêm BEST SELLER -->
+              <div
+                class="position-absolute start-35 bg-danger text-white px-2 py-1 rounded"
+                style="
+                  bottom: 173px;
+                  left: 10px;
+                  font-weight: bold;
+                  font-size: 14px;
+                "
+              >
+                <i class="fa-solid fa-thumbs-up me-1"></i> BEST SELLER
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">BẠC XĨU</h5>
+                <p class="card-text">
+                  Bạc xỉu là sự kết hợp hoàn hảo giữa cà phê và sữa, mang đến
+                  hương vị ngọt ngào, tạo cảm giác thư giãn và sảng khoái cho
+                  ngày mới.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-3">
+            <div
+              class="card radius_shadow position-relative zoom_up"
+              style="width: 16rem"
+              data-aos="zoom-in"
+              data-aos-duration="3000"
+            >
+              <img src="../Img/CFX.png" class="card-img-top" alt="..." />
+              <!-- Thêm BEST SELLER -->
+              <div
+                class="position-absolute start-35 bg-danger text-white px-2 py-1 rounded"
+                style="
+                  bottom: 173px;
+                  left: 10px;
+                  font-weight: bold;
+                  font-size: 14px;
+                "
+              >
+                <i class="fa-solid fa-thumbs-up me-1"></i> BEST SELLER
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">TRÀ ESPRESSO MARBLE</h5>
+                <p class="card-text">
+                  Trà Espresso Marble sự hòa quyện giữa vị đắng của espresso và
+                  hương thơm thanh mát của trà xanh, tạo nên hương vị lôi cuốn.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-3">
+            <div
+              class="card radius_shadow position-relative zoom_up"
+              style="width: 16rem"
+              data-aos="zoom-in"
+              data-aos-duration="3000"
+            >
+              <img
+                src="../Img/mochichocolate.png"
+                class="card-img-top"
+                alt="..."
+              />
+              <!-- Thêm BEST SELLER -->
+              <div
+                class="position-absolute start-35 bg-danger text-white px-2 py-1 rounded"
+                style="
+                  bottom: 173px;
+                  left: 10px;
+                  font-weight: bold;
+                  font-size: 14px;
+                "
+              >
+                <i class="fa-solid fa-thumbs-up me-1"></i> BEST SELLER
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">MOCHI CHOCOLATE</h5>
+                <p class="card-text">
+                  Mochi mềm dẻo, nhân chocolate tan chảy, vị ngọt vừa phải, hòa
+                  quyện hoàn hảo, tạo cảm giác thơm ngon, cuốn hút khi thưởng
+                  thức.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div
+              class="card radius_shadow position-relative zoom_up"
+              style="width: 16rem"
+              data-aos="zoom-in"
+              data-aos-duration="3000"
+            >
+              <img src="../Img/Bơ.png" class="card-img-top" alt="..." />
+              <!-- Thêm BEST SELLER -->
+              <div
+                class="position-absolute start-35 bg-danger text-white px-2 py-1 rounded"
+                style="
+                  bottom: 173px;
+                  left: 10px;
+                  font-weight: bold;
+                  font-size: 14px;
+                "
+              >
+                <i class="fa-solid fa-thumbs-up me-1"></i> BEST SELLER
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">BƠ ARABICA</h5>
+                <p class="card-text">
+                  Cà phê Arabica đậm đà, hòa quyện cùng vị béo mịn của bơ, mang
+                  lại hương thơm nồng nàn và cảm giác mượt mà, khó quên.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div
+              class="card radius_shadow position-relative zoom_up"
+              style="width: 16rem"
+              data-aos="zoom-in"
+              data-aos-duration="3000"
+            >
+              <img src="../Img/Amedao.png" class="card-img-top" alt="..." />
+              <!-- Thêm BEST SELLER -->
+              <div
+                class="position-absolute start-35 bg-danger text-white px-2 py-1 rounded"
+                style="
+                  bottom: 173px;
+                  left: 10px;
+                  font-weight: bold;
+                  font-size: 14px;
+                "
+              >
+                <i class="fa-solid fa-thumbs-up me-1"></i> BEST SELLER
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">A - MÊ ĐÀO</h5>
+                <p class="card-text">
+                  Hương trà thanh mát kết hợp vị ngọt dịu của đào, tạo cảm giác
+                  sảng khoái, dễ chịu, với chút chua nhẹ tinh tế, cuốn hút.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div
+              class="card radius_shadow position-relative zoom_up"
+              style="width: 16rem"
+              data-aos="zoom-in"
+              data-aos-duration="3000"
+            >
+              <img src="../Img/lattenong.png" class="card-img-top" alt="..." />
+              <!-- Thêm BEST SELLER -->
+              <div
+                class="position-absolute start-35 bg-danger text-white px-2 py-1 rounded"
+                style="
+                  bottom: 173px;
+                  left: 10px;
+                  font-weight: bold;
+                  font-size: 14px;
+                "
+              >
+                <i class="fa-solid fa-thumbs-up me-1"></i> BEST SELLER
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">LATTE NÓNG</h5>
+                <p class="card-text">
+                  Cà phê sữa nóng béo mịn, cân bằng giữa vị đắng nhẹ của cà phê
+                  và vị ngọt của sữa, tạo cảm giác ấm áp, thư giãn, đậm chất
+                  cuốn hút.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Quảng Cáo -->
+        <div class="container mb-3">
+          <div class="row">
+            <div class="col">
+              <img
+                data-aos="fade-right"
+                data-aos-duration="3000"
+                data-aos-easing="ease-in-out"
+                src="../Img/Bg1.png"
+              />
+            </div>
+            <!-- ease: nhanh rồi chậm dần, linear: đều, ease-in-out: chậm đầu và cuối -->
+            <div class="col">
+              <div class="row mb-5">
+                <img
+                  data-aos="fade-left"
+                  data-aos-duration="3000"
+                  data-aos-easing="ease-in-out"
+                  src="../Img/Bg2.png"
+                />
+              </div>
+              <div class="row">
+                <div class="d-grid mx-auto">
+                  <button
+                    data-aos="zoom-in"
+                    data-aos-duration="3000"
+                    data-aos-easing="ease-in-out"
+                    class="btn gr"
+                    type="button"
+                  >
+                    Trải Nghiệm Ngay
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Facing -->
+        <div class="container mb-3">
+          <div class="row">
+            <!-- Des Spacing -->
+            <div class="col">
+              <strong
+                data-aos="zoom-in-up"
+                data-aos-duration="3000"
+                data-aos-easing="ease-in-out"
+                class="signature_size"
+                >SIGNATURE BY T
+              </strong>
+              <p
+                data-aos="zoom-in"
+                data-aos-duration="3000"
+                data-aos-easing="ease-in-out"
+                class="text-left"
+              >
+                Không chỉ là một loại đồ uống đặc trưng, mà còn là dấu ấn riêng,
+                là linh hồn tạo nên sự khác biệt và khiến khách hàng nhớ mãi. Đó
+                có thể là một ly cà phê đậm đà với hương thơm quyến rũ, một loại
+                trà sáng tạo mang vị thanh mát, hay thậm chí là một món nước thủ
+                công được pha chế từ những nguyên liệu đặc biệt, chỉ có tại
+                quán. Nhưng hơn cả hương vị, signature còn là cảm giác mà nó
+                mang lại. Khi khách hàng nhấp một ngụm, họ không chỉ thưởng thức
+                hương vị, mà còn cảm nhận được cái "chất" riêng của quán – thứ
+                khiến họ muốn quay lại, để tìm lại hương vị đặc trưng không thể
+                tìm thấy ở bất kỳ nơi nào khác.
+              </p>
+            </div>
+
+            <!-- Slide -->
+            <div class="col">
+              <div
+                id="carouselExampleInterval"
+                class="carousel slide"
+                data-bs-ride="carousel"
+                data-aos="flip-left"
+                data-aos-duration="3000"
+                data-aos-easing="ease-out"
+              >
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-bs-interval="3000">
+                    <img
+                      src="../Img/s1.png"
+                      class="d-block w-100 zoom_up"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <img
+                      src="../Img/s2.png"
+                      class="d-block w-100 zoom_up"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="../Img/s3.png"
+                      class="d-block w-100 zoom_up"
+                      alt="..."
+                    />
+                  </div>
+                </div>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselExampleInterval"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselExampleInterval"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- News -->
+    <div class="container-fluid bg_news">
+      <div class="container">
+        <h3 class="text-center mb-2 pt-4 rgb_119_139_55">
+          <strong>TIN TỨC & KHUYẾN MÃI</strong>
+        </h3>
+        <p class="text-center rgb_119_139_55">
+          TIN TỨC & KHUYẾN MÃI CỦA T COFFEE
+        </p>
+        <!-- Coffeholic -->
+        <h5 class="bf mb-2">COFFEE_HOLIC</h5>
+        <div class="row">
+          <div class="col">
+            <img
+              src="../Img/cfholic1.png"
+              class="adjust_pictures_news mb-1"
+              data-aos="fade-right"
+              data-aos-duration="3000"
+            />
+            <h6 class="adjust_text_news">
+              BẮT GẶP SÀI GÒN XƯA TRONG MUỐN UỐNG HIỆN ĐẠI CỦA GIỚI TRẺ
+            </h6>
+            <p class="adjust_text_news">
+              Dẫu qua bao nhiêu lớp sóng thời gian, người ta vẫn có thể tìm lại
+              những dấu ấn thăng trầm của một Sài Gòn xưa cũ. Trên những góc
+              phố,...
+            </p>
+          </div>
+          <div class="col">
+            <img
+              src="../Img/cfholic2.png"
+              class="adjust_pictures_news mb-1"
+              data-aos="fade-down"
+              data-aos-duration="3000"
+            />
+            <h6 class="adjust_text_news">
+              CHỈ CHỌN CÀ PHÊ MỖI SÁNG NHƯNG CŨNG KHIẾN CUỘC SỐNG CỦA BẠN THÊM
+              THÚ VỊ, TẠI SAO KHÔNG?
+            </h6>
+            <p class="adjust_text_news">
+              Thực chất, bạn không nhất thiết phải làm gì to tát để tạo nên một
+              ngày rực rỡ. Chỉ cần bắt đầu từ những việc nhỏ nhặt nhất, khi
+              bạn...
+            </p>
+          </div>
+          <div class="col">
+            <img
+              src="../Img/cfhoclic3.png"
+              class="adjust_pictures_news mb-1"
+              data-aos="fade-left"
+              data-aos-duration="3000"
+            />
+            <h6 class="adjust_text_news">
+              SIGNATURE - BIỂU TƯỢNG VĂN HOÁ CÀ PHÊ CỦA THE COFFEE HOUSE ĐÃ QUAY
+              TRỞ LẠI
+            </h6>
+            <p class="adjust_text_news">
+              Mới đây, các "tín đồ" cà phê đang bàn tán xôn xao về SIGNATURE -
+              Biểu tượng văn hóa cà phê của The Coffee House đã quay trở lại.Một
+              lời...
+            </p>
+          </div>
+        </div>
+        <!-- Teaholic -->
+        <h5 class="bf mb-2">TEA_HOLIC</h5>
+        <div class="row">
+          <div class="col">
+            <img
+              src="../Img/teaholic1.png"
+              class="adjust_pictures_news mb-1"
+              data-aos="fade-right"
+              data-aos-duration="3000"
+            />
+            <h6 class="adjust_text_news">
+              “KHUẤY ĐỂ THẤY TRĂNG" - KHUẤY LÊN NIỀM HẠNH PHÚC: TRẢI NGHIỆM
+              KHÔNG THỂ BỎ LỠ MÙA TRUNG THU NÀY
+            </h6>
+            <p class="adjust_text_news">
+              Năm 2024 là năm đề cao sức khỏe tinh thần nên giới trẻ muốn tận
+              hưởng một Trung thu với nhiều trải nghiệm mới mẻ, rôm rả cùng bạn
+              bè...
+            </p>
+          </div>
+          <div class="col">
+            <img
+              src="../Img/teaholic2.png"
+              class="adjust_pictures_news mb-1"
+              data-aos="zoom-in"
+              data-aos-duration="3000"
+            />
+            <h6 class="adjust_text_news">
+              BỘ SƯU TẬP CẦU TOÀN KÈO THƠM: "VÍA" MAY MẮN KHÔNG THỂ BỎ LỠ TẾT
+              NÀY
+            </h6>
+            <p class="adjust_text_news">
+              Tết nay vẫn giống Tết xưa, không hề mai một nét văn hoá truyền
+              thống mà còn thêm vào những hoạt động “xin vía” hiện đại, trẻ
+              trung. Ví như...
+            </p>
+          </div>
+          <div class="col">
+            <img
+              src="../Img/teaholic3.png"
+              class="adjust_pictures_news mb-1"
+              data-aos="fade-left"
+              data-aos-duration="3000"
+            />
+            <h6 class="adjust_text_news">
+              TRUNG THU NÀY, SAO BẠN KHÔNG TỰ CHO MÌNH "DỪNG MỘT CHÚT THÔI,
+              THƯỞNG MỘT CHÚT TRÔI"?
+            </h6>
+            <p class="adjust_text_news">
+              Bạn có từng nghe: “Trung thu thôi mà, có gì đâu mà chơi”, hay
+              “Trung thu càng ngày càng chán”...? Sự bận rộn đến mức “điên rồ”
+              đã khiến chúng...
+            </p>
+          </div>
+        </div>
+        <!-- SALE-->
+        <h5 class="bf mb-2">SALES</h5>
+        <div class="row">
+          <div class="col">
+            <img
+              src="../Img/TT1.png"
+              class="adjust_pictures_news mb-1"
+              data-aos="fade-right"
+              data-aos-duration="3000"
+            />
+            <h6 class="adjust_text_news">VALENTINE'S DAY</h6>
+            <p class="adjust_text_news">
+              Chào đón ngày lễ tình nhân với ưu đãi ngọt ngào nhất! Nhân dịp
+              Valentine's Day, chúng tôi mang đến cho bạn SALE UP TO 50% – Cơ
+              hội hoàn hảo để chọn quà cho người ấy hoặc tự thưởng cho bản thân!
+            </p>
+          </div>
+          <div class="col">
+            <img
+              src="../Img/sale1.png"
+              class="adjust_pictures_news mb-1"
+              data-aos="fade-up"
+              data-aos-duration="3000"
+            />
+            <h6 class="adjust_text_news">BIG SALE</h6>
+            <p class="adjust_text_news">
+              Cơ hội mua sắm cực đỉnh với mức giá không thể tốt hơn! Hàng loạt
+              sản phẩm chất lượng cao đang được giảm giá lên đến 50%. Đừng bỏ lỡ
+              cơ hội sở hữu những món đồ yêu thích với giá cực hời!
+            </p>
+          </div>
+          <div class="col">
+            <img
+              src="../Img/sale2.png"
+              class="adjust_pictures_news mb-1"
+              data-aos="fade-left"
+              data-aos-duration="3000"
+            />
+            <h6 class="adjust_text_news">UP TO 50% OFF</h6>
+            <p class="adjust_text_news">
+              Giảm giá cực sốc, cơ hội mua sắm giá hời! Nhanh tay kẻo lỡ!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <section
+      data-aos="fade-up"
+      data-aos-duration="3000"
+      class="myfooter bg-dark text-white py-3"
+    >
+      <div class="container">
+        <!-- Row 1: Gồm 4 col -->
+        <div class="row">
+          <!-- Col Sản Phẩm -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <ul class="list-menu">
+              <h4 class="mb-3">Sản Phẩm</h4>
+
+              <li class="li_menu mb-2">
+                <a href="coffee.html" title="Coffee"
+                  ><i class="fa-solid fa-mug-hot"></i> Coffee</a
+                >
+              </li>
+              <li class="li_menu mb-2">
+                <a href="tea.html" title="Tea"
+                  ><i class="fa-solid fa-leaf"></i> Tea</a
+                >
+              </li>
+              <li class="li_menu mb-2">
+                <a href="cake.html" title="Cake">
+                  <i class="fa-solid fa-cookie"></i> Cake</a
+                >
+              </li>
+              <li class="li_menu">
+                <a href="ame.html" title="A-mê"
+                  ><i class="fa-solid fa-glass-water"></i> A-mê</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Col Về Chúng Tôi -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <ul class="list-menu">
+              <h4 class="mb-3">Về Chúng Tôi</h4>
+              <li class="li_menu mb-2">
+                <a href="gioithieu.html" title="Giới Thiệu"
+                  ><i class="fa-solid fa-building"></i> Giới Thiệu</a
+                >
+              </li>
+              <li class="li_menu mb-2">
+                <a href="lienhe.html" title="Liên Hệ"
+                  ><i class="fa-solid fa-headset"></i> Liên Hệ</a
+                >
+              </li>
+              <li class="li_menu">
+                <a href="tuyendung.html" title="Tuyển Dụng"
+                  ><i class="fa-solid fa-briefcase"></i> Tuyển Dụng</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Col Chính Sách Bán Hàng -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <ul class="list-menu">
+              <h4 class="mb-3">Chính Sách Bán Hàng</h4>
+              <li class="li_menu mb-1">
+                <a href="#" title="Trang Chủ"
+                  ><i class="fa-solid fa-coins"></i> Thanh Toán</a
+                >
+              </li>
+              <li class="li_menu mb-1">
+                <a href="#" title="Giao Hàng"
+                  ><i class="fa-solid fa-truck-fast"></i> Giao Hàng</a
+                >
+              </li>
+              <li class="li_menu mb-1">
+                <a href="#" title="Đổi Trả Hàng"
+                  ><i class="fa-solid fa-right-left"></i> Đổi Trả Hàng</a
+                >
+              </li>
+              <li class="li_menu mb-1">
+                <a href="#" title="Bảo Hành"
+                  ><i class="fa-solid fa-file-lines"></i> Bảo Hành</a
+                >
+              </li>
+              <li class="li_menu mb-1">
+                <a
+                  href="#"
+                  title="Bảo Mật Thông Tin
+                Khách Hàng"
+                  ><i class="fa-solid fa-shield-halved"></i> Bảo Mật Thông Tin
+                  Khách Hàng</a
+                >
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Hoàn Tiền"
+                  ><i class="fa-solid fa-money-check-dollar"></i> Hoàn Tiền</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Col Theo dõi chúng tôi -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <ul class="list-menu">
+              <h4 class="mb-3">Theo Dõi Chúng Tôi</h4>
+              <li class="li_menu mb-2">
+                <a href="#" title="Facebook"
+                  ><i class="fa-brands fa-facebook"></i> Facebook</a
+                >
+              </li>
+              <li class="li_menu mb-2">
+                <a href="#" title="Instagram"
+                  ><i class="fa-brands fa-instagram"></i> Instagram</a
+                >
+              </li>
+              <li class="li_menu mb-2">
+                <a href="#" title="Tiktok"
+                  ><i class="fa-brands fa-tiktok"></i> Tiktok</a
+                >
+              </li>
+              <li class="li_menu mb-2">
+                <a href="#" title="Youtube"
+                  ><i class="fa-brands fa-youtube"></i> Youtube</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- Row 2: Gồm 2 col -->
+        <div class="row">
+          <!-- Col 1: -->
+          <div class="col-12 col-sm-6 col-md-6 mt-5">
+            <h5>T+ COFFEE</h5>
+            <p>
+              Copyright@ 2025 Công ty cổ phần thương mại T COFFEE Chứng nhận
+              ĐKKD số: 0388282938 do sở KH & ĐT TP.HCM cấp <br />Địa chỉ: Tòa
+              nhà 123 Đường 3 tháng 2, TP.HCM<br />
+              Điện thoại: 190099999 - Email: tcoffee@gmail.com
+            </p>
+          </div>
+          <!-- Col 2: -->
+          <div class="col-12 col-sm-6 col-md-6 py-5">
+            <h5>Nhận VouCher Siêu Khủng</h5>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nhập Email của bạn"
+                aria-label="Nhập Email của bạn"
+                aria-describedby="button-addon2"
+              />
+              <button
+                class="btn btn-outline-secondary bg-danger text-white"
+                type="button"
+                id="button-addon2"
+              >
+                Đăng Kí Ngay
+              </button>
+            </div>
+            <div>
+              <span class=".box40 bg-danger"> </span>
+            </div>
+            <div class="row mt-3">
+              <div class="d-flex align-items-center gap-4">
+                <i class="fa-brands fa-facebook fa-2x zoom_up"></i>
+                <i class="fa-brands fa-instagram fa-2x zoom_up"></i>
+                <i class="fa-brands fa-tiktok fa-2x zoom_up"></i>
+                <i class="fa-brands fa-youtube fa-2x zoom_up"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <!-- Row 3: Gồm 2 col -->
+        <div class="row">
+          <!-- Col 1:-->
+          <div class="col-12 col-sm-6 col-md-6 mt-2">Bản Quyền</div>
+          <!-- Col 2: -->
+          <div class="col-12 col-sm-6 col-md-6">
+            <nav class="navbar navbar-expand-lg bg-dark">
+              <div class="container-fluid">
+                <a class="navbar-brand text-white" href="#"
+                  ><i class="fa-solid fa-store"></i> Trang Chủ</a
+                >
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarNavAltMarkup"
+                  aria-controls="navbarNavAltMarkup"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                  <div class="navbar-nav">
+                    <a
+                      class="nav-link active bg-dark text-white"
+                      aria-current="page"
+                      href="menu.html"
+                      target="_blank"
+                      ><i class="fa-solid fa-list"></i> Menu</a
+                    >
+                    <a class="nav-link bg-dark text-white" href="spdg.html"
+                      ><i class="fa-solid fa-box"></i> Sản Phẩm đóng gói</a
+                    >
+                    <a
+                      class="nav-link bg-dark text-white"
+                      target="_blank"
+                      href="gioithieu.html"
+                      ><i class="fa-solid fa-scroll"></i> Về Chúng Tôi</a
+                    >
+                    <a
+                      class="nav-link bg-dark text-white"
+                      target="_blank"
+                      href="khuyenmai.html"
+                      ><i class="fa-solid fa-gift"></i> Khuyến Mãi</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Myjs -->
+    <script src="../js/myjs.js"></script>
+  </body>
+</html>

@@ -1,0 +1,257 @@
+<?php
+require_once 'pdo.php';
+
+// -------- ADMIN --------
+
+// 1. Hàm lấy ra danh sách sản phẩm admin
+function get_list_product_admin($limit_product)
+{
+    $sql = "SELECT * FROM product ORDER BY id DESC LIMIT ".$limit_product;
+    return pdo_query($sql);
+}
+
+// 2. Hàm thêm sản phẩm admin
+function add_product($img, $name, $categories, $price, $description){
+    $sql = "INSERT INTO product(img, name, product_category_id, price, description) VALUES (?,?,?,?,?)";
+    pdo_execute($sql, $img, $name, $categories, $price, $description);
+}
+
+// 3. Hàm xóa sản phẩm admin
+function delete_product($id_pro){
+    $sql = "DELETE FROM product WHERE  id=?";
+    pdo_execute($sql, $id_pro);
+}
+
+// 4. Hàm lấy hình ảnh sản phẩm
+function get_img_by_id($id_pro){
+    $sql = "SELECT img FROM product WHERE id=?";
+    $result = pdo_query_one($sql, $id_pro);
+    return $result['img'];
+}
+
+// 5. Hàm cập nhật sản phẩm
+function update_product($name, $category_id, $price, $description, $id_pro){
+    $sql = "UPDATE product SET name=?, product_category_id=?, price=?, description=? WHERE id=?";
+    pdo_execute($sql, $name, $category_id, $price,  $description, $id_pro);
+}
+
+// 6. Hàm lấy thông tin sản phẩm qua id sản phẩm
+function get_product_by_id($id_pro){
+    $sql = "SELECT * FROM product WHERE id=?";
+    return pdo_query_one($sql, $id_pro);
+}
+
+
+// 7. Hàm lấy ra tất cả đơn hàng 
+function get_all_list_orders(){
+    $sql = "SELECT * FROM bill ORDER BY created_at DESC";
+    return pdo_query($sql);
+}
+
+// 8. Hàm lấy ra chi tiết hóa đơn thông qua bill_id
+function get_detail_bill_by_bill_id($id){
+    $sql = "SELECT * 
+            FROM bill_detail bd
+            JOIN product pd ON pd.id = bd.product_id
+            WHERE bd.bill_id=?";
+    return pdo_query($sql, $id);
+}
+
+// 9. Hàm điều chỉnh trạng thái thanh toán, trạng thánh đơn hàng thông qua bill_id
+function adjust_status($payment_status, $status, $bill_id){
+    $sql = "UPDATE bill SET payment_status=?, status=? WHERE bill_id=?";
+    pdo_execute($sql, $payment_status, $status, $bill_id);
+}
+
+
+
+
+
+
+
+
+
+
+
+// -------- User --------
+
+// Hàm lấy ra danh sách sản phẩm mới
+function get_list_product_new($limit_product){
+    $sql = "SELECT * FROM product ORDER BY id DESC LIMIT ".$limit_product;// Nếu không cách ra thì sẽ thành limit4
+    return pdo_query($sql);
+} 
+
+// Hàm lấy ra danh sách sản phẩm bestseller
+function get_list_product_bestseller($limit_product){
+    $sql = "SELECT * FROM product WHERE bestseller=1 ORDER BY id DESC LIMIT ".$limit_product;
+    return pdo_query($sql);
+
+}
+
+// Hàm lấy ra danh sách sản phẩm
+function get_list_product($kyw, $product_categories_id, $limit_product){
+    $sql = "SELECT * FROM product WHERE 1";
+
+    if($product_categories_id>0){
+        $sql .=" AND product_category_id=".$product_categories_id;
+    }
+    
+    if($kyw != ""){
+        $sql .=" AND name like '%".$kyw."%'";
+    }
+    
+    $sql .= " ORDER BY id DESC LIMIT ".$limit_product;
+    return pdo_query($sql);
+}
+
+// Hàm lấy ra sản phẩm chi tiết thông qua id_product sản phẩm 
+function get_detail_product_by_id($id){
+    $sql = "SELECT * FROM product WHERE id=?";
+    return pdo_query_one($sql, $id);
+}
+
+// Hàm lấy ra danh sách sản phẩm liên quan
+function get_list_relative_product($category_id, $id, $limit_product){
+    $sql = "SELECT * FROM product WHERE product_category_id=? AND id<>? ORDER BY id DESC LIMIT ".$limit_product;
+    return pdo_query($sql, $category_id, $id);
+} 
+
+// Phần sản phẩm yêu thích
+function check_favorite($user_id, $product_id){
+    $sql= "SELECT * FROM favorite WHERE id_user=? AND id_product=?";
+    return pdo_query_one($sql, $user_id, $product_id);
+}
+ 
+function delete_favorite($user_id, $product_id){
+    $sql= "DELETE FROM favorite WHERE id_user=? AND id_product=?";
+    pdo_execute($sql, $user_id, $product_id);
+}
+
+function insert_favorite($user_id, $product_id){
+    $sql= "INSERT INTO favorite(id_user, id_product) VALUES(?, ?)";
+    pdo_execute($sql, $user_id, $product_id);
+}
+
+function count_favorite_by_user_id($user_id){
+    $sql = "SELECT COUNT(*) AS total FROM favorite WHERE id_user = ?";
+    $result = pdo_query_one($sql, $user_id);
+    return $result['total']; 
+}
+
+function get_favorite_by_user_id_and_product_id($user_id){
+    $sql = "SELECT * 
+            FROM favorite fv
+            JOIN product pd ON pd.id = fv.id_product
+            WHERE fv.id_user=?
+            ORDER BY fv.created_at DESC";
+    return pdo_query($sql, $user_id);
+}
+
+// Phần giảm giá
+// Kiểm tra có mã giảm giá không?
+function check_voucher($code){
+    $sql = "SELECT code FROM discount WHERE code = ?";
+    $result = pdo_query_one($sql, $code);
+    return $result ? true : false;
+}
+// Kiểm tra có mã giảm giá còn thời hạn sử dụng không?
+function check_voucher_time($code){
+    $sql = "SELECT code FROM discount WHERE code = ? AND CURDATE() < expired_at ";
+    $result = pdo_query_one($sql, $code);
+    return $result ? true : false;
+}
+
+function get_voucher($code){
+    $sql = "SELECT *
+            FROM discount 
+            WHERE code = ?";
+    return pdo_query_one($sql, $code);
+}
+
+// Hàm lấy ra sản phẩm đóng gói
+function get_packed_products($limit_product){
+    $sql = "SELECT * FROM product WHERE product_category_id = 5 LIMIT ".$limit_product;
+    return pdo_query($sql);
+}
+
+
+
+// function hang_hoa_insert($ten_hh, $don_gia, $giam_gia, $hinh, $ma_loai, $dac_biet, $so_luot_xem, $ngay_nhap, $mo_ta){
+//     $sql = "INSERT INTO hang_hoa(ten_hh, don_gia, giam_gia, hinh, ma_loai, dac_biet, so_luot_xem, ngay_nhap, mo_ta) VALUES (?,?,?,?,?,?,?,?,?)";
+//     pdo_execute($sql, $ten_hh, $don_gia, $giam_gia, $hinh, $ma_loai, $dac_biet==1, $so_luot_xem, $ngay_nhap, $mo_ta);
+// }
+
+// function hang_hoa_update($ma_hh, $ten_hh, $don_gia, $giam_gia, $hinh, $ma_loai, $dac_biet, $so_luot_xem, $ngay_nhap, $mo_ta){
+//     $sql = "UPDATE hang_hoa SET ten_hh=?,don_gia=?,giam_gia=?,hinh=?,ma_loai=?,dac_biet=?,so_luot_xem=?,ngay_nhap=?,mo_ta=? WHERE ma_hh=?";
+//     pdo_execute($sql, $ten_hh, $don_gia, $giam_gia, $hinh, $ma_loai, $dac_biet==1, $so_luot_xem, $ngay_nhap, $mo_ta, $ma_hh);
+// }
+
+// function hang_hoa_delete($ma_hh){
+//     $sql = "DELETE FROM hang_hoa WHERE  ma_hh=?";
+//     if(is_array($ma_hh)){
+//         foreach ($ma_hh as $ma) {
+//             pdo_execute($sql, $ma);
+//         }
+//     }
+//     else{
+//         pdo_execute($sql, $ma_hh);
+//     }
+// }
+
+// function hang_hoa_select_by_id($ma_hh){
+//     $sql = "SELECT * FROM hang_hoa WHERE ma_hh=?";
+//     return pdo_query_one($sql, $ma_hh);
+// }
+
+// function hang_hoa_exist($ma_hh){
+//     $sql = "SELECT count(*) FROM hang_hoa WHERE ma_hh=?";
+//     return pdo_query_value($sql, $ma_hh) > 0;
+// }
+
+// function hang_hoa_tang_so_luot_xem($ma_hh){
+//     $sql = "UPDATE hang_hoa SET so_luot_xem = so_luot_xem + 1 WHERE ma_hh=?";
+//     pdo_execute($sql, $ma_hh);
+// }
+
+// function hang_hoa_select_top10(){
+//     $sql = "SELECT * FROM hang_hoa WHERE so_luot_xem > 0 ORDER BY so_luot_xem DESC LIMIT 0, 10";
+//     return pdo_query($sql);
+// }
+
+// function hang_hoa_select_dac_biet(){
+//     $sql = "SELECT * FROM hang_hoa WHERE dac_biet=1";
+//     return pdo_query($sql);
+// }
+
+// function hang_hoa_select_by_loai($ma_loai){
+//     $sql = "SELECT * FROM hang_hoa WHERE ma_loai=?";
+//     return pdo_query($sql, $ma_loai);
+// }
+
+// function hang_hoa_select_keyword($keyword){
+//     $sql = "SELECT * FROM hang_hoa hh "
+//             . " JOIN loai lo ON lo.ma_loai=hh.ma_loai "
+//             . " WHERE ten_hh LIKE ? OR ten_loai LIKE ?";
+//     return pdo_query($sql, '%'.$keyword.'%', '%'.$keyword.'%');
+// }
+
+// function hang_hoa_select_page(){
+//     if(!isset($_SESSION['page_no'])){
+//         $_SESSION['page_no'] = 0;
+//     }
+//     if(!isset($_SESSION['page_count'])){
+//         $row_count = pdo_query_value("SELECT count(*) FROM hang_hoa");
+//         $_SESSION['page_count'] = ceil($row_count/10.0);
+//     }
+//     if(exist_param("page_no")){
+//         $_SESSION['page_no'] = $_REQUEST['page_no'];
+//     }
+//     if($_SESSION['page_no'] < 0){
+//         $_SESSION['page_no'] = $_SESSION['page_count'] - 1;
+//     }
+//     if($_SESSION['page_no'] >= $_SESSION['page_count']){
+//         $_SESSION['page_no'] = 0;
+//     }
+//     $sql = "SELECT * FROM hang_hoa ORDER BY ma_hh LIMIT ".$_SESSION['page_no'].", 10";
+//     return pdo_query($sql);
+// }

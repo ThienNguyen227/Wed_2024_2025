@@ -1,0 +1,89 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 3px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+input[type="text"]:hover {
+  border: 1px solid rgb(229, 121, 5);
+}
+input[type="password"]:hover {
+  border: 1px solid rgb(229, 121, 5);
+}
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background-color: rgb(229, 121, 5);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: white;
+  color: rgb(229, 121, 5);
+  border: 1px solid rgb(229, 121, 5);
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+.correct-message {
+  color: rgb(32, 239, 17) !important;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.logo {
+  width: 150px;
+  margin: 0 auto;
+  display: block;
+}
+label {
+  margin-left: 5px;
+  margin-bottom: 0px;
+  font-weight: bold;
+  font-style: italic;
+}
+.fa-key {
+  color: yellow;
+}
+.fa-envelope {
+  color: blue;
+}
+.fa-phone {
+  color: red;
+}
+.cl {
+  color: rgb(229, 121, 5);
+}
+.cl:hover {
+  color: rgb(77, 73, 68);
+}

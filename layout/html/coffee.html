@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>T_COFFEE</title>
+    <!-- bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Favicon -->
+    <link rel="icon" href="../Img/ZRvS2r9P.ico" type="image/x-icon" />
+    <!-- Link css -->
+    <link rel="stylesheet" href="../css/index.css" />
+    <!-- Thư viện AOS(Animate on scroll) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  </head>
+  <body>
+    <!-- Header-->
+    <section class="myheader">
+      <div class="container">
+        <div class="container text-center">
+          <div class="row">
+            <!-- Logo -->
+            <div class="col-1">
+              <img
+                src="../Img/Logo-removebg-preview.png"
+                class="img-fluid zoom_up"
+                alt="Logo"
+                height="50"
+              />
+            </div>
+            <!-- Searching Bar -->
+            <div class="col-4">
+              <div class="input-group mb-3 py-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Searching here ...."
+                  aria-label="Bạn muốn mua gì ..."
+                  aria-describedby="button-addon2"
+                />
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  id="button-addon2"
+                >
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+            </div>
+            <!-- Hotline and Login -->
+            <div class="col-4">
+              <div class="row">
+                <!-- Hotline -->
+                <div class="col">
+                  <div class="row">
+                    <!-- Icon Phone -->
+                    <div class="col adjust_phone">
+                      <i class="fa-solid fa-phone fa-2x"></i>
+                    </div>
+                    <!-- HotLine Number -->
+                    <div class="col py-3">
+                      Hotline<br />
+                      <p>9999999</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Login -->
+                <div class="col">
+                  <div class="row">
+                    <!-- Icon User -->
+                    <div class="col adjust_user">
+                      <i class="fa-solid fa-user fa-2x"></i>
+                    </div>
+                    <!-- Login -->
+                    <div class="col py-3">
+                      Welcome<br />
+                      <a href="#" target="_blank"><strong>Login</strong></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Notification -->
+            <div class="col-3">
+              <div class="row">
+                <div class="col mt-4">
+                  <a href="#" class="position-relative text-danger">
+                    <i class="fa-solid fa-heart fa-2x"></i>
+                    <span
+                      class="position-absolute top-8 start-120 translate-middle badge rounded-pill bg-danger"
+                    >
+                      0
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
+                  </a>
+                </div>
+                <div class="col mt-4">
+                  <a href="#" class="position-relative">
+                    <i class="fa-solid fa-cart-shopping fa-2x text-dark"></i>
+                    <span
+                      class="position-absolute top-8 start-110 translate-middle badge rounded-pill bg-danger"
+                    >
+                      0
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
+                  </a>
+                </div>
+                <div class="col mt-4">
+                  <a href="#" class="position-relative text-warning">
+                    <i class="fa-solid fa-bell fa-2x"></i>
+                    <span
+                      class="position-absolute top-8 start-110 translate-middle badge rounded-pill bg-danger"
+                    >
+                      0
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Navbar Menu -->
+    <section
+      class="bgg mb-1 sticky-navbar"
+      data-aos="fade-down"
+      data-aos-duration="3000"
+    >
+      <div class="container py-2">
+        <div class="row">
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a
+                class="nav-link  w"
+                aria-current="page"
+                href="../html/index.html"
+                ><i class="fa-solid fa-store"></i> Trang chủ</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link active dropdown-toggle w"
+                href="menu.html"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-list"></i> Menu
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="coffee.html"
+                    ><i class="fa-solid fa-mug-hot"></i> COFFEE</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="tea.html"
+                    ><i class="fa-solid fa-leaf"></i> TEA</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="cake.html">
+                    <i class="fa-solid fa-cookie"></i> CAKE</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="ame.html">
+                    <i class="fa-solid fa-glass-water"></i> A-MÊ</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="menu.html"
+                    ><i class="fa-solid fa-list"></i> ALL</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link w" href="spdg.html"
+                ><i class="fa-solid fa-box"></i> Sản Phẩm Đóng Gói</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle w"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-scroll"></i> Về Chúng Tôi
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="gioithieu.html"
+                    ><i class="fa-solid fa-building"></i> Giới Thiệu Công Ty</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="lienhe.html"
+                    ><i class="fa-solid fa-headset"></i> Liên Hệ</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="tuyendung.html">
+                    <i class="fa-solid fa-briefcase"></i> Tuyển Dụng</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link w nb" href="khuyenmai.html"
+                ><i class="fa-solid fa-gift"></i> Khuyến Mãi</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ALl Menu -->
+    <section>
+      <div class="container">
+        <div class="row">
+          <!-- List Menu -->
+          <div class="col-3">
+            <div class="row">
+              <div class="col">
+                <div class="list-group" id="list-tab" role="tablist" data-aos="slide-up"
+                data-aos-duration="3000">
+                  <a
+                    class="list-group-item list-group-item-action"
+                    href="menu.html"
+                    ><i class="fa-solid fa-bars"></i> All</a
+                  >
+                  <a
+                    class="list-group-item list-group-item-action active"
+                    href="coffee.html"
+                    ><i class="fa-solid fa-mug-hot"></i> Coffee</a
+                  >
+                  <a
+                    class="list-group-item list-group-item-action"
+                    href="tea.html"
+                    ><i class="fa-solid fa-leaf"></i> Tea</a
+                  >
+                  <a
+                    class="list-group-item list-group-item-action "
+                    href="cake.html"
+                    ><i class="fa-solid fa-cookie"></i> Cake</a
+                  >
+                  <a
+                    class="list-group-item list-group-item-action"
+                    href="ame.html"
+                    ><i class="fa-solid fa-glass-water"></i> A-Mê</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-9">
+            <h3
+              class="label_pro mb-3"
+              data-aos="fade-left"
+              data-aos-duration="3000"
+            >
+              <i class="fa-solid fa-mug-hot"></i> COFFEE
+            </h3>
+            <div class="row">
+              <div class="col">
+                <img
+                  src="../Img/Coffe/CFD.png"
+                  class="adjust_pic_pro mb-2"
+                  data-aos="zoom-in-up"
+                  data-aos-duration="3000"
+                />
+                <h5>Cà Phê Đen</h5>
+                <p>39.000 Đ</p>
+              </div>
+              <div class="col">
+                <img
+                  src="../Img/Coffe/CFS.png"
+                  class="adjust_pic_pro mb-2"
+                  data-aos="zoom-in-down"
+                  data-aos-duration="3000"
+                />
+                <h5>Cà Phê Sữa</h5>
+                <p>39.000 Đ</p>
+              </div>
+              <div class="col">
+                <img
+                  src="../Img/Coffe/BX.png"
+                  class="adjust_pic_pro mb-2"
+                  data-aos="zoom-in-up"
+                  data-aos-duration="3000"
+                />
+                <h5>Bạc Xĩu</h5>
+                <p>39.000 Đ</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <img
+                  src="../Img/Coffe/CFDN.png"
+                  class="adjust_pic_pro mb-2"
+                  data-aos="zoom-in-right"
+                  data-aos-duration="3000"
+                />
+                <h5>Cà Phê Đen Nóng</h5>
+                <p>39.000 Đ</p>
+              </div>
+              <div class="col">
+                <img
+                  src="../Img/Coffe/CFSN.png"
+                  class="adjust_pic_pro mb-2"
+                  data-aos="zoom-in"
+                  data-aos-duration="3000"
+                />
+                <h5>Cà Phê Sữa Nóng</h5>
+                <p>39.000 Đ</p>
+              </div>
+              <div class="col">
+                <img
+                  src="../Img/Coffe/BXN.png"
+                  class="adjust_pic_pro mb-2"
+                  data-aos="zoom-in-left"
+                  data-aos-duration="3000"
+                />
+                <h5>Bạc Xĩu Nóng</h5>
+                <p>39.000 Đ</p>
+              </div>
+            </div>
+            
+            
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <section
+      data-aos="fade-up"
+      data-aos-duration="3000"
+      class="myfooter bg-dark text-white py-3"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <ul class="list-menu">
+              <h4 class="mb-3">Giới Thiệu</h4>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Sản Phẩm</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Khuyến Mãi</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Chuyện cà phê</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Cửa hàng</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Tuyển dụng</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-3">
+            <ul class="list-menu">
+              <h4 class="mb-3">Về Chúng Tôi</h4>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Coffeeholic</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Teaholic</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Blog</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-3">
+            <ul class="list-menu">
+              <h4 class="mb-3">Chính Sách Bán Hàng</h4>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Thanh Toán</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Giao Hàng</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Đổi Trả Hàng</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Bảo Hành</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Bảo Mật Thông Tin Khách Hàng</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Hoàn Tiền</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-3">
+            <ul class="list-menu">
+              <h4 class="mb-3">Theo Dõi Chúng Tôi</h4>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Facebook</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Instagram</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Tiktok</a>
+              </li>
+              <li class="li_menu">
+                <a href="#" title="Trang Chủ">Youtube</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-6 mt-5">
+            <h5>T+ COFFEE</h5>
+            <p>
+              Copyright@ 2025 Công ty cổ phần thương mại COFFEE Chứng nhận ĐKKD
+              số: 0388282938 do sở KH & ĐT TP.HCM cấp <br />Địa chỉ: Tòa nhà 123
+              Đường 3 tháng 2, TP.HCM<br />
+              Điện thoại: 190099999 - Email: tcoffee@sapo.vn
+            </p>
+          </div>
+          <div class="col-6 py-5">
+            <h5>Nhận VouCher Siêu Khủng</h5>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nhập Email của bạn"
+                aria-label="Nhập Email của bạn"
+                aria-describedby="button-addon2"
+              />
+              <button
+                class="btn btn-outline-secondary bg-danger text-white"
+                type="button"
+                id="button-addon2"
+              >
+                Đăng Kí Ngay
+              </button>
+            </div>
+            <div>
+              <span class=".box40 bg-danger"> </span>
+            </div>
+            <div class="row mt-3">
+              <div class="d-flex align-items-center gap-4">
+                <i class="fa-brands fa-facebook fa-2x"></i>
+                <i class="fa-brands fa-instagram fa-2x"></i>
+                <i class="fa-brands fa-tiktok fa-2x"></i>
+                <i class="fa-brands fa-youtube fa-2x"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-6 mt-2">Bản Quyền</div>
+          <div class="col-6">
+            <nav class="navbar navbar-expand-lg bg-dark">
+              <div class="container-fluid">
+                <a class="navbar-brand text-white" href="#">Trang Chủ</a>
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarNavAltMarkup"
+                  aria-controls="navbarNavAltMarkup"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                  <div class="navbar-nav">
+                    <a
+                      class="nav-link active bg-dark text-white"
+                      aria-current="page"
+                      href="./GT.html"
+                      target="_blank"
+                      >Giới Thiệu</a
+                    >
+                    <a class="nav-link bg-dark text-white" href="#">Sản Phẩm</a>
+                    <a
+                      class="nav-link bg-dark text-white"
+                      target="_blank"
+                      href="./TD.html"
+                      >Tuyển Dụng</a
+                    >
+                    <a
+                      class="nav-link bg-dark text-white"
+                      target="_blank"
+                      href="./LH.html"
+                      >Liên Hệ</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Myjs -->
+    <script src="../js/myjs.js"></script>
+  </body>
+</html>

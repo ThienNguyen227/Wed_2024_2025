@@ -1,0 +1,8 @@
+<?php 
+    // Khai báo đường dẫn
+    define("IMG_PATH_ADMIN_PRODUCT","../uploads/product/");
+    define("IMG_PATH_USER_PRODUCT","uploads/product/");
+
+
+
+?>

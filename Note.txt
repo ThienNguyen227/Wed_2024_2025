@@ -1,0 +1,19 @@
+http://localhost/final_project_15_4/index.php?pg=order&
+partnerCode=MOMOBKUN20180529&
+orderId=1745271919&requestId=1745271919&
+amount=10000&
+orderInfo=Thanh+to%C3%A1n+qua+MoMo&
+orderType=momo_wallet&transId=4401925250&
+resultCode=7002&
+message=Transaction+is+being+processed+by+the+provider+of+the+payment+instrument+selected.&
+payType=napas&
+responseTime=1745271996452&
+extraData=&
+signature=003a1803ab55447df0ae3e4173ae7de91e2b4002d495d63a0613a03d2bb45531
+
+
+
+
+9704 0000 0000 0018
+NGUYEN VAN A
+03 / 07
