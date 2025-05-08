@@ -427,3 +427,8 @@ textarea.form-control:focus {
   transform: scale(1.05);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
+
+.img-fixed-height {
+  height: 200px; /* hoặc 250px tuỳ nhu cầu */
+  object-fit: cover; /* đảm bảo ảnh không bị méo */
+}

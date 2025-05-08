@@ -47,6 +47,16 @@ function categories_all(){
     return pdo_query($sql);
 }
 
+function get_categories_packed_product(){
+    $sql = "SELECT * FROM product_categories WHERE id = 5";
+    return pdo_query_one($sql);
+}
+
+function news_categories(){
+    $sql = "SELECT * FROM news_categories ORDER BY id";
+    return pdo_query($sql);
+}
+
 
 
 

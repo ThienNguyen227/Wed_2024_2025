@@ -153,7 +153,7 @@
   }
 ?>
 
-<h2 class="mb-5 text-center text-primary fw-bold fs-2">
+<h2 class="mb-5 mt-3 text-center text-col-rgb_229_121_5 fw-bold fs-2">
   <i class="bi bi-bag-check-fill me-2"></i>Đơn Hàng 
   <span class="badge bg-danger"><?= count($bills)?> Đơn</span>
 </h2>
@@ -269,16 +269,18 @@
                 <ul class="list-unstyled">
                   <?php 
                     $products = getProductsByBillId($bill['bill_id']);
+                    $i=1;
                     foreach ($products as $product) {
                       echo "
                         <li class='d-flex align-items-center mb-3'>
-                          <p>1</p>
+                          <p>" . $i . "</p>
                           <img src='" . IMG_PATH_USER_PRODUCT . "{$product['img']}' alt='{$product['name']}' style='width: 80px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 12px;'>
                           <div>
                             <strong>{$product['name']}</strong> x {$product['quantity']}<br>
                             <span class='text-muted'>Đơn giá: " . number_format($product['price'], 0, ',', '.') . " VND</span>
                           </div>
                         </li>";
+                      $i++;
                     }
                   ?>
                 </ul>

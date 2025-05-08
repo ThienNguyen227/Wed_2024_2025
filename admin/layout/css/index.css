@@ -1,0 +1,167 @@
+:root {
+  --main-color: rgb(229, 121, 5);
+}
+
+body {
+  background-color: #f1f3f5;
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+}
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: var(--main-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 2rem 1rem;
+  color: white;
+  z-index: 1000;
+}
+
+.sidebar h4 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  display: block;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s;
+}
+
+.sidebar a:hover {
+  color: rgb(229, 121, 5) !important;
+  background-color: white;
+}
+.active_slide_bar {
+  color: rgb(229, 121, 5) !important;
+  background-color: white;
+}
+
+.sidebar i {
+  margin-right: 10px;
+}
+
+.main {
+  margin-left: 250px;
+  padding: 1rem 2rem;
+}
+
+.navbar {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  margin-left: 250px;
+}
+
+.dashboard-cards .card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.dashboard-cards .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.card-icon {
+  font-size: 2rem;
+  color: var(--main-color);
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .main,
+  .navbar {
+    margin-left: 0;
+  }
+}
+
+#pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+#pagination button {
+  background-color: rgb(229, 121, 5);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#pagination button:hover {
+  background-color: rgb(200, 105, 5);
+  transform: scale(1.05);
+}
+
+#pagination button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(229, 121, 5, 0.4);
+}
+
+button.active_button {
+  background-color: white !important;
+  color: rgb(200, 105, 5) !important;
+  border: 2px solid rgb(200, 105, 5) !important;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn_200_105_5 {
+  background-color: rgb(200, 105, 5);
+  color: white;
+  font-weight: bold;
+}
+
+.btn_200_105_5:hover {
+  background-color: white;
+  color: rgb(200, 105, 5);
+  font-weight: bold;
+  border: 1px solid rgb(200, 105, 5) !important;
+}
+
+.title_page {
+  color: white;
+  background-color: rgb(200, 105, 5);
+  padding: 20px;
+}
+
+.text_200_105_5 {
+  color: rgb(200, 105, 5);
+}
+
+.modal-content {
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* tuỳ chỉnh nếu muốn đổ bóng mềm mại */
+}
+
+label {
+  color: rgb(200, 105, 5);
+  font-weight: bold;
+}
+
+.bg_200_105_5 {
+  background-color: rgb(200, 105, 5);
+}

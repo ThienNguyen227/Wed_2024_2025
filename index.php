@@ -27,9 +27,18 @@
     }
 
     // Sản phẩm bestseller
-    $list_product_bestseller = get_list_product_bestseller(2); // Cần fix
+    $list_product_bestseller = get_list_product_bestseller(2); 
     // Sản phẩm mới
-    $list_product_new = get_list_product_new(4); // Cần fix
+    $list_product_new = get_list_product_new(4); 
+
+    
+
+    // Tin tức
+    $news_coffeeholic = get_news_coffeeholic();
+    $news_teaholic = get_news_teaholic();
+    $news_sales = get_news_sales();
+    $news_banner_home = get_news_banner_home();
+    $news_ad_type_product = get_ad();
 
 
     if (!isset($_GET['pg'])) {
@@ -242,9 +251,16 @@
                         header('location: index.php?pg=dangnhap');
                         exit();  
                     }
-                    
-                    $_SESSION['s_user'] = $user;
-                    header('location: index.php');
+
+                    $role = get_role_by_phone($phone);
+
+                    if($role == 0){
+                        $_SESSION['s_user'] = $user;
+                        header('location: index.php');
+                    }elseif($role == 1){
+                        $_SESSION['admin_account'] = $user;
+                        header('location: admin/index.php');
+                    }
                     exit();
                 }   
                 break;
@@ -832,13 +848,13 @@
                     // Tách lấy bill_id từ orderId
                     $bill_id = explode("_", $orderIdFull)[0];
                     
-                    if ($resultCode == 0) {
-                        update_payment_status_bill($bill_id);
-                        update_status_bill_confirmed($bill_id);
+                    
+                    update_payment_status_bill($bill_id);
+                    update_status_bill_confirmed($bill_id);
                         
-                        header("Location: index.php?pg=order");
-                        exit();
-                    }
+                    header("Location: index.php?pg=order");
+                    exit();
+                    
                 }
                 break;
 

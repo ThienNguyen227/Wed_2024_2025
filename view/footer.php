@@ -137,7 +137,7 @@
               </p>
             </div>
             <div class="row">
-              <h5>Nhận VouCher Siêu Khủng</h5>
+              <!-- <h5>Nhận VouCher Siêu Khủng</h5>
               <div class="input-group mb-3">
                 <input
                   type="text"
@@ -153,7 +153,7 @@
                 >
                   Đăng Kí Ngay
                 </button>
-              </div>
+              </div> -->
               <div>
                 <span class=".box40 bg-danger"> </span>
               </div>
@@ -184,14 +184,6 @@
         <div class="row">
           <!-- Col 1:-->
           <div class="col-12 col-sm-6 col-md-6 mt-2">
-            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.783461880332!2d106.48280667405291!3d10.751165089396087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310ad25665313605%3A0x9f70517c7e02296b!2zOTg3IFRow61jaCBUaGnhu4duIEjDsmEsIELDrG5oIEzhu6NpLCBCw6xuaCBDaMOhbmgsIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1745071278105!5m2!1svi!2s" 
-              width="600" 
-              height="450" 
-              style="border:0;" 
-              allowfullscreen="" 
-              loading="lazy" 
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe> -->
             <p>Bản Quyền</p>
           </div>
           <!-- Col 2: -->

@@ -1,99 +1,7 @@
 
 <!-- Navbar Menu -->
-<!-- <section class="bgg mb-1 sticky-navbar">
-  <div class="container py-2">
-    <div class="row">
-      <ul class="nav justify-content-center">
-       
-        <li class="nav-item">
-          <a
-            class="nav-link w"
-            aria-current="page"
-            href="index.php"
-            ><i class="fa-solid fa-store"></i> Trang chủ</a
-          >
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle active w"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <i class="fa-solid fa-list"></i> Menu
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="index.php?pg=menu&product_categories_id=1"
-                ><i class="fa-solid fa-mug-hot"></i> COFFEE</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="index.php?pg=menu&product_categories_id=2"
-                ><i class="fa-solid fa-leaf"></i> TEA</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="index.php?pg=menu&product_categories_id=3">
-                <i class="fa-solid fa-cookie"></i> CAKE</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="index.php?pg=menu&product_categories_id=4">
-                <i class="fa-solid fa-glass-water"></i> A-MÊ</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="index.php?pg=menu"
-                ><i class="fa-solid fa-list"></i> ALL</a
-              >
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link w" href="index.php?pg=spdg"
-            ><i class="fa-solid fa-box"></i> Sản Phẩm Đóng Gói</a
-          >
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle w"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <i class="fa-solid fa-scroll"></i> Về Chúng Tôi
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="index.php?pg=gioithieucongty"
-                ><i class="fa-solid fa-building"></i> Giới Thiệu Công Ty</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="index.php?pg=lienhe"
-                ><i class="fa-solid fa-headset"></i> Liên Hệ</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="index.php?pg=tuyendung">
-                <i class="fa-solid fa-briefcase"></i> Tuyển Dụng</a
-              >
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link w nb" href="index.php?pg=khuyenmai"
-            ><i class="fa-solid fa-gift"></i> Khuyến Mãi</a
-          >
-        </li>
-      </ul>
-    </div>
-  </div>
-</section> -->
-<section class="bgg mb-1 sticky-navbar" data-aos="fade-down" data-aos-duration="3000">
+
+<section class="bgg mb-1 sticky-navbar">
   <div class="container py-2">
     
     <!-- Toggle Button -->
@@ -154,6 +62,16 @@
   else 
   {
     $userCart = [];
+  }
+
+  //Load voucher
+  $html_load_discounts = '';
+  $load_discount = get_available_discounts_for_customer($userId);
+  $j=1;
+  foreach ($load_discount as $ld) {
+    extract($ld);
+    $html_load_discounts .= '<p>' .$j. ':<strong> ' . $code . '</strong> - Hạn sử dụng: ' . date('d/m/Y', strtotime($end_date)) . '</p>';
+    $j++;
   }
 
   $cost_vc = 0;
@@ -313,7 +231,7 @@
                           
                           <div class="d-flex gap-3 align-items-center mb-2 flex-wrap">
                             <!-- Hình ảnh  -->
-                            <img src="layout/Img/product/<?=$item['img']?>" alt="<?=$item['name']?>" style="width: 120px; height: 120px; object-fit: cover;" class="rounded mb-3">
+                            <img src="<?= IMG_PATH_USER_PRODUCT.$item['img']?>" alt="<?=$item['name']?>" style="width: 120px; height: 120px; object-fit: cover;" class="rounded mb-3">
                             
                             <div>
                               <!-- Tên -->
@@ -432,6 +350,12 @@
                   <i class="fa-solid fa-circle-exclamation"></i> <?= $_SESSION['tb_invalid_code']; ?>
                 </div>
               <?php endif; ?>
+
+              <!-- Load mã giảm giảm giá -->
+              <div>
+                <?=$html_load_discounts;?>
+              </div>
+
             </div>
 
             <div class="modal-footer">

@@ -16,24 +16,113 @@ function user_search_by_keyword($keyword) {
     return pdo_query($sql, $searchTerm, $searchTerm, $searchTerm);
 }
 
+//3. 
+function get_role_by_phone($phone){
+    $sql = "SELECT role FROM user WHERE phone = ?";
+    return pdo_query_value($sql, $phone);
+}
+
+// 4. Hàm thêm người dùng
+function ad_add_user($name, $phone, $email, $hashed_password, $address, $role){
+    $sql = "INSERT INTO user(name, phone, email, password, address, role) VALUES (?, ?, ?, ?, ?, ?)";
+    pdo_execute($sql, $name, $phone, $email, $hashed_password, $address, $role);
+}
+
+// 5. Hàm lấy người dùng qua id
+function get_user_by_user_id($user_id){
+    $sql = "SELECT * FROM user WHERE id = ?";
+    return pdo_query_one($sql, $user_id);
+}
+
+// 6. Hàm chỉnh sửa người dùng
+function ad_update_user($name, $phone, $email, $address, $role, $id){
+    $sql = "UPDATE user SET name=?, phone=?, email=?, address=?, role=? WHERE id=?";
+    pdo_execute($sql, $name, $phone, $email, $address, $role, $id);
+}
+
+// 7. Hàm xóa người dùng
+function ad_delete_user($user_id){
+    $sql = "DELETE FROM user  WHERE id=?";
+    pdo_execute($sql, $user_id);
+}
 
 
+// 8. Hàm lấy ra đơn hàng 
+function get_order_by_user_id($user_id){
+    $sql = "SELECT b.bill_id, p.name, p.img, p.price, bd.quantity, bd.total_price
+            FROM bill b
+            JOIN bill_detail bd ON bd.bill_id = b.bill_id
+            JOIN product p ON p.id = bd.product_id
+            WHERE b.user_id = ? ORDER BY b.created_at DESC";
+    return pdo_query($sql, $user_id);
+}
 
+// 9. Hàm lấy ra tin tức
+function get_news(){
+    $sql = "SELECT * FROM news ORDER BY id DESC";
+    return pdo_query($sql);
+}
 
+// 10. Hàm lấy ra tin tức theo id 
+function get_news_by_news_id($news_id){
+    $sql = "SELECT * FROM news WHERE id=?";
+    return pdo_query_one($sql, $news_id); 
+}
 
+// 11. Hàm chỉnh sửa tin tức
+function ad_update_news($title, $content, $img, $news_id){
+    $sql = "UPDATE news SET title=?, content=?, image=? WHERE id=?";
+    pdo_execute($sql, $title, $content, $img, $news_id);
+}
 
+// 12. Hàm xóa tin tức
+function ad_delete_news($news_id){
+    $sql = "DELETE FROM news  WHERE id=?";
+    pdo_execute($sql, $news_id);
+}
 
+// 13. Hàm lấy ra tin tức coffeholic
+function get_news_coffeeholic(){
+    $sql = "SELECT * FROM news WHERE type = 1 ORDER BY id DESC";
+    return pdo_query($sql);
+}
 
+// 14. Hàm lấy ra tin tức teaholic
+function get_news_teaholic(){
+    $sql = "SELECT * FROM news WHERE type = 2 ORDER BY id DESC";
+    return pdo_query($sql);
+}
 
+// 15. Hàm lấy ra tin tức sales
+function get_news_sales(){
+    $sql = "SELECT * FROM news WHERE type = 3 ORDER BY id DESC";
+    return pdo_query($sql);
+}
 
+// 16. Hàm lấy ra tin tức bannerhome
+function get_news_banner_home(){
+    $sql = "SELECT * FROM news WHERE type = 4 ORDER BY id DESC";
+    return pdo_query($sql);
+}
 
+// 17. 
+function get_ad(){
+    $sql = "SELECT image, link_connected FROM news WHERE type = 5";
+    return pdo_query_one($sql);
+}
 
+// 18. Hàm thêm tin tức mới
+function ad_add_news($img, $title, $content, $type){
+    $sql = "INSERT INTO news(image, title, content, type) VALUES (?, ?, ?, ?)";
+    pdo_execute($sql, $img, $title, $content, $type);
+}
 
-
-
-
-
-
+// 4. Hàm lấy hình ảnh sản phẩm
+function get_img_by_news_id($news_id){
+    $sql = "SELECT image FROM news WHERE id=?";
+    $result = pdo_query_one($sql, $news_id);
+    return $result['image'];
+}
 
 // ----------- USER ------------------
 // Đăng kí

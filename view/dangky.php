@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,9 +25,10 @@
       crossorigin="anonymous"
     />
   </head>
+
   <body>
     <div class="form-container">
-      <img src="layout\Img\Logo-removebg-preview.png" alt="Logo" class="logo" />
+      <img src="<?= IMG_PATH_USER_LOG . 'Logo-removebg-preview.png' ?>" alt="Logo" class="logo" />
       <h4 class="text-center mb-5">Đăng Ký Tài Khoản <i class="fa-solid fa-user-plus"></i></h4>
 
       <form action="index.php?pg=adduser" method="post">
@@ -89,7 +91,8 @@
               echo '<div class="error-message"><i class="fa-solid fa-circle-exclamation"></i> ' . $_SESSION['tb_invalid_email'] . '</div>';
               unset($_SESSION['tb_invalid_email']);
             }
-          ?>          
+          ?>     
+
         </div>
 
         <!-- 4. Password -->
@@ -110,6 +113,7 @@
               unset($_SESSION['tb_invalid_password']);
             }
           ?>
+          
         </div>
 
         <!-- 5. Submit button -->

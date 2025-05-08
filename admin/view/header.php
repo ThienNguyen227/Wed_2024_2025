@@ -1,3 +1,16 @@
+<?php 
+  $html_admin_account = '';
+  if(isset($_SESSION['admin_account']) && count($_SESSION['admin_account']) >0 )
+  {
+    extract($_SESSION['admin_account']);
+    $html_admin_account = '<span class="me-3">Xin chào, '.$name.'</span>';    
+  } else {
+    $html_admin_account = '<span class="me-3">Xin chào, Admin</span>'; 
+  }
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,13 +18,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Admin Wow Dashboard</title>
     
-    <!-- Bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Icon Bootstrap -->
     <link
@@ -19,160 +27,23 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
 
-    <style>
-      :root {
-        --main-color: rgb(229, 121, 5);
-      }
+    <!-- Link css -->
+    <link rel="stylesheet" href="layout/css/index.css" />
 
-      body {
-        background-color: #f1f3f5;
-        font-family: "Segoe UI", sans-serif;
-        margin: 0;
-      }
+    <!-- Link tạo biểu đồ -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-      .sidebar {
-        width: 250px;
-        height: 100vh;
-        background-color: var(--main-color);
-        position: fixed;
-        top: 0;
-        left: 0;
-        padding: 2rem 1rem;
-        color: white;
-        z-index: 1000;
-      }
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 
-      .sidebar h4 {
-        text-align: center;
-        margin-bottom: 2rem;
-        font-weight: bold;
-      }
-
-      .sidebar a {
-        color: white;
-        text-decoration: none;
-        padding: 0.75rem 1rem;
-        display: block;
-        border-radius: 8px;
-        margin-bottom: 0.5rem;
-        transition: all 0.3s;
-      }
-
-      .sidebar a:hover {
-        color: rgb(229, 121, 5) !important;
-        background-color: white;
-      }
-      .active_slide_bar{
-        color: rgb(229, 121, 5) !important;
-        background-color: white;
-      }
-
-      .sidebar i {
-        margin-right: 10px;
-      }
-
-      .main {
-        margin-left: 250px;
-        padding: 1rem 2rem;
-      }
-
-      .navbar {
-        background-color: white;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 1rem 2rem;
-        margin-left: 250px;
-      }
-
-      .dashboard-cards .card {
-        border: none;
-        border-radius: 16px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-
-      .dashboard-cards .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-      }
-
-      .card-icon {
-        font-size: 2rem;
-        color: var(--main-color);
-        margin-bottom: 10px;
-      }
-
-      @media (max-width: 768px) {
-        .sidebar {
-          display: none;
-        }
-
-        .main,
-        .navbar {
-          margin-left: 0;
-        }
-      }
-
-      #pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-        gap: 10px;
-      }
-
-      #pagination button {
-        background-color: rgb(229, 121, 5);
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 8px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-      }
-
-      #pagination button:hover {
-        background-color: rgb(200, 105, 5);
-        transform: scale(1.05);
-      }
-
-      #pagination button:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(229, 121, 5, 0.4);
-      }
-      
-      button.active_button {
-        background-color: white !important;
-        color: rgb(200, 105, 5) !important;
-        border: 2px solid rgb(200, 105, 5) !important;
-        padding: 8px 16px;
-        border-radius: 8px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-      }
-
-      .btn_200_105_5{
-        background-color: rgb(200, 105, 5);
-        color: white;
-        font-weight: bold;
-      }
-
-      .btn_200_105_5:hover{
-        background-color:white;
-        color: rgb(200, 105, 5);
-        font-weight: bold;
-        border: 1px solid rgb(200, 105, 5);
-      }
-
-      .title_page{
-        color: white;
-        background-color: rgb(200, 105, 5);
-        padding: 20px;
-      }
-
-      .text_200_105_5{
-        color: rgb(200, 105, 5);
-      }
-
-    </style>
   </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <span class="navbar-brand fw-bold text-dark">Trang quản trị</span>
+        <div class="ms-auto">
+          <?=$html_admin_account;?>
+          <i class="bi bi-person-circle fs-4"></i>
+        </div>
+      </div>
+    </nav>

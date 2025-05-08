@@ -267,7 +267,7 @@
                               '.$name.'
                             </h4>
 
-                            <p class="ita">- '.$description.'</p>
+                            <p class="ita">'.$description.'</p>
                             <button class="btn btn-sm btn-light border-0 p-0 btn-favorite favorite-btn mb-3" data-product-id="'.$id.'">
                               <span class="favorite-label">- Sản phẩm yêu thích</span>
                               <i class="fa-solid fa-heart-circle-plus favorite-icon '.($is_favorite ? 'text-danger' : 'text-muted').'"></i>

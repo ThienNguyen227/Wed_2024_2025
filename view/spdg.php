@@ -109,7 +109,7 @@
                                   data-aos-duration="3000"
                                 />
                                 <h5>'.$name.'</h5>
-                                <p>'.$price.'</p>
+                                <p>'.number_format($price).'</p>
                               </a>
                             </div>';
   }
@@ -117,14 +117,6 @@
 
 
 ?>
-
-
-
-
-
-
-
-
 
 <section class="bgg mb-1 sticky-navbar" data-aos="fade-down" data-aos-duration="3000">
   <div class="container py-2">

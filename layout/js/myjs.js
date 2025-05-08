@@ -88,31 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
   quantityInput.addEventListener("input", updateDetailTotalPrice);
 });
 
-// function showForm(type) {
-//   if (type === "self") {
-//     document.getElementById("form-self").style.display = "block";
-//     document.getElementById("form-other").style.display = "none";
-//   } else {
-//     document.getElementById("form-self").style.display = "none";
-//     document.getElementById("form-other").style.display = "block";
-//   }
-// }
-
-// Mặc định hiện form đặt cho bản thân
-// window.onload = function () {
-//   showForm("self");
-// };
-
-// Nút xóa đơn hàng
-
-// const confirmDeleteModal = document.getElementById("confirmDeleteModal");
-// confirmDeleteModal.addEventListener("show.bs.modal", function (event) {
-//   const button = event.relatedTarget;
-//   const key = button.getAttribute("data-key");
-//   const input = confirmDeleteModal.querySelector("#deleteKeyInput");
-//   input.value = key;
-// });
-
 document.addEventListener("DOMContentLoaded", function () {
   const confirmDeleteModal = document.getElementById("confirmDeleteModal");
 

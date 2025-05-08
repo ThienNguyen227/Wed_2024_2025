@@ -16,6 +16,18 @@ function add_product($img, $name, $categories, $price, $description){
     pdo_execute($sql, $img, $name, $categories, $price, $description);
 }
 
+// 2. Hàm thêm sản phẩm đóng gói
+function add_packed_product($img, $name, $price, $product_quantity, $categories, $description){
+    $sql = "INSERT INTO product(img, name, price, product_quantity, product_category_id, description) VALUES (?,?,?,?,?,?)";
+    pdo_execute($sql, $img, $name, $price, $product_quantity, $categories, $description);
+}
+
+// 2. Hàm thêm tin tức đóng gói
+function add_news($img, $name, $price, $product_quantity, $categories, $description){
+    $sql = "INSERT INTO (img, name, price, product_quantity, product_category_id, description) VALUES (?,?,?,?,?,?)";
+    pdo_execute($sql, $img, $name, $price, $product_quantity, $categories, $description);
+}
+
 // 3. Hàm xóa sản phẩm admin
 function delete_product($id_pro){
     $sql = "DELETE FROM product WHERE  id=?";
@@ -30,9 +42,15 @@ function get_img_by_id($id_pro){
 }
 
 // 5. Hàm cập nhật sản phẩm
-function update_product($name, $category_id, $price, $description, $id_pro){
-    $sql = "UPDATE product SET name=?, product_category_id=?, price=?, description=? WHERE id=?";
-    pdo_execute($sql, $name, $category_id, $price,  $description, $id_pro);
+function update_product($name, $category_id, $price, $description, $img, $id_pro){
+    $sql = "UPDATE product SET name=?, product_category_id=?, price=?, description=?, img=? WHERE id=?";
+    pdo_execute($sql, $name, $category_id, $price,  $description, $img, $id_pro);
+}
+
+// 5. Hàm cập nhật sản phẩm đóng gói
+function update_packed_product($name, $price,  $description, $product_quantity, $img, $id_pro){
+    $sql = "UPDATE product SET name=?, price=?, description=?, product_quantity=?, img=? WHERE id=?";
+    pdo_execute($sql, $name, $price,  $description, $product_quantity, $img, $id_pro);
 }
 
 // 6. Hàm lấy thông tin sản phẩm qua id sản phẩm
@@ -50,7 +68,7 @@ function get_all_list_orders(){
 
 // 8. Hàm lấy ra chi tiết hóa đơn thông qua bill_id
 function get_detail_bill_by_bill_id($id){
-    $sql = "SELECT * 
+    $sql = "SELECT *
             FROM bill_detail bd
             JOIN product pd ON pd.id = bd.product_id
             WHERE bd.bill_id=?";
@@ -63,13 +81,11 @@ function adjust_status($payment_status, $status, $bill_id){
     pdo_execute($sql, $payment_status, $status, $bill_id);
 }
 
-
-
-
-
-
-
-
+// 10. Hàm lấy ra bill qua bill_id
+function get_bill_by_bill_id($bill_id){
+    $sql = "SELECT * FROM bill WHERE bill_id=?";
+    return pdo_query_one($sql, $bill_id);
+}
 
 
 
@@ -99,7 +115,8 @@ function get_list_product($kyw, $product_categories_id, $limit_product){
     if($kyw != ""){
         $sql .=" AND name like '%".$kyw."%'";
     }
-    
+    $sql .= " AND product_category_id IN (1, 2, 3, 4)";
+
     $sql .= " ORDER BY id DESC LIMIT ".$limit_product;
     return pdo_query($sql);
 }
@@ -150,22 +167,33 @@ function get_favorite_by_user_id_and_product_id($user_id){
 // Phần giảm giá
 // Kiểm tra có mã giảm giá không?
 function check_voucher($code){
-    $sql = "SELECT code FROM discount WHERE code = ?";
+    $sql = "SELECT code FROM total_discounts WHERE code = ?";
     $result = pdo_query_one($sql, $code);
     return $result ? true : false;
 }
 // Kiểm tra có mã giảm giá còn thời hạn sử dụng không?
 function check_voucher_time($code){
-    $sql = "SELECT code FROM discount WHERE code = ? AND CURDATE() < expired_at ";
+    $sql = "SELECT code FROM total_discounts WHERE code = ? AND CURDATE() BETWEEN start_date AND end_date";
     $result = pdo_query_one($sql, $code);
     return $result ? true : false;
 }
 
 function get_voucher($code){
     $sql = "SELECT *
-            FROM discount 
+            FROM total_discounts
             WHERE code = ?";
     return pdo_query_one($sql, $code);
+}
+
+// Hàm load mã giảm giá lên
+function get_available_discounts_for_customer($userId){
+    $sql = "SELECT * 
+            FROM total_discounts td 
+            JOIN customer_discounts cd ON cd.discount_id = td.discount_id
+            WHERE cd.customer_id = ?";
+
+
+    return pdo_query($sql, $userId);
 }
 
 // Hàm lấy ra sản phẩm đóng gói
@@ -173,6 +201,42 @@ function get_packed_products($limit_product){
     $sql = "SELECT * FROM product WHERE product_category_id = 5 LIMIT ".$limit_product;
     return pdo_query($sql);
 }
+
+
+// Hàm thêm mã giảm giá
+function ad_add_discount($code, $discount_percent, $start_date, $end_date){
+    $sql= "INSERT INTO total_discounts(code, discount_percent, start_date, end_date) VALUES(?, ?, ?, ?)";
+    pdo_execute($sql, $code, $discount_percent, $start_date, $end_date);
+}
+
+
+function get_discount_by_discount_id($discount_id){
+    $sql = "SELECT * FROM total_discounts WHERE discount_id = ?";
+    return pdo_query_one($sql, $discount_id);
+
+}
+
+function ad_update_discount($code, $discount_percent, $start_date, $end_date, $discount_id){
+    $sql = "UPDATE total_discounts SET code=?, discount_percent=?, start_date=?, end_date=?  WHERE discount_id=?";
+    pdo_execute($sql, $code, $discount_percent, $start_date, $end_date, $discount_id); 
+}
+
+function ad_delete_discount($discount_id){
+    $sql= "DELETE FROM total_discounts WHERE discount_id=?";
+    pdo_execute($sql, $discount_id);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

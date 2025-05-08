@@ -26,7 +26,7 @@
   </head>
 <body>
   <div class="form-container">
-    <img src="layout\Img\Logo-removebg-preview.png" alt="Logo" class="logo"> 
+    <img src="<?= IMG_PATH_USER_LOG . 'Logo-removebg-preview.png' ?>" alt="Logo" class="logo"> 
     <h3 class="text-center mb-5">
       <i class="fa-solid fa-key"></i> Xác minh OTP
     </h3>

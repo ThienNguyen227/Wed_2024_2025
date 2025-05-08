@@ -249,57 +249,16 @@
               data-aos-duration="3000"
             >
               <?=$html_categories_all;?>
-              <!-- <a
-                class="list-group-item list-group-item-action active"
-                href="index.php?pg=menu"
-                ><i class="fa-solid fa-bars"></i> All</a
-              > -->
+              
               <?=$html_categories;?>
-              <!-- <a
-                class="list-group-item list-group-item-action"
-                href="index.php?pg=coffee"
-                ><i class="fa-solid fa-mug-hot"></i> Coffee</a
-              >
-              <a
-                class="list-group-item list-group-item-action"
-                href="index.php?pg=tea"
-                ><i class="fa-solid fa-leaf"></i> Tea</a
-              >
-              <a
-                class="list-group-item list-group-item-action"
-                href="index.php?pg=cake"
-                ><i class="fa-solid fa-cookie"></i> Cake</a
-              >
-              <a
-                class="list-group-item list-group-item-action"
-                href="index.php?pg=ame"
-                ><i class="fa-solid fa-glass-water"></i> A-Mê</a
-              > -->
             </div>
           </div>
         </div>
       </div>
       <div class="col-12 col-md-9 col-lg-9">
         <?=$html_title_icon;?>
-        <!-- <h3
-          class="label_pro mb-3"
-          data-aos="fade-left"
-          data-aos-duration="3000"
-        >
-          <i class="fa-solid fa-list"></i> ALL PRODUCT
-        </h3> -->
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4">
           <?=$html_list_product;?>
-          <!-- <div class="col">
-            <img
-              src="layout/Img/Coffe/CFD.png"
-              class="adjust_pic_pro mb-2"
-              data-aos="zoom-in-up"
-              data-aos-duration="3000"
-            />
-            <h5>Cà Phê Đen</h5>
-            <p>39.000 Đ</p>
-          </div> -->
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@
   </head>
   <body>
     <div class="form-container">
-      <img src="layout\Img\Logo-removebg-preview.png" alt="Logo" class="logo" />
+      <img src="<?= IMG_PATH_USER_LOG . 'Logo-removebg-preview.png' ?>" alt="Logo" class="logo" />
       <h4 class="text-center mb-5">Quên Mật Khẩu <i class="fas fa-question-circle"></i></h4>
 
       <form action="index.php?pg=forgot" method="post">

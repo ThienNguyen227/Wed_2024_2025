@@ -29,7 +29,7 @@
 
     // Tạo câu truy vấn
     $sql = "SELECT * FROM product $where AND product_category_id IN (1,2,3,4) $order LIMIT $limit OFFSET $offset";
-    $sql_count = "SELECT COUNT(*) FROM product $where";
+    $sql_count = "SELECT COUNT(*) FROM product $where AND product_category_id IN (1,2,3,4)";
 
     // Lấy tổng số sản phẩm
     $total_products = (int)pdo_query_value($sql_count, ...$params);
@@ -43,7 +43,7 @@
     $i = $offset + 1;
     foreach ($list_product as $ls_pro) {
         extract($ls_pro);
-        $html_list_product .= '<tr>
+        $html_list_product .= ' <tr>
                                     <td class="text-center">' . $i . '</td>
                                     <td>' . htmlspecialchars($name) . '</td>
                                     <td class="text-center">
@@ -56,10 +56,10 @@
                                     </td>
                                     <td class="text-center">' . number_format($price) . '</td>
                                     <td class="text-center">
-                                        <a href="index.php?pg=product_update&id=' . $id . '" class="btn btn-success">
+                                        <a href="index.php?pg=product_update&id=' . htmlspecialchars($id) . '" class="btn btn-success">
                                             <i class="bi bi-pencil-square me-1"></i> Chỉnh Sửa
                                         </a>
-                                        <a href="index.php?pg=handle_subtraction_product&id=' . $id . '" class="btn btn-danger">
+                                        <a href="index.php?pg=handle_subtraction_product&id=' . htmlspecialchars($id) . '" class="btn btn-danger">
                                             <i class="bi bi-trash me-1"></i> Xóa
                                         </a>
                                     </td>

@@ -25,7 +25,7 @@
                             data-aos="zoom-in"
                             data-aos-duration="3000"
                           > <a href="'.$link.'" class="text-dark text-decoration-none">
-                              <img src="layout/Img/product/'.$img.'" class="card-img-top zoom_up" alt="'.$name.'" />
+                              <img src="'.IMG_PATH_USER_PRODUCT.$img.'" class="card-img-top zoom_up" alt="'.$name.'" />
                               '.$best_seller.'
                               <div class="card-body">
                                 <h5 class="card-title">'.$name.'</h5>
