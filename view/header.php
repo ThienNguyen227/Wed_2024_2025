@@ -3,7 +3,7 @@
   {
     extract($_SESSION['s_user']);
     $html_account = '<div class="me-2">
-                      <i class="fa-solid fa-circle-user fa-2x text-dark zoom_up"></i>
+                      <i class="bi bi-person-circle fs-3"></i>
                     </div>
                     <div class="d-flex align-items-center">
                       <a href="index.php?pg=user_account" class="text-decoration-none gap-1 zoom_up">'.$name. '</a>
@@ -12,10 +12,10 @@
   else
   {
     $html_account = '<div class="me-2">
-                      <i class="fa-solid fa-circle-user fa-2x text-dark"></i>
+                      <i class="bi bi-person-circle fs-3"></i>
                     </div>
                     <div class="d-flex align-items-center">
-                      <a href="index.php?pg=dangnhap" class="text-decoration-none gap-1">Đăng Nhập</a>
+                      <a href="index.php?pg=dangnhap" class="text-decoration-none gap-1 fw-bold">Đăng Nhập</a>
                     </div>';
   }
 
@@ -78,6 +78,7 @@
     <section class="myheader" data-aos="fade-down" data-aos-duration="1000">
       <div class="container">
         <div class="row align-items-center flex-wrap text-center text-md-start">
+
           <!-- 1. Logo -->
           <div class="col-12 col-sm-12 col-md-2 col-lg-1 mb-3 mb-md-0">
             <img
@@ -109,8 +110,8 @@
           <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3 mb-md-0">
             <div class="row d-flex justify-content-center justify-content-md-start">
               <div class="col-6 col-sm-6 col-md-auto mt-2">
-                <a href="#" class="d-flex align-items-center gap-2 text-decoration-none">
-                  <i class="fa-solid fa-phone fa-2x text-dark"></i>
+                <a href="#" class="d-flex align-items-center gap-2 text-decoration-none text-dark">
+                  <i class="bi bi-telephone fs-3"></i>
                   <p class="mb-0">Hotline 999999</p>
                 </a>
               </div>
@@ -126,8 +127,9 @@
           <div class="col-12 col-sm-12 col-md-12 col-lg-3 ">
             <div class="row justify-content-center justify-content-lg-end">
 
+              <!-- Xem đơn hàng -->
               <div class="col-auto mt-2 zoom_up">
-                <a href="index.php?pg=order" class="position-relative text-primary">
+                <a href="index.php?pg=order" class="position-relative text-primary fw-bold">
                   <!-- <i class="fa-solid fa-truck-fast fa-2x"></i> -->
                   <i class="bi bi-truck fs-2"></i>
                   <?php if(isset($bills)):?>
@@ -141,6 +143,9 @@
                   <?php endif;?>
                 </a>
               </div>
+
+
+              <!-- Xem giỏ hàng -->
               <div class="col-auto mt-2 zoom_up">
                 <a href="index.php?pg=viewshoppingcart"  class="position-relative">
                   <!-- <i class="fa-solid fa-cart-shopping fa-2x text-warning"></i> -->
@@ -156,6 +161,8 @@
                   <?php endif;?>
                 </a>
               </div>
+
+              <!-- Xem sản phẩm yêu thích -->
               <div class="col-auto mt-2 zoom_up">
                 <a href="index.php?pg=favorite_product" class="position-relative text-danger">
                 <!-- <i class="fa-solid fa-heart fa-2x"></i> -->

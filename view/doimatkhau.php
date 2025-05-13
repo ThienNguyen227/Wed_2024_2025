@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thay Đổi Mật Khẩu</title>
@@ -24,59 +24,74 @@
       crossorigin="anonymous"
     />
   </head>
-<body>
-  <div class="form-container">
-    <img src="<?= IMG_PATH_USER_LOG . 'Logo-removebg-preview.png' ?>" alt="Logo" class="logo"> 
-    <h3 class="text-center mb-5"><i class="fa-solid fa-repeat"></i> Thay Đổi Mật Khẩu</h3>
+  <body>
+    <div class="form-container">
+      <img src="<?= IMG_PATH_USER_LOG . 'Logo-removebg-preview.png' ?>" alt="Logo" class="logo"> 
+      <h3 class="text-center mb-5"><i class="fa-solid fa-repeat"></i> Thay Đổi Mật Khẩu</h3>
 
-    <form action="index.php?pg=resetpassword" method="post">
-      <!-- Email -->
-      <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
-      <input  type="email" 
-          name="email" 
-          id="email" 
-          value="<?php echo isset($_SESSION['otp_email']) ? htmlspecialchars($_SESSION['otp_email']) : ''; ?>" 
-          class="mb-3"
-          readonly required
-      >
+      <form action="index.php?pg=resetpassword" method="post">
 
-      <!-- Password -->
-      <label for="password"><i class="fa-solid fa-key"></i> Nhập mật khẩu mới</label>
-      <input  type="password" 
-          name="password" 
-          id="password" 
-          placeholder="Nhập mật khẩu mới ..." 
-          class="mb-3"
-          require
-      >
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
+          <input  type="email" 
+            name="email" 
+            id="email" 
+            value="<?php echo isset($_SESSION['otp_email']) ? htmlspecialchars($_SESSION['otp_email']) : ''; ?>" 
+            class="mb-3"
+            readonly 
+            required
+          >
+        </div>
 
+        <!-- Password -->
+        <div class="mb-3 position-relative">
+          <label for="password" class="form-label"><i class="fa-solid fa-key"></i> Mật khẩu mới</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="Nhập mật khẩu mới ..."
+            required
+          />
+          
+          <i class="fa-solid fa-eye toggle_icon_password" id="togglePassword"></i>
       
-      <!-- Thông báo khi đổi mật khẩu thất bại -->
-      <?php
+        </div>
+        <!-- Thông báo khi đổi mật khẩu thất bại -->
+        <?php
           if (isset($_SESSION['tb_invalid_change_password']) && $_SESSION['tb_invalid_change_password'] != "") {
-          echo '<div class="error-message"><i class="fa-solid fa-circle-exclamation"></i> ' . $_SESSION['tb_invalid_change_password'] . '</div>';
+          echo '<div class="text-danger"><i class="fa-solid fa-circle-exclamation"></i> ' . $_SESSION['tb_invalid_change_password'] . '</div>';
           unset($_SESSION['tb_invalid_change_password']);
           }
-      ?>
-      <input type="submit" name="reset_password" value="Xác nhận">
-      <div class="text-end ml-5">
-        <a href="index.php?pg=dangnhap" class="font-weight-bold text-decoration-none cl"><i class="fa-solid fa-right-to-bracket"></i> Đăng Nhập</a>
-      </div>
-      <!-- Thông báo khi đổi mật khẩu thành công -->
-      <?php
-        if (isset($_SESSION['tb_success_reset']) && $_SESSION['tb_success_reset'] != "") {
-          echo '<div class="suc-message"><i class="fa-solid fa-circle-check"></i> ' . $_SESSION['tb_success_reset'] . '</div>';
-          unset($_SESSION['tb_success_reset']);
-        }
-      ?>
-    </form>
+        ?>
 
-  </div>
-  <!-- bootstrap -->
-  <script
+        
+        <input type="submit" name="reset_password" value="Xác nhận">
+
+        <div class="text-end ml-5">
+          <a href="index.php?pg=dangnhap" class="font-weight-bold text-decoration-none cl"><i class="fa-solid fa-right-to-bracket"></i> Đăng Nhập</a>
+        </div>
+
+        <!-- Thông báo khi đổi mật khẩu thành công -->
+        <?php
+          if (isset($_SESSION['tb_success_reset']) && $_SESSION['tb_success_reset'] != "") {
+            echo '<div class="text-success"><i class="fa-solid fa-circle-check"></i> ' . $_SESSION['tb_success_reset'] . '</div>';
+            unset($_SESSION['tb_success_reset']);
+          }
+        ?>
+      </form>
+
+    </div>
+    <!-- bootstrap -->
+    <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-</body>
+
+    <!-- login.js -->
+      <script src="layout/js/login.js"></script>
+  </body>
 </html>

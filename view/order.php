@@ -158,6 +158,19 @@
   <span class="badge bg-danger"><?= count($bills)?> Đơn</span>
 </h2>
 
+
+<!-- Thông báo khi thanh toán thành công hay thất bại -->
+<?php 
+  if (isset($_SESSION['tb_payment_success'])){
+    echo '<div class="alert alert-success text-center" role="alert">'.$_SESSION['tb_payment_success'].'</div>';
+    unset($_SESSION['tb_payment_success']);
+  }
+  if (isset($_SESSION['tb_payment_failed'])){
+    echo '<div class="alert alert-danger text-center" role="alert">'.$_SESSION['tb_payment_failed'].'</div>';
+    unset($_SESSION['tb_payment_failed']);
+  }
+?>
+
 <div class="table-responsive">
   <table class="table table-striped table-hover table-borderless shadow-lg rounded bg-light">
     <thead class="text-center custom-thead align-middle">
@@ -241,6 +254,7 @@
 
               <form action="index.php?pg=cancel_order" method="post" class="d-inline">
                 <input type="hidden" name="bill_id" value="<?= $bill['bill_id'] ?>">
+
                 <button type="submit" name="huy" class="btn btn-outline-danger btn-sm rounded-pill shadow-sm w-sm-auto" onclick="return confirm('Bạn có chắc muốn hủy đơn này không?')">
                   <i class="fa-solid fa-trash-can"></i> Hủy
                 </button>
@@ -258,13 +272,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
               </div>
               <div class="modal-body">
+                <!-- P1. Thông Tin Người Nhận -->
                 <h5 class="text-col-rgb_229_121_5 mb-3"><i class="fa-solid fa-caret-right"></i> Thông tin người nhận</h5>
+
                 <p><strong><i class="fa-solid fa-user-tie"></i> Tên người nhận: </strong> <?= $bill['receiver_name'] ?></p>
                 <p><strong><i class="fa-solid fa-phone"></i> Số điện thoại: </strong> <?= $bill['receiver_phone'] ?></p>
                 <p><strong><i class="fa-solid fa-envelope-circle-check"></i> Email: </strong> <?= $bill['receiver_email'] ?></p>
                 <p><strong><i class="fa-solid fa-map-location-dot"></i> Địa chỉ giao hàng: </strong> <?= $bill['receiver_address'] ?></p>
 
                 <hr>
+
+                <!-- P2. Thông Tin Sản Phẩm -->
                 <h5 class="text-col-rgb_229_121_5 mb-3"><i class="fa-solid fa-caret-right"></i> Thông tin sản phẩm</h5>
                 <ul class="list-unstyled">
                   <?php 
@@ -286,8 +304,14 @@
                 </ul>
 
                 <hr>
+                  
+                <!-- P3. Thông Tin Thanh Toán -->
+                <h5 class="text-col-rgb_229_121_5 mb-3"><i class="fa-solid fa-caret-right"></i> Thông tin thanh toán</h5>
                 <p><strong><i class="fa-solid fa-receipt"></i> Tổng thanh toán: <span class="text-danger"><?= number_format($product['total_price'], 0, ',', '.') ?> VND</span></strong></p>
                 <p><strong><i class="fa-solid fa-money-check-dollar"></i> Phương thức thanh toán:</strong> <?= $bill['payment_method'] ?></p>
+                <p><strong><i class="fa-solid fa-money-check-dollar"></i> Mã giảm giá áp dụng:</strong> 
+                  <?= isset($bill['discount_code']) && !empty($bill['discount_code']) ? htmlspecialchars($bill['discount_code']) : 'Không áp dụng' ?>
+                </p>
                 <p><strong><i class="fa-solid fa-clock"></i> Thời gian đặt hàng:</strong> <?= date('H:i d/m/Y', strtotime($bill['created_at'])) ?></p>
 
                 <?php if($bill['payment_method'] == "Momo") :?>

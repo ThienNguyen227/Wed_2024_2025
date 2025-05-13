@@ -1,6 +1,5 @@
 
 <!-- Navbar Menu -->
-
 <section class="bgg mb-1 sticky-navbar">
   <div class="container py-2">
     
@@ -53,6 +52,8 @@
   </div>
 </section>
 
+
+
 <?php
   if (isset($_SESSION['s_user'])) 
   {
@@ -67,6 +68,7 @@
   //Load voucher
   $html_load_discounts = '';
   $load_discount = get_available_discounts_for_customer($userId);
+  
   $j=1;
   foreach ($load_discount as $ld) {
     extract($ld);
@@ -346,7 +348,7 @@
 
               <!-- Thông báo khi không hợp lệ -->
               <?php if (isset($_SESSION['tb_invalid_code']) && $_SESSION['tb_invalid_code'] != ""): ?>
-                <div class="error-message text-danger">
+                <div class="error-message text-danger mb-3">
                   <i class="fa-solid fa-circle-exclamation"></i> <?= $_SESSION['tb_invalid_code']; ?>
                 </div>
               <?php endif; ?>
@@ -359,12 +361,18 @@
             </div>
 
             <div class="modal-footer">
+
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 <i class="fa-solid fa-xmark"></i> Hủy
               </button>
+
+              <input type="hidden" name="id_u" value="<?=$userId?>">
+
+
               <button type="submit" name="voucher_add" class="btn h bg-col-rgb_229_121_5">
                 <i class="fa-solid fa-check"></i> Áp dụng
               </button>
+
             </div>
 
           </form>

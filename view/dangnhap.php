@@ -4,10 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Đăng Nhập Tài Khoản</title>
+
     <!-- login.css -->
     <link rel="stylesheet" href="layout/css/login.css">
+
     <!-- Favicon -->
     <link rel="icon" href="layout/Img/ZRvS2r9P.ico" type="image/x-icon" />
+
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
@@ -16,7 +19,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <!-- bootstrap -->
+
+    <!-- CDN Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -41,7 +45,8 @@
             placeholder="Nhập số điện thoại"
             required
           />
-          <!-- Check khi không tồn tại phone -->
+
+          <!-- Thông báo tài khoản không tồn tại -->
           <?php
             if (isset($_SESSION['tb_wrong_account']) && $_SESSION['tb_wrong_account'] != "") {
               echo '<div class="error-message"><i class="fa-solid fa-circle-exclamation"></i> ' . $_SESSION['tb_wrong_account'] . '</div>';
@@ -51,7 +56,7 @@
         </div>
         
         <!-- Password -->
-        <div class="mb-3">
+        <div class="mb-3 position-relative">
           <label for="password" class="form-label"><i class="fa-solid fa-key"></i> Mật khẩu</label>
           <input
             type="password"
@@ -61,26 +66,35 @@
             placeholder="Nhập mật khẩu"
             required
           />
-          <?php
-            if (isset($_SESSION['tb_wrong_password']) && $_SESSION['tb_wrong_password'] != "") {
-              echo '<div class="error-message"><i class="fa-solid fa-circle-exclamation"></i> ' . $_SESSION['tb_wrong_password'] . '</div>';
-              unset($_SESSION['tb_wrong_password']);
-            }
-          ?>
+          
+          <i class="fa-solid fa-eye toggle_icon_password" id="togglePassword"></i>
+          
+          
         </div>
-        <div class="text-end ml-5">
+
+        <!-- Thông báo khi nhập sai mật khẩu -->
+        <?php
+          if (isset($_SESSION['tb_wrong_password']) && $_SESSION['tb_wrong_password'] != "") {
+            echo '<div class="error-message"><i class="fa-solid fa-circle-exclamation"></i> ' . $_SESSION['tb_wrong_password'] . '</div>';
+            unset($_SESSION['tb_wrong_password']);
+          }
+        ?>
+
+        <!-- Chuyển qua quên mật khẩu -->
+        <div class="text-end ml-5 mt-2">
           <a href="index.php?pg=quenmatkhau" class="font-weight-bold text-decoration-none cl"><i class="fa-solid fa-user-lock"></i> Quên Mật Khẩu</a>
         </div>
 
         <!-- Submit-->
-        
         <div>
           <input type="submit" name="dangnhap" value="Đăng Nhập" class="btn btn-success" />
         </div>
 
+        <!-- Chuyển qua đăng ký tài khoản -->
         <div class="text-center mt-3">
           <a href="index.php?pg=dangky" class="font-weight-bold text-decoration-none cl"><i class="fa-solid fa-user-plus"></i> Đăng Ký Tài Khoản</a>
         </div>
+
         <?php
           if (isset($_SESSION['tb_wrong_account_or_password']) && $_SESSION['tb_wrong_account_or_password'] != "") {
             echo '<div class="error-message"><i class="fa-solid fa-circle-exclamation"></i> ' . $_SESSION['tb_wrong_account_or_password'] . '</div>';
@@ -90,11 +104,14 @@
       </form>
     </div>
 
-    <!-- bootstrap -->
+    <!-- Bootstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <!-- login.js -->
+    <script src="layout/js/login.js"></script>
+
   </body>
 </html>

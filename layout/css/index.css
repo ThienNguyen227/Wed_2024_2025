@@ -9,6 +9,9 @@
   border-right: 2px solid rgb(142, 124, 124);
   font-size: larger;
 }
+.height_card {
+  max-height: 500px;
+}
 
 .nb {
   border: none;
@@ -84,7 +87,7 @@
   box-shadow: 5px 5px 15px rgba(59, 57, 57, 0.5);
 }
 .hf1 {
-  height: 420px;
+  height: 430px;
 }
 .gr {
   background-color: rgb(119, 139, 55);
@@ -114,7 +117,7 @@
   color: rgb(255, 254, 254) !important; /* Đổi màu chữ thành trắng */
 }
 .li_menu a:hover {
-  color: #534b4b !important; /* Màu khi di chuột qua (tuỳ chỉnh nếu muốn) */
+  color: #534b4b !important; /* Màu khi di chuột qua (tuỳ chỉnh nếu muốn) u*/
 }
 .list-menu {
   list-style: none;
@@ -269,6 +272,10 @@
 }
 .zoom_up:hover {
   transform: scale(1.1) !important;
+}
+
+.zoom_in:hover {
+  transform: scale(0.9) !important;
 }
 /* css của khuyến mãi */
 .adjust-distance-paragraph-sale-2 {

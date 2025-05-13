@@ -96,7 +96,7 @@
         </div>
 
         <!-- 4. Password -->
-        <div class="mb-3">
+        <div class="mb-3 position-relative">
           <label for="password" class="form-label"><i class="fa-solid fa-key"></i> Mật khẩu</label>
           <input
             type="password"
@@ -106,6 +106,9 @@
             placeholder="Nhập mật khẩu"
             required
           />
+
+          <i class="fa-solid fa-eye toggle_icon_password" id="togglePassword"></i>
+
           <!-- Thông báo check pass khi không hợp lệ -->
           <?php
             if (isset($_SESSION['tb_invalid_password']) && $_SESSION['tb_invalid_password'] != "") {
@@ -140,5 +143,7 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <!-- login.js -->
+    <script src="layout/js/login.js"></script>
   </body>
 </html>

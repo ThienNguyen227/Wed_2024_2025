@@ -87,3 +87,11 @@ label {
 .cl:hover {
   color: rgb(77, 73, 68);
 }
+
+.toggle_icon_password {
+  position: absolute;
+  top: 73%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}

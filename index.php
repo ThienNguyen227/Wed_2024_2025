@@ -101,7 +101,6 @@
             case 'dangnhap':
                 include "view/dangnhap.php";
                 break;
-
             // Trang đăng Ký
             case 'dangky':
                 include "view/dangky.php";
@@ -115,7 +114,6 @@
             case 'doimatkhau';
                 include "view/doimatkhau.php";
                 break;
-
             // Trang Otp
             case 'otp':
                 include "view/otp.php";
@@ -606,6 +604,8 @@
                     if ($code !== null) 
                     {
                         insert_info_bill_with_code($id_user, $name, $phone, $email, $address, $paymentmethod, $code);
+                        $id_code = get_code_id_from_code($code);
+                        update_status_discount($id_code, $id_user);
                     } else {
                         insert_info_bill_without_code($id_user, $name, $phone, $email, $address, $paymentmethod);
                     }
@@ -623,7 +623,7 @@
                         $quantity = $product_quantity[$i];
                         $price = $product_price[$i];
                         $unit_total = $product_total_unit[$i];
-                        var_dump($bill_id, $id, $quantity, $price, $unit_total, $total);
+                        // var_dump($bill_id, $id, $quantity, $price, $unit_total, $total);
                         insert_info_bill_detail($bill_id, $id, $quantity, $price, $unit_total, $total);
                     }
                     unset($_SESSION['cart']);
@@ -721,18 +721,52 @@
                     exit();
                 }
 
-                if (isset($_POST["voucher_add"])) {
-                    $code = $_POST["code"];
+                if (isset($_POST["voucher_add"])) 
+                {
                     
-                    if(!check_voucher($code)){
-                        $_SESSION['tb_invalid_code'] = "Mã giảm giá không chính xác!";
+                    $id_user = $_POST["id_u"];
+
+                    // var_dump($code, $id_user);
+                    // Kiểm tra id trong bảng customer_discount
+                    if(!check_user_in_customer_discount($id_user)){
+                        $_SESSION['tb_invalid_code'] = "Mã giảm giá không tồn tại!";
                         $_SESSION['show_modal'] = true;
                         header('location: index.php?pg=viewshoppingcart');
                         exit();
                     }
 
-                    if(!check_voucher_time($code)){
+                    $code = $_POST["code"];
+                    // Kiểm tra mã giảm giá có không?
+                    if(!check_voucher($code))
+                    {
+                        $_SESSION['tb_invalid_code'] = "Mã giảm giá không tồn tại 12!";
+                        $_SESSION['show_modal'] = true;
+                        header('location: index.php?pg=viewshoppingcart');
+                        exit();
+                    }
+                    $code_id = get_code_id_from_code($code);
+                    
+                    // var_dump($code_id);
+                    // Kiểm tra id user và id discount có chung 1 dòng hay không?
+                    if(!check_voucher_code_id_and_id_user($code_id, $id_user))
+                    {
+                        $_SESSION['tb_invalid_code'] = "Mã giảm giá không tồn tại 1111!";
+                        $_SESSION['show_modal'] = true;
+                        header('location: index.php?pg=viewshoppingcart');
+                        exit();
+                    }
+                    
+                    // Kiểm tra thời hạn mã giảm giá
+                    if(!check_voucher_time($code))
+                    {
                         $_SESSION['tb_invalid_code'] = "Mã giảm giá đã hết hạn!";
+                        $_SESSION['show_modal'] = true;
+                        header('location: index.php?pg=viewshoppingcart');
+                        exit();
+                    }
+
+                    if(!check_status_code($id_user, $code_id)){
+                        $_SESSION['tb_invalid_code'] = "Mã giảm giá đã được sử dụng!";
                         $_SESSION['show_modal'] = true;
                         header('location: index.php?pg=viewshoppingcart');
                         exit();
@@ -839,7 +873,7 @@
          
                 break;
             // 18. Chức năng thanh toán bằng ví MOMO tài khoản test
-            case 'check_payment';
+            case 'check_payment':
 
                 if (isset($_GET['resultCode']) && isset($_GET['orderId'])) {
                     $resultCode = $_GET['resultCode'];
@@ -848,9 +882,19 @@
                     // Tách lấy bill_id từ orderId
                     $bill_id = explode("_", $orderIdFull)[0];
                     
-                    
-                    update_payment_status_bill($bill_id);
-                    update_status_bill_confirmed($bill_id);
+                    if($resultCode == 0) {
+                        // Thanh toán thành công
+                        $_SESSION['tb_payment_success'] = "Thanh toán thành công!";
+                        update_payment_status_bill($bill_id);
+                        update_status_bill_confirmed($bill_id);
+                            
+                        header("Location: index.php?pg=order");
+                        exit();
+                    } else {
+                        // Thanh toán thất bại
+                        $_SESSION['tb_payment_failed'] = "Thanh toán thất bại!";
+                        
+                    }
                         
                     header("Location: index.php?pg=order");
                     exit();

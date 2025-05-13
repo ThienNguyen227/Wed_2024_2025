@@ -164,7 +164,44 @@ function get_favorite_by_user_id_and_product_id($user_id){
     return pdo_query($sql, $user_id);
 }
 
-// Phần giảm giá
+// Phần mã giảm giá
+
+// 1. Kiểm tra user trong bảng customer_discount
+function check_user_in_customer_discount($id_user){
+    $sql = "SELECT customer_id FROM customer_discounts WHERE customer_id = ?";
+    $result = pdo_query_one($sql, $id_user);
+    return $result ? true : false;
+}
+
+// 2. Lấy ra id mã giảm giá từ code
+function get_code_id_from_code($code){
+    $sql = "SELECT discount_id FROM total_discounts WHERE code = ?";
+    return pdo_query_value($sql, $code);
+}
+
+// 3. CK mã giảm giá trong customer discount
+function check_voucher_code_id_and_id_user($code_id, $id_user){
+    $sql = "SELECT *
+            FROM customer_discounts 
+            WHERE discount_id = ? AND customer_id=?";
+    $result = pdo_query_one($sql, $code_id, $id_user);
+    return $result ? true : false;
+}
+
+// 4. Cập nhật lại trạng thái sử dụng của discount khi đăt hàng
+function update_status_discount($id_code, $id_user){
+    $sql = "UPDATE customer_discounts SET status=1 WHERE discount_id=? AND customer_id=?";
+    pdo_execute($sql, $id_code, $id_user);
+}
+
+// 5. Kiểm tra mã giảm giá đã được sử dụng hay là chưa
+function check_status_code($id_user, $code_id){
+    $sql = "SELECT status FROM customer_discounts WHERE status = 0 AND customer_id=? AND discount_id =?";
+    $result = pdo_query_one($sql, $id_user, $code_id);
+    return $result ? true : false;
+}
+
+
 // Kiểm tra có mã giảm giá không?
 function check_voucher($code){
     $sql = "SELECT code FROM total_discounts WHERE code = ?";
@@ -187,7 +224,7 @@ function get_voucher($code){
 
 // Hàm load mã giảm giá lên
 function get_available_discounts_for_customer($userId){
-    $sql = "SELECT * 
+    $sql = "SELECT *
             FROM total_discounts td 
             JOIN customer_discounts cd ON cd.discount_id = td.discount_id
             WHERE cd.customer_id = ?";

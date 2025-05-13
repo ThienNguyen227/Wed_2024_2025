@@ -1,8 +1,7 @@
 <?php
   // SẢN PHẨM MỚI
   $html_product_new = '';
-  foreach ($list_product_new as $pro_new) 
-  {
+  foreach ($list_product_new as $pro_new) {
     extract($pro_new);
     // Thêm kí hiệu bestseller
     if($bestseller==1)
@@ -19,40 +18,42 @@
       $best_seller = '';
     }
     $link = "index.php?pg=product_detail&id_product=".$id;
-    $html_product_new .= '<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+    $short_description = mb_strimwidth($description, 0, 180, "...");
+    $html_product_new .= '<div class="col-12 col-sm-6 col-md-4 col-lg-3 px-5">
                             <div
-                              class="card radius_shadow_2 position-relative h-100 zoom_up"
-                              style="width: 16rem"
+                              class="card radius_shadow_2 position-relative h-100"
+                              style="width: 18rem"
                               data-aos="zoom-in"
                               data-aos-duration="3000"
                             > <a href="'.$link.'" class="text-dark text-decoration-none">
-                                <img src="'.IMG_PATH_USER_PRODUCT.$img.'" class="card-img-top" alt="..." />
+                                <img src="'.IMG_PATH_USER_PRODUCT.$img.'" class="card-img-top zoom_up" alt="..." />
                                 '.$best_seller.'
                                 <div class="card-body">
                                   <h5 class="card-title">'.$name.'</h5>
                                   <p class="card-text">
-                                    '.$description.'
+                                    '.$short_description.'
                                   </p>
                                 </div>
                               </a>
                             </div>
                           </div>';
   }
+
   // SẢN PHẨM BESTSELLER
   $html_product_bestseller = '';
   foreach ($list_product_bestseller as $pro_bestseller) 
   {
     extract($pro_bestseller);
     $link = "index.php?pg=product_detail&id_product=".$id;
-    $html_product_bestseller.=' <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+    $html_product_bestseller.=' <div class="col-12 col-sm-6 col-md-4 col-lg-3 px-5">
                                   <div
-                                    class="card radius_shadow_2 position-relative h-100 zoom_up"
+                                    class="card radius_shadow_2 position-relative h-100"
                                     style="width: 16rem"
                                     data-aos="zoom-in"
                                     data-aos-duration="3000"
                                   >
                                     <a href="'.$link.'" class="text-dark text-decoration-none">
-                                      <img src="'.IMG_PATH_USER_PRODUCT.$img.'" class="card-img-top" alt="..." />
+                                      <img src="'.IMG_PATH_USER_PRODUCT.$img.'" class="card-img-top zoom_up" alt="'.$name.'" />
                                       <!-- Add BEST SELLER -->
                                       <div
                                         class="position-absolute start-35 bg-danger text-white px-2 py-1 rounded"
@@ -60,24 +61,43 @@
                                       >
                                         <i class="fa-solid fa-thumbs-up me-1"></i> BEST SELLER
                                       </div>
+
                                       <div class="card-body">
                                         <h5 class="card-title">'.$name.'</h5>
                                         <p class="card-text">
                                           '.$description.'
                                         </p>
                                       </div>
+
                                     </a>
                                   </div>
                                 </div>';
-  
   }
+
+  // News ad type product
+  $html_ad_type_product ='';
+  extract($news_ad_type_product);
+  $html_ad_type_product ='<div class="col-12 col-sm-12 col-md-4 col-lg-6" data-aos="fade-right" data-aos-duration="3000" >
+                            <a href="index.php?pg=menu&product_categories_id='.$link_connected.'">
+                              <img src="'.IMG_PATH_USER_NEWS.$image.'" class="img-fluid ad1 zoom_in"/>
+                            </a>
+                          </div>';
+
   // News bannerhome
   $html_news_bannerhome = '';
-  foreach ($news_banner_home as $news_bh){
+  $html_carousel_indicators = '';
+  $i = 0;
+  foreach ($news_banner_home as $news_bh) {
     extract($news_bh);
-    $html_news_bannerhome .= '<div class="carousel-item active zoom_up">
-                                <img src="'.IMG_PATH_USER_NEWS.$image.'" class="d-block w-100" alt="..." />
+    
+    $active = ($i == 0) ? 'active' : '';
+    $aria_current = ($i == 0) ? 'aria-current="true"' : '';
+    $html_carousel_indicators .= '<button type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide-to="'.$i.'" class="'.$active.'" '.$aria_current.' aria-label="Slide '.($i+1).'"></button>';
+
+    $html_news_bannerhome .= '<div class="carousel-item '.($i == 0 ? 'active' : '').'">
+                                <img src="'.IMG_PATH_USER_NEWS.$image.'" class="d-block w-100" alt="Slide '.($i+1).'" />
                               </div>';
+    $i++;
   }
 
   // News coffeeholic
@@ -124,19 +144,14 @@
                     </div>';
   }
 
-  // News ad type product
-  $html_ad_type_product ='';
-  extract($news_ad_type_product);
-  $html_ad_type_product ='<div data-aos="fade-right" data-aos-duration="3000" class="col-12 col-sm-12 col-md-4 col-lg-6">
-                            <a href="index.php?pg=menu&product_categories_id='.$link_connected.'"><img src="'.IMG_PATH_USER_NEWS.$image.'" class="ad1 zoom_up img-fluid"/></a>
-                          </div>';
+  
 
 
 
 ?>
 
 <!-- Navbar Menu -->
-<section class="bgg mb-1 sticky-navbar" data-aos="fade-down" data-aos-duration="3000">
+<section class="bgg mb-1 sticky-navbar" data-aos="fade-down" data-aos-duration="1000">
   <div class="container py-2">
     
     <!-- Toggle Button -->
@@ -191,37 +206,40 @@
 
 <!-- Body -->
 <section>
-  <!-- Slide Banner -->
+  <!-- 1. Banner Home -->
   <div class="container-fluid" data-aos="zoom-in " data-aos-duration="3000">
-    <div
-      id="carouselExampleSlidesOnly"
-      class="carousel slide"
-      data-bs-ride="carousel"
-    >
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+      
+      <!-- Các slide banner -->
       <div class="carousel-inner">
         <?=$html_news_bannerhome;?>
+      </div>
+
+      <!-- Nút bên dưới slide -->
+      <div class="carousel-indicators">
+        <?=$html_carousel_indicators;?>
       </div>
 
     </div>
   </div>
   
+  <!-- 2. Sản phẩm bestseller, sản phẩm mới,... -->
   <div class="container mt-3">
-    
-    <div class="row hf1 mb-4">
+    <h2 class="text-center text-col-rgb_229_121_5 mb-4 mt-3 fw-bold">BEST SELLERS</h2>
 
-      <h2 class="text-center mb-3 text-col-rgb_229_121_5">BEST SELLERS</h2>
+    <div class="row mb-4 hf1">
+
       <!-- News loại sản phẩm -->
       <?=$html_ad_type_product;?>
 
       <!-- DANH SÁCH SẢN PHẨM BESTSELLER -->
       <?=$html_product_bestseller;?>
+
     </div>
 
     <!-- DANH SÁCH SẢN PHẨM MỚI -->
+    <h2 class="text-center text-col-rgb_229_121_5 mb-4 mt-4 fw-bold">SẢN PHẨM MỚI</h2>
     <div class="row mb-2">
-      <div class="col-12 mt-5">
-        <h3 class="text-center py-3 mt-3 mb-4 text-col-rgb_229_121_5">SẢN PHẨM MỚI</h3>
-      </div>
       <?=$html_product_new;?>
     </div>
 
