@@ -24,6 +24,7 @@
       crossorigin="anonymous"
     />
   </head>
+  
   <body>
     <div class="form-container">
       <img src="<?= IMG_PATH_USER_LOG . 'Logo-removebg-preview.png' ?>" alt="Logo" class="logo"> 

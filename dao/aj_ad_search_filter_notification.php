@@ -3,7 +3,7 @@
     include "global.php";
 
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-    $limit = 1;
+    $limit = 2;
     $offset = ($page - 1) * $limit;
 
     $filter = $_GET['filter'] ?? '';
@@ -11,7 +11,7 @@
     $keyword = "%$keyword%";
 
     // Tạo mảng tham số và điều kiện WHERE
-    $where = "WHERE code LIKE ?";
+    $where = "WHERE notification_title LIKE ?";
     $params = [$keyword];
 
     // Ánh xạ filter sang category_id nếu có
@@ -22,41 +22,38 @@
     // }
 
     // Điều kiện sắp xếp
-    $order = "ORDER BY created_at DESC";
+    $order = "ORDER BY notification_id DESC";
     if ($filter == 'oldest') {
-        $order = "ORDER BY created_at ASC";
+        $order = "ORDER BY notification_id ASC";
     }
 
     // Tạo câu truy vấn
-    $sql = "SELECT * FROM total_discounts $where $order LIMIT $limit OFFSET $offset";
-    $sql_count = "SELECT COUNT(*) FROM total_discounts $where";
+    $sql = "SELECT * FROM total_notifications $where AND user_id IS NULL $order LIMIT $limit OFFSET $offset";
+    $sql_count = "SELECT COUNT(*) FROM total_notifications $where AND user_id IS NULL";
 
     // Lấy tổng số sản phẩm
-    $total_discounts = (int)pdo_query_value($sql_count, ...$params);
-    $total_pages = ceil($total_discounts / $limit);
+    $total_notification = (int)pdo_query_value($sql_count, ...$params);
+    $total_pages = ceil($total_notification / $limit);
 
     // Lấy danh sách sản phẩm
-    $list_discount = pdo_query($sql, ...$params);
+    $list_notification = pdo_query($sql, ...$params);
 
     // Tạo HTML danh sách sản phẩm
-    $html_list_discount = '';
+    $html_list_notification= '';
     $i = $offset + 1;
-    foreach ($list_discount as $ls_ds) {
-        extract($ls_ds);
-        $html_list_discount .= ' <tr class="text-center">
-                                    <td>' . $i . '</td>
-                                    <td>' . htmlspecialchars($code) . '</td>
-                                    <td>' .  htmlspecialchars($discount_percent) . '</td>
-                                    <td>' .  htmlspecialchars($discount_amount) . '</td>
-                                    <td>' .  htmlspecialchars($start_date) . '</td>
-                                    <td>' .  htmlspecialchars($end_date) . '</td>
-                                    <td>' .  htmlspecialchars($created_at) . '</td>
-                                    <td>' .  htmlspecialchars($update_at) . '</td>
-                                    <td>
-                                        <a href="index.php?pg=discount_update&discount_id=' . htmlspecialchars($discount_id) . '" class="btn btn-success">
+    foreach ($list_notification as $ls_no) {
+        extract($ls_no);
+        $html_list_notification .= ' <tr>
+                                    <td class="text-center">' . $i . '</td>
+                                    <td>' . htmlspecialchars($notification_title) . '</td>
+                                    <td class="text-center">' . htmlspecialchars($notification_message) . '</td>
+                                    <td class="text-center">' . htmlspecialchars($created_at) . '</td>
+                                    <td class="text-center">' . htmlspecialchars($updated_at) . '</td>
+                                    <td class="text-center">
+                                        <a href="index.php?pg=notification_update&id=' . htmlspecialchars($notification_id) . '" class="btn btn-success">
                                             <i class="bi bi-pencil-square me-1"></i> Chỉnh Sửa
                                         </a>
-                                        <a href="index.php?pg=handle_subtraction_discount&discount_id=' . htmlspecialchars($discount_id) . '" class="btn btn-danger">
+                                        <a href="index.php?pg=handle_subtraction_notification&id=' . htmlspecialchars($notification_id) . '" class="btn btn-danger">
                                             <i class="bi bi-trash me-1"></i> Xóa
                                         </a>
                                     </td>
@@ -77,7 +74,7 @@
     }
 
     $response = [
-        'list_product' => $html_list_discount,
+        'list_product' => $html_list_notification,
         'pagination' => $html_pagination
     ];
     

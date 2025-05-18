@@ -1,24 +1,8 @@
-<div class="sidebar">
-  <h4>Admin</h4>
-  <a href="index.php"><i class="bi bi-speedometer2"></i>Dashboard</a>
-  <a href="index.php?pg=product_list"><i class="bi bi-box-seam"></i>Sản phẩm</a>
-  <a href="index.php?pg=product_list_packed"><i class="bi bi-box2"></i>Sản phẩm đóng gói</a>
-  <a href="index.php?pg=product_order"><i class="bi bi-cart"></i>Đơn hàng</a>
-  <a href="index.php?pg=management_user"><i class="bi bi-people"></i>Người dùng</a>
-  <a href="index.php?pg=management_news"><i class="bi bi-newspaper"></i>Tin Tức</a>
-  <a href="index.php?pg=discount_list" class="active_slide_bar"><i class="bi bi-tag"></i>Khuyến Mãi</a>
-  <a href="index.php?pg=management_statistics"><i class="bi bi-bar-chart"></i>Thống kê</a>
-  <a href="#"><i class="bi bi-gear"></i>Cài đặt</a>
-</div>
-
 <div class="main">
     <!-- Tiêu đề -->
     <h2 class="text-center"><span class="badge title_page mt-3 mb-4">Danh Sách Mã Giảm Giá</span></h2>
     
-    
-
-
-    <!-- Thanh tìm kiếm sản phẩm -->
+    <!-- Thanh tìm kiếm và thanh lọc mã giảm giá -->
     <div class="mb-3">
         <div class="row">
             <div class="col-6">
@@ -42,13 +26,13 @@
                     </div>
                 </form>
 
-                <!-- Thông báo tìm kiếm sản phẩm -->
+                <!-- Thông báo tìm kiếm mã giảm giá-->
                 <div id="searchResultText_found" class="mb-3 fw-semibold text-success fs-5"></div>
                 <div id="searchResultText_notfound" class="mb-3 fw-semibold text-danger fs-5"></div>
 
             </div>
 
-            <!-- Nút thêm sản phẩm -->
+            <!-- Nút thêm mã giảm giá-->
             <div class="col-6">
                 <div class="d-flex justify-content-end mb-3">
                     <a href="index.php?pg=discount_add" class="btn btn_200_105_5">
@@ -59,7 +43,8 @@
 
         </div>
     </div>
-    <!-- Thông báo xóa sản phẩm thành công -->
+
+    <!-- Thông báo xóa mã giảm giá thành công -->
     <?php
         if (isset($_SESSION['tb_success_delete']) && $_SESSION['tb_success_delete'] != "") {
             echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_delete'] . '</div>';
@@ -67,14 +52,15 @@
         }
     ?>
 
-    <!-- Thông báo không được xóa sản phẩm -->
+    <!-- Thông báo không được xóa được mã giảm giá -->
     <?php
         if (isset($_SESSION['tb_invalid_delete']) && $_SESSION['tb_invalid_delete'] != "") {
-            echo '<div class="text-danger  mb-3 fw-bold fs-5"><i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['tb_invalid_delete'] . '</div>';
+            echo '<div class="text-danger mb-3 fw-bold fs-5"><i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['tb_invalid_delete'] . '</div>';
             unset($_SESSION['tb_invalid_delete']);
         }
     ?>
 
+    <!-- Thông báo thêm mã giảm giá thành công-->
     <?php
         if (isset($_SESSION['tb_success_addition']) && $_SESSION['tb_success_addition'] != "") {
             echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_addition'] . '</div>';
@@ -82,6 +68,7 @@
         }
     ?>
 
+    <!-- Thông báo chỉnh sửa mã giảm giá thành công-->
     <?php
         if (isset($_SESSION['tb_success_edition']) && $_SESSION['tb_success_edition'] != "") {
             echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_edition'] . '</div>';
@@ -89,7 +76,7 @@
         }
     ?>
     
-
+    <!-- Bảng show danh sách mã giảm giá -->
     <div class="table-responsive">
         <table class="table table-bordered table-striped align-middle bg-white shadow-sm rounded">
             <thead class="table-warning text-center">
@@ -97,6 +84,7 @@
                     <th scope="col"><i class="bi bi-list-ol me-1"></i> STT</th>
                     <th scope="col"><i class="bi bi-box2"></i> Mã giảm giá</th>
                     <th scope="col"><i class="bi bi-image"></i> Phần Trăm</th>
+                    <th scope="col"><i class="bi bi-image"></i> Số lượng</th>
                     <th scope="col"><i class="bi bi-alarm"></i> Ngày bắt đầu</th>
                     <th scope="col"><i class="bi bi-alarm"></i> Ngày kết thúc</th>
                     <th scope="col"><i class="bi bi-alarm"></i> Ngày tạo</th>
@@ -142,9 +130,6 @@
         };
         xhr.send();
     }
-
-    
-
 
     document
         .getElementById("searchButtonDiscount")

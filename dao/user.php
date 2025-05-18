@@ -284,26 +284,42 @@ function update_status_bill_confirmed($bill_id){
     pdo_execute($sql, $bill_id);
 }
 
+// --------------------------------------- Phần thông báo ------------------------------------------------
+// Lấy ra thông báo chung
+function get_public_notification(){
+    $sql = "SELECT * FROM total_notifications WHERE user_id IS NULL ORDER BY created_at DESC";
+    return pdo_query($sql);
+}
 
+// Thêm thông báo 
+function ad_add_notification($title, $content){
+    $sql = "INSERT INTO total_notifications(notification_title, notification_message) VALUES (?, ?)";
+    pdo_execute($sql, $title, $content);
+}
 
+// Lấy ra thông báo giảm giá
+function get_discount_notification($id_user){
+    $sql = "SELECT * FROM total_notifications WHERE user_id=? ORDER BY created_at DESC";
+    return pdo_query($sql, $id_user);
+}
 
+// Lấy ra thông báo qua id
+function get_notification_by_id($id_notification){
+    $sql = "SELECT * FROM total_notifications WHERE notification_id=?";
+    return pdo_query_one($sql, $id_notification);
+}
 
+// Cập nhật thông báo
+function ad_update_notification($title, $content, $id_notification){
+    $sql = "UPDATE total_notifications SET notification_title=?, notification_message=? WHERE notification_id=?";
+    pdo_execute($sql, $title, $content, $id_notification);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Xóa thông báo
+function ad_delete_notification($id_notification){
+    $sql = "DELETE FROM total_notifications WHERE notification_id=?";
+    pdo_execute($sql, $id_notification);
+}
 
 // function khach_hang_update($ma_kh, $mat_khau, $ho_ten, $email, $hinh, $kich_hoat, $vai_tro){
 //     $sql = "UPDATE khach_hang SET mat_khau=?,ho_ten=?,email=?,hinh=?,kich_hoat=?,vai_tro=? WHERE ma_kh=?";

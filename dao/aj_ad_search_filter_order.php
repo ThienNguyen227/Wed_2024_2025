@@ -1,5 +1,4 @@
 
-
 <?php 
     require_once "pdo.php"; 
     include "global.php";

@@ -1,17 +1,3 @@
-
-<div class="sidebar">
-  <h4>Admin</h4>
-  <a href="index.php" class="active_slide_bar"><i class="bi bi-speedometer2"></i>Dashboard</a>
-  <a href="index.php?pg=product_list"><i class="bi bi-box-seam"></i>Sản phẩm</a>
-  <a href="index.php?pg=product_list_packed"><i class="bi bi-box2"></i>Sản phẩm đóng gói</a>
-  <a href="index.php?pg=product_order"><i class="bi bi-cart"></i>Đơn hàng</a>
-  <a href="index.php?pg=management_user"><i class="bi bi-people"></i>Người dùng</a>
-  <a href="index.php?pg=management_news"><i class="bi bi-newspaper"></i>Tin Tức</a>
-  <a href="index.php?pg=discount_list"><i class="bi bi-tag"></i>Khuyến Mãi</a>
-  <a href="index.php?pg=management_statistics"><i class="bi bi-bar-chart"></i>Thống kê</a>
-  <a href="#"><i class="bi bi-gear"></i>Cài đặt</a>
-</div>
-
 <div class="main">
   <h2 class="mb-4 text-center">BẢNG ĐIỀU KHIỂN</h2>
   <div class="row dashboard-cards">
@@ -71,6 +57,16 @@
           <div class="card-body text-center">
             <div class="card-icon"><i class="bi bi-tag"></i></div>
             <h5 class="card-title">Khuyến Mãi</h5>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-4 mb-4">
+      <a href="index.php?pg=notification_list" class="text-decoration-none text-dark">
+        <div class="card p-4 h-100">
+          <div class="card-body text-center">
+            <div class="card-icon"><i class="bi bi-envelope-plus"></i></div>
+            <h5 class="card-title">Thông báo</h5>
           </div>
         </div>
       </a>

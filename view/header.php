@@ -44,7 +44,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>T Coffee & Tea</title>
-    <!-- bootstrap -->
+
+    <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -59,7 +60,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <!-- bootstrap icon -->
+    <!-- Bootstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Favicon -->
     <link rel="icon" href="layout/Img/ZRvS2r9P.ico" type="image/x-icon" />
@@ -127,9 +128,25 @@
           <div class="col-12 col-sm-12 col-md-12 col-lg-3 ">
             <div class="row justify-content-center justify-content-lg-end">
 
+            <!-- Xem thông báo -->
+              <div class="col-auto mt-2 zoom_up">
+                <a href="index.php?pg=notification" class="position-relative text-primary fw-bold">
+                  <i class="bi bi-bell fs-2"></i>
+                  <?php if(isset($bills)):?>
+                    <span style="top: -10px;" class="position-absolute start-100 translate-middle badge rounded-pill bg-danger">
+                      <?=count($bills);?>
+                    </span>
+                  <?php else: ?>
+                    <span style="top: -10px;" class="position-absolute start-100 translate-middle badge rounded-pill bg-danger">
+                      0
+                    </span>
+                  <?php endif;?>
+                </a>
+              </div>
+
               <!-- Xem đơn hàng -->
               <div class="col-auto mt-2 zoom_up">
-                <a href="index.php?pg=order" class="position-relative text-primary fw-bold">
+                <a href="index.php?pg=order" class="position-relative text-success fw-bold">
                   <!-- <i class="fa-solid fa-truck-fast fa-2x"></i> -->
                   <i class="bi bi-truck fs-2"></i>
                   <?php if(isset($bills)):?>

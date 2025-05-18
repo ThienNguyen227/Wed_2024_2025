@@ -165,3 +165,7 @@ label {
 .bg_200_105_5 {
   background-color: rgb(200, 105, 5);
 }
+.btn_200_105_55 {
+  background-color: rgb(228, 145, 57);
+  color: white;
+}

@@ -164,7 +164,7 @@ function get_favorite_by_user_id_and_product_id($user_id){
     return pdo_query($sql, $user_id);
 }
 
-// Phần mã giảm giá
+// Phần mã giảm giá khi ấn nút "ÁP DỤNG"
 
 // 1. Kiểm tra user trong bảng customer_discount
 function check_user_in_customer_discount($id_user){
@@ -173,20 +173,79 @@ function check_user_in_customer_discount($id_user){
     return $result ? true : false;
 }
 
-// 2. Lấy ra id mã giảm giá từ code
+// 2. Kiểm tra có mã giảm giá trong bảng total_discount hay không?
+function check_voucher($code){
+    $sql = "SELECT code FROM total_discounts WHERE code = ?";
+    $result = pdo_query_one($sql, $code);
+    return $result ? true : false;
+}
+
+// Lấy ra id mã giảm giá từ code
 function get_code_id_from_code($code){
     $sql = "SELECT discount_id FROM total_discounts WHERE code = ?";
     return pdo_query_value($sql, $code);
 }
 
-// 3. CK mã giảm giá trong customer discount
+// 3. CK mã giảm giá trong customer discount có nằm chung dòng hay không?
 function check_voucher_code_id_and_id_user($code_id, $id_user){
-    $sql = "SELECT *
+    $sql = "SELECT discount_id, customer_id
             FROM customer_discounts 
             WHERE discount_id = ? AND customer_id=?";
     $result = pdo_query_one($sql, $code_id, $id_user);
     return $result ? true : false;
 }
+
+// 4. Kiểm tra có mã giảm giá còn thời hạn sử dụng không?
+function check_voucher_time($code){
+    $sql = "SELECT code FROM total_discounts WHERE code = ? AND CURDATE() BETWEEN start_date AND end_date";
+    $result = pdo_query_one($sql, $code);
+    return $result ? true : false;
+}
+
+// Hàm xóa cái mã giảm giá khi đã được sử dụng
+function delete_status_discount_used($id_code, $id_user){
+    $sql = "DELETE FROM customer_discounts WHERE discount_id = ? AND customer_id=?";
+    pdo_execute($sql, $id_code, $id_user);
+}
+
+// Hàm cập nhật lại số lượng
+function update_amount_discount($code){
+    $sql = "UPDATE total_discounts SET discount_amount=GREATEST(discount_amount - 1, 0) WHERE code=?";
+    pdo_execute($sql, $code);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 4. Cập nhật lại trạng thái sử dụng của discount khi đăt hàng
 function update_status_discount($id_code, $id_user){
@@ -194,23 +253,12 @@ function update_status_discount($id_code, $id_user){
     pdo_execute($sql, $id_code, $id_user);
 }
 
-// 5. Kiểm tra mã giảm giá đã được sử dụng hay là chưa
-function check_status_code($id_user, $code_id){
-    $sql = "SELECT status FROM customer_discounts WHERE status = 0 AND customer_id=? AND discount_id =?";
-    $result = pdo_query_one($sql, $id_user, $code_id);
-    return $result ? true : false;
-}
 
 
-// Kiểm tra có mã giảm giá không?
-function check_voucher($code){
-    $sql = "SELECT code FROM total_discounts WHERE code = ?";
-    $result = pdo_query_one($sql, $code);
-    return $result ? true : false;
-}
-// Kiểm tra có mã giảm giá còn thời hạn sử dụng không?
-function check_voucher_time($code){
-    $sql = "SELECT code FROM total_discounts WHERE code = ? AND CURDATE() BETWEEN start_date AND end_date";
+
+// Kiểm tra mã giảm giá còn số lượng hay không?
+function check_amount($code){
+    $sql = "SELECT discount_amount FROM total_discounts WHERE code = ? AND discount_amount>0";
     $result = pdo_query_one($sql, $code);
     return $result ? true : false;
 }
@@ -227,7 +275,7 @@ function get_available_discounts_for_customer($userId){
     $sql = "SELECT *
             FROM total_discounts td 
             JOIN customer_discounts cd ON cd.discount_id = td.discount_id
-            WHERE cd.customer_id = ?";
+            WHERE cd.customer_id = ? AND cd.status = 0";
 
 
     return pdo_query($sql, $userId);
@@ -240,10 +288,24 @@ function get_packed_products($limit_product){
 }
 
 
-// Hàm thêm mã giảm giá
-function ad_add_discount($code, $discount_percent, $start_date, $end_date){
-    $sql= "INSERT INTO total_discounts(code, discount_percent, start_date, end_date) VALUES(?, ?, ?, ?)";
-    pdo_execute($sql, $code, $discount_percent, $start_date, $end_date);
+
+// ------------------------------------------------- Phần giảm giá ------------------------------------
+// 1. Hàm thêm danh mục khuyến mãi
+function ad_add_categories_discount_apply($name, $target_total_bill){
+    $sql= "INSERT INTO apply_discount_categories(name, target_total_bill) VALUES(?, ?)";
+    pdo_execute($sql, $name, $target_total_bill);
+}
+
+// 2. Hàm lấy ra danh mục khuyến mãi
+function get_apply_discount_categories(){
+    $sql = "SELECT * FROM apply_discount_categories ORDER BY id_apply_to DESC";
+    return pdo_query($sql);
+}
+
+// 3. Hàm thêm mã giảm giá
+function ad_add_discount($code, $discount_percent, $discount_amount, $discount_apply, $start_date, $end_date){
+    $sql= "INSERT INTO total_discounts(code, discount_percent, discount_amount, apply_to, start_date, end_date) VALUES(?, ?, ?, ?, ?, ?)";
+    pdo_execute($sql, $code, $discount_percent, $discount_amount, $discount_apply, $start_date, $end_date);
 }
 
 

@@ -12,20 +12,6 @@
     $created_at = $bill['created_at'];
 ?>
 
-
-<div class="sidebar">
-    <h4>Admin</h4>
-    <a href="index.php"><i class="bi bi-speedometer2"></i>Dashboard</a>
-    <a href="index.php?pg=product_list"><i class="bi bi-box-seam"></i>Sản phẩm</a>
-    <a href="index.php?pg=product_list_packed"><i class="bi bi-box2"></i>Sản phẩm đóng gói</a>
-    <a href="index.php?pg=product_order" class="active_slide_bar"><i class="bi bi-cart"></i>Đơn hàng</a>
-    <a href="index.php?pg=management_user"><i class="bi bi-people"></i>Người dùng</a>
-    <a href="index.php?pg=management_news"><i class="bi bi-newspaper"></i>Tin Tức</a>
-    <a href="index.php?pg=discount_list"><i class="bi bi-tag"></i>Khuyến Mãi</a>
-    <a href="index.php?pg=management_statistics"><i class="bi bi-bar-chart"></i>Thống kê</a>
-    <a href="#"><i class="bi bi-gear"></i>Cài đặt</a>
-</div>
-
 <div class="main">
     <h2 class="title_page">Chi tiết đơn hàng #<?= $bill_id ?></h2>
 
@@ -50,46 +36,44 @@
 
             <!-- Cập nhật trạng thái -->
             <div class="col-md-6">
-            <div class="card shadow-sm rounded-4 h-100">
-                <div class="card-body d-flex flex-column">
+                <div class="card shadow-sm rounded-4 h-100">
+                    <div class="card-body d-flex flex-column">
 
-                    <h4 class="text_200_105_5 mb-4 text-center">Cập Nhật Trạng Thái</h4>
+                        <h4 class="text_200_105_5 mb-4 text-center">Cập Nhật Trạng Thái</h4>
 
-                    <form action="index.php?pg=handle_edition_status_order" method="post" class="flex-grow-1 d-flex flex-column justify-content-between">
-                        
-                        <input type="hidden" name="bill_id" value="<?= $bill_id ?>">
+                        <form action="index.php?pg=handle_edition_status_order" method="post" class="flex-grow-1 d-flex flex-column justify-content-between">
+                            
+                            <input type="hidden" name="bill_id" value="<?= $bill_id ?>">
 
-                        <div class="mb-5">
-                            <label for="payment_status" class="form-label"><strong><i class="bi bi-cash-coin"></i> Trạng thái thanh toán:</strong></label>
-                            <select name="payment_status" id="payment_status" class="form-select">
-                            <option value="0" <?= $payment_status == 0 ? 'selected' : '' ?>>Chưa thanh toán</option>
-                            <option value="1" <?= $payment_status == 1 ? 'selected' : '' ?>>Đã thanh toán</option>
-                            </select>
-                        </div>
+                            <div class="mb-5">
+                                <label for="payment_status" class="form-label"><strong><i class="bi bi-cash-coin"></i> Trạng thái thanh toán:</strong></label>
+                                <select name="payment_status" id="payment_status" class="form-select">
+                                <option value="0" <?= $payment_status == 0 ? 'selected' : '' ?>>Chưa thanh toán</option>
+                                <option value="1" <?= $payment_status == 1 ? 'selected' : '' ?>>Đã thanh toán</option>
+                                </select>
+                            </div>
 
-                        <div class="mb-3">
-                            <label for="status" class="form-label"><strong><i class="bi bi-truck"></i> Trạng thái đơn hàng:</strong></label>
-                            <select name="status" id="status" class="form-select">
-                                <option value="0" <?= $status == 0 ? 'selected' : '' ?>>Chờ xác nhận</option>
-                                <option value="1" <?= $status == 1 ? 'selected' : '' ?>>Đã xác nhận</option>
-                                <option value="2" <?= $status == 2 ? 'selected' : '' ?>>Đang giao</option>
-                                <option value="3" <?= $status == 3 ? 'selected' : '' ?>>Đã giao</option>
-                                <option value="4" <?= $status == 4 ? 'selected' : '' ?>>Đã hủy</option>
-                            </select>
-                        </div>
-                        
-                        <div class="text-end mt-auto">
-                            <button type="submit" name="edit_status_order" class="btn btn_200_105_5">
-                            <i class="bi bi-floppy2-fill"></i> Lưu thay đổi
-                            </button>
-                        </div>
-                    </form>
+                            <div class="mb-3">
+                                <label for="status" class="form-label"><strong><i class="bi bi-truck"></i> Trạng thái đơn hàng:</strong></label>
+                                <select name="status" id="status" class="form-select">
+                                    <option value="0" <?= $status == 0 ? 'selected' : '' ?>>Chờ xác nhận</option>
+                                    <option value="1" <?= $status == 1 ? 'selected' : '' ?>>Đã xác nhận</option>
+                                    <option value="2" <?= $status == 2 ? 'selected' : '' ?>>Đang giao</option>
+                                    <option value="3" <?= $status == 3 ? 'selected' : '' ?>>Đã giao</option>
+                                    <option value="4" <?= $status == 4 ? 'selected' : '' ?>>Đã hủy</option>
+                                </select>
+                            </div>
+                            
+                            <div class="text-end mt-auto">
+                                <button type="submit" name="edit_status_order" class="btn btn_200_105_5">
+                                <i class="bi bi-floppy2-fill"></i> Lưu thay đổi
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
-
-
 </div>
 

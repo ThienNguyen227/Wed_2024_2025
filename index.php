@@ -2,7 +2,7 @@
     session_start();
     ob_start();
 
-    // Nhúng kết nối 
+    // Nhúng kết nối các file trong thư mục dao
     include "dao/pdo.php";
     include "dao/user.php";
     include "dao/product.php";
@@ -48,6 +48,23 @@
     {
         switch ($_GET['pg']) 
         {
+            // Trang xem thông báo
+            case 'notification':
+                if(!isset($_SESSION["s_user"])){
+                    header("Location: index.php?pg=dangnhap"); 
+                    exit();
+                }
+
+                $id_user = $_SESSION["s_user"]["id"];
+
+                // Thông báo chung
+                $public_notification = get_public_notification();
+                
+                // Thông báo giảm giá
+                $discount_notification = get_discount_notification($id_user);
+
+                include "view/notification.php";
+                break;
             // Trang menu
             case 'menu':
                 // Danh mục menu
@@ -606,6 +623,10 @@
                         insert_info_bill_with_code($id_user, $name, $phone, $email, $address, $paymentmethod, $code);
                         $id_code = get_code_id_from_code($code);
                         update_status_discount($id_code, $id_user);
+
+                        update_amount_discount($code);
+
+                        delete_status_discount_used($id_code, $id_user);
                     } else {
                         insert_info_bill_without_code($id_user, $name, $phone, $email, $address, $paymentmethod);
                     }
@@ -726,8 +747,7 @@
                     
                     $id_user = $_POST["id_u"];
 
-                    // var_dump($code, $id_user);
-                    // Kiểm tra id trong bảng customer_discount
+                    // 1. Kiểm tra id trong bảng customer_discount
                     if(!check_user_in_customer_discount($id_user)){
                         $_SESSION['tb_invalid_code'] = "Mã giảm giá không tồn tại!";
                         $_SESSION['show_modal'] = true;
@@ -736,27 +756,28 @@
                     }
 
                     $code = $_POST["code"];
-                    // Kiểm tra mã giảm giá có không?
+
+                    // 2. Kiểm tra mã giảm giá có trong bảng total_discount không?
                     if(!check_voucher($code))
                     {
-                        $_SESSION['tb_invalid_code'] = "Mã giảm giá không tồn tại 12!";
+                        $_SESSION['tb_invalid_code'] = "Mã giảm giá không tồn tại!";
                         $_SESSION['show_modal'] = true;
                         header('location: index.php?pg=viewshoppingcart');
                         exit();
                     }
+
                     $code_id = get_code_id_from_code($code);
                     
-                    // var_dump($code_id);
-                    // Kiểm tra id user và id discount có chung 1 dòng hay không?
+                    // 3. Kiểm tra id user và id discount có chung 1 dòng trong bảng customer_discount hay không?
                     if(!check_voucher_code_id_and_id_user($code_id, $id_user))
                     {
-                        $_SESSION['tb_invalid_code'] = "Mã giảm giá không tồn tại 1111!";
+                        $_SESSION['tb_invalid_code'] = "Mã giảm giá không tồn tại!";
                         $_SESSION['show_modal'] = true;
                         header('location: index.php?pg=viewshoppingcart');
                         exit();
                     }
                     
-                    // Kiểm tra thời hạn mã giảm giá
+                    // 4. Kiểm tra thời hạn mã giảm giá
                     if(!check_voucher_time($code))
                     {
                         $_SESSION['tb_invalid_code'] = "Mã giảm giá đã hết hạn!";
@@ -765,12 +786,14 @@
                         exit();
                     }
 
-                    if(!check_status_code($id_user, $code_id)){
-                        $_SESSION['tb_invalid_code'] = "Mã giảm giá đã được sử dụng!";
+                    // 5. Kiểm tra số lượng trong bảng
+                    if(!check_amount($code)){
+                        $_SESSION['tb_invalid_code'] = "Mã giảm giá đã hết số lượng!";
                         $_SESSION['show_modal'] = true;
                         header('location: index.php?pg=viewshoppingcart');
                         exit();
                     }
+                    
 
                     $_SESSION['voucher'] = get_voucher($code);
                     
@@ -779,7 +802,7 @@
 
                 }
                 break;
-            // 18. Chức năng thanh toán bằng ví MOMO tài khoản test
+            // 18. Chức năng thanh toán bằng ví MOMO tài khoản test(chuyển hướng sang case check_payment để xử lí tiếp)
             case 'payment':
                 // Hàm gửi yêu cầu POST đến API MoMo
                 function execPostRequest($url, $data)

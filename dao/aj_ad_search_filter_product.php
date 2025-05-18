@@ -54,9 +54,19 @@
                                             style="width: 60px; height: 60px; object-fit: cover"
                                         />
                                     </td>
-                                    <td class="text-center">' . number_format($price) . '</td>
+                                    <td class="text-center">' . number_format($price) . ' VND</td>
+                                    <td class="text-center">
+                                        Ngưng bán
+                                        
+                                    </td>
                                     <td class="text-center">
                                         <a href="index.php?pg=product_update&id=' . htmlspecialchars($id) . '" class="btn btn-success">
+                                            <i class="bi bi-pencil-square me-1"></i> Hiện
+                                        </a>
+                                        
+                                    
+
+                                        <a href="index.php?pg=product_update&id=' . htmlspecialchars($id) . '" class="btn btn_200_105_55">
                                             <i class="bi bi-pencil-square me-1"></i> Chỉnh Sửa
                                         </a>
                                         <a href="index.php?pg=handle_subtraction_product&id=' . htmlspecialchars($id) . '" class="btn btn-danger">

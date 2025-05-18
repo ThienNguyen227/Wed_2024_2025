@@ -2,7 +2,7 @@
     session_start();
     ob_start();
 
-    // Nhúng kết nối
+    // Nhúng kết nối các file trong thư mục dao
     include "../dao/global.php";
     include "../dao/pdo.php";
     include "../dao/product.php";
@@ -12,7 +12,11 @@
 
 
 
-    include "view/header.php"; 
+    include "view/header.php";
+
+    // Thanh slide_bar
+    include "view/slide_bar.php";
+
 
 
     if (isset($_GET['pg']))
@@ -20,8 +24,30 @@
         $pg = $_GET['pg'];
         switch ($pg) 
         {
+            // Trang cập nhật thông báo
+            case 'notification_update':
+                if(isset($_GET["id"]) && $_GET["id"]>0)
+                {
+                    $id_notification = $_GET["id"];
+                    $notification_by_id = get_notification_by_id($id_notification);
+                    include "view/notification_update.php";
+                } 
+                break;
+            // Trang thêm thông báo
+            case 'notification_add':
+                include "view/notification_add.php";
+                break;
+            // Trang thông báo
+            case 'notification_list':
+                include "view/notification_list.php";
+                break;
+            // Trang thêm danh mục giảm giá
+            case 'discount_add_categories_apply':
+                include "view/discount_add_categories_apply.php";
+                break;
             // Trang thêm giảm giá
             case 'discount_add':
+                $categories_apply = get_apply_discount_categories();
                 include "view/discount_add.php";
                 break;
             // Trang list giảm giá
@@ -128,6 +154,10 @@
                     $product_by_id = get_product_by_id($id_pro);
                     include "view/product_update.php"; 
                 } 
+                break;
+            // Tran thêm danh mục sản phẩm
+            case 'product_add_categories':
+                include "view/product_add_categories.php"; 
                 break;
             // Trang cập nhật sản phẩm đóng gói
             case 'product_packed_update':
@@ -560,7 +590,7 @@
                 
                 break;
             
-            //  12. Chức năng xử lý xóa tin tức
+            // 12. Chức năng xử lý xóa tin tức
             case 'handle_subtraction_news':
                 if(isset($_GET["news_id"]) && $_GET["news_id"]>0){
                     $news_id = $_GET["news_id"];
@@ -602,15 +632,22 @@
                 }
                 break;
             
-            //14. Chức năng thêm mã giảm giá
+            // 14. Chức năng thêm mã giảm giá
             case 'handle_addition_discount':
                 if(isset($_POST["add_discount"])){
                     $code = $_POST["code"];
+
                     $discount_percent = $_POST["discount_percent"];
+
+                    $discount_amount = $_POST["discount_amount"];
+
+                    $discount_apply = $_POST["apply_to"];
+
                     $start_date = $_POST["start_date"];
+
                     $end_date = $_POST["end_date"];
 
-                    ad_add_discount($code, $discount_percent, $start_date, $end_date);
+                    ad_add_discount($code, $discount_percent, $discount_amount, $discount_apply, $start_date, $end_date);
 
                     $_SESSION['tb_success_addition'] = "Thêm mã giảm giá thành công.";
 
@@ -652,10 +689,66 @@
                     header('location: index.php?pg=discount_list');
                 }
                 break;
+            // 17. Chức năng thêm danh mục khuyến mãi
+            case 'handle_addition_categories_apply':
+                if(isset($_POST["add_categories_apply"])){
+                    $name = $_POST["name"];
+
+                    $target_total_bill = $_POST["target_total_bill"];
+
+                    ad_add_categories_discount_apply($name, $target_total_bill);
+
+                    $_SESSION['tb_success_addition'] = "Thêm danh mục khuyến mãi thành công.";
+
+                    header('location: index.php?pg=discount_add_categories_apply');
+                }
+                break;
+                
+                break;
+            // 18. Chức năng thêm thông báo
+            case 'handle_addition_notification':
+                if(isset($_POST["add_notification"])){
+                    $title = $_POST["title"];
+                    $content = $_POST["content"];
+                    $id_notification = $_POST["content"];
+
+                    ad_add_notification($title, $content);
+
+                    header('location: index.php?pg=notification_list');
+
+                }
+                break;
             
-            
-            
-            
+            // 19. Chức năng chỉnh sửa thông báo
+            case 'handle_edition_notification':
+                if(isset($_POST["update_notification"])){
+                    $title = $_POST["title"];
+                    $content = $_POST["content"];
+                    $id_notification = $_POST["id"];
+
+                    ad_update_notification($title, $content, $id_notification);
+
+                    header('location: index.php?pg=notification_list');
+
+                }
+                break;
+            // 20. Chức năng xóa thông báo
+            case 'handle_subtraction_notification':
+                if(isset($_GET["id"]) && $_GET["id"]>0){
+                    $id_notification = $_GET["id"];
+        
+                    try 
+                    {
+                        ad_delete_notification($id_notification);
+                        
+                        $_SESSION['tb_success_delete'] = "Xóa tin tức thành công.";
+                    } catch (\Throwable $th) {
+                        $_SESSION['tb_invalid_delete'] = "Xóa tin tức thất bại.";
+                    }
+                    
+                    header('location: index.php?pg=notification_list');
+                }
+                break;
             
             
             

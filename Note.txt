@@ -19,3 +19,7 @@ NGUYEN VAN A
 
 
 
+AND NOT EXISTS (
+          SELECT 1 FROM customer_discounts cd
+          WHERE cd.customer_id = NEW.user_id AND cd.discount_id = d.discount_id
+      )

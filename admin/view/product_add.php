@@ -4,26 +4,8 @@
     extract($pro_cate);
     $html_product_categories .= '<option value="'.$id.'">'.$name.'</option>';
   }
-
-
 ?>
 
-<div class="sidebar">
-  <h4>Admin</h4>
-  <a href="index.php"><i class="bi bi-speedometer2"></i>Dashboard</a>
-  <a href="index.php?pg=product_list" class="active_slide_bar"><i class="bi bi-box-seam"></i>Sản phẩm</a>
-  <a href="index.php?pg=product_list_packed"><i class="bi bi-box2"></i>Sản phẩm đóng gói</a>
-  <a href="index.php?pg=product_order"><i class="bi bi-cart"></i>Đơn hàng</a>
-  <a href="index.php?pg=management_user"><i class="bi bi-people"></i>Người dùng</a>
-  <a href="index.php?pg=management_news"><i class="bi bi-newspaper"></i>Tin Tức</a>
-  <a href="index.php?pg=discount_list"><i class="bi bi-tag"></i>Khuyến Mãi</a>
-  <a href="index.php?pg=management_statistics"><i class="bi bi-bar-chart"></i>Thống kê</a>
-  <a href="#"><i class="bi bi-gear"></i>Cài đặt</a>
-</div>
-
-
-
-<!-- Thêm sản phẩm -->
 <div class="main">
   <div class="container mt-4">
     <!-- Tiêu đề -->
@@ -65,10 +47,13 @@
       <!-- 5. Mô tả sản phẩm -->
       <div class="mb-3">
         <label for="description" class="form-label"><i class="bi bi-pencil-square me-2"></i>Mô tả sản phẩm</label>
-        <textarea class="form-control cke" id="description" name="description" rows="4" placeholder="Nhập mô tả sản phẩm..."></textarea>
+        <textarea class="form-control editor" id="description" name="description" rows="4" placeholder="Nhập mô tả sản phẩm..."></textarea>
       </div>
 
       <button type="submit" name="add_product" class="btn btn_200_105_5 d-block ms-auto"><i class="bi bi-plus-circle"></i> Thêm sản phẩm</button>
     </form>
   </div>
 </div>
+
+
+

@@ -37,11 +37,6 @@
                           </div>
                         </div>';
   }
-
-
-
-
-
 ?>
 
 <!-- Thanh NAVBAR -->

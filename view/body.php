@@ -372,9 +372,8 @@
 
   </div>
 </section>
+
 <!-- News -->
-
-
 <div class="container-fluid bg_news">
   <div class="container">
 

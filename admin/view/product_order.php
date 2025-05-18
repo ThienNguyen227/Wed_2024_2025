@@ -1,22 +1,9 @@
-<div class="sidebar">
-    <h4>Admin</h4>
-    <a href="index.php"><i class="bi bi-speedometer2"></i>Dashboard</a>
-    <a href="index.php?pg=product_list"><i class="bi bi-box-seam"></i>Sản phẩm</a>
-    <a href="index.php?pg=product_list_packed"><i class="bi bi-box2"></i>Sản phẩm đóng gói</a>
-    <a href="index.php?pg=product_order" class="active_slide_bar"><i class="bi bi-cart"></i>Đơn hàng</a>
-    <a href="index.php?pg=management_user"><i class="bi bi-people"></i>Người dùng</a>
-    <a href="index.php?pg=management_news"><i class="bi bi-newspaper"></i>Tin Tức</a>
-    <a href="index.php?pg=discount_list"><i class="bi bi-tag"></i>Khuyến Mãi</a>
-    <a href="index.php?pg=management_statistics"><i class="bi bi-bar-chart"></i>Thống kê</a>
-    <a href="#"><i class="bi bi-gear"></i>Cài đặt</a>
-</div>
+
 
 <div class="main">
     <!-- Tiêu đề -->
     <h2 class="text-center"><span class="badge title_page mt-3 mb-4">Danh Sách Đơn Hàng</span></h2>
     
-
-    <!-- Thanh tìm kiếm sản phẩm -->
     <div class="mb-3">
         <div class="row">
             <div class="col-6">

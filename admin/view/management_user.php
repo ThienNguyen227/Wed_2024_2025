@@ -1,20 +1,4 @@
-    
-<div class="sidebar">
-    <h4>Admin</h4>
-    <a href="index.php"><i class="bi bi-speedometer2"></i>Dashboard</a>
-    <a href="index.php?pg=product_list"><i class="bi bi-box-seam"></i>Sản phẩm</a>
-    <a href="index.php?pg=product_list_packed"><i class="bi bi-box2"></i>Sản phẩm đóng gói</a>
-    <a href="index.php?pg=product_order"><i class="bi bi-cart"></i>Đơn hàng</a>
-    <a href="index.php?pg=management_user" class="active_slide_bar"><i class="bi bi-people"></i>Người dùng</a>
-    <a href="index.php?pg=management_news"><i class="bi bi-newspaper"></i>Tin Tức</a>
-    <a href="index.php?pg=discount_list"><i class="bi bi-tag"></i>Khuyến Mãi</a>
-    <a href="index.php?pg=management_statistics"><i class="bi bi-bar-chart"></i>Thống kê</a>
-    <a href="#"><i class="bi bi-gear"></i>Cài đặt</a>
-</div>
-
 <div class="main">
-    
-    <!-- Thanh tìm kiếm sản phẩm -->
     <div class="mb-3">
 
         <!-- Tiêu đề -->
@@ -41,13 +25,13 @@
                         </button>
                     </div>
                 </form>
-                <!-- Thông báo tìm kiếm sản phẩm -->
+                <!-- Thông báo tìm kiếm người dùng -->
                 <div id="searchResultText_found" class="mb-3 fw-semibold text-success fs-5"></div>
                 <div id="searchResultText_notfound" class="mb-3 fw-semibold text-danger fs-5"></div>
 
             </div>
 
-            <!-- Nút thêm sản phẩm -->
+            <!-- Nút thêm người dùng -->
             <div class="col-6">
                 <div class="d-flex justify-content-end mb-3">
                     <a href="index.php?pg=management_user_add" class="btn btn_200_105_5">
