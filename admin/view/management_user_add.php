@@ -63,8 +63,9 @@
 
             <!-- 5. Địa chỉ -->
             <div class="mb-3">
-            <label for="address" class="form-label"><i class="bi bi-geo-alt me-2"></i> Địa chỉ</label>
-            <input type="text" class="form-control editor" id="address" name="address" placeholder="Nhập địa chỉ">
+                <label for="address" class="form-label"><i class="bi bi-geo-alt me-2"></i> Địa chỉ</label>
+                <!-- <input type="text" class="form-control editor" id="address" name="address" placeholder="Nhập địa chỉ"> -->
+                <textarea class="form-control editor" id="address" name="address" rows="4" placeholder="Nhập địa chỉ ..." required></textarea>
             </div>
 
             <!-- 6. Vai trò (Role) -->

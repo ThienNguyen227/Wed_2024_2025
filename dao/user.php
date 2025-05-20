@@ -113,7 +113,7 @@ function get_ad(){
 
 // 18. Hàm lấy ra doc signature
 function get_news_signature_doc(){
-    $sql = "SELECT title, content FROM news WHERE type = 6 ORDER BY id DESC";
+    $sql = "SELECT title, content FROM news WHERE type = 7 ORDER BY id DESC";
     return pdo_query_one($sql);
 }
 

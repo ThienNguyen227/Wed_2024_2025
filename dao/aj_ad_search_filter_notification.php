@@ -14,13 +14,6 @@
     $where = "WHERE notification_title LIKE ?";
     $params = [$keyword];
 
-    // Ánh xạ filter sang category_id nếu có
-    // $category_map = ['coffee' => 1, 'tea' => 2, 'cake' => 3, 'ame' => 4];
-    // if (array_key_exists($filter, $category_map)) {
-    //     $where .= " AND product_category_id = ?";
-    //     $params[] = $category_map[$filter];
-    // }
-
     // Điều kiện sắp xếp
     $order = "ORDER BY notification_id DESC";
     if ($filter == 'oldest') {
@@ -43,21 +36,21 @@
     $i = $offset + 1;
     foreach ($list_notification as $ls_no) {
         extract($ls_no);
-        $html_list_notification .= ' <tr>
-                                    <td class="text-center">' . $i . '</td>
-                                    <td>' . htmlspecialchars($notification_title) . '</td>
-                                    <td class="text-center">' . htmlspecialchars($notification_message) . '</td>
-                                    <td class="text-center">' . htmlspecialchars($created_at) . '</td>
-                                    <td class="text-center">' . htmlspecialchars($updated_at) . '</td>
-                                    <td class="text-center">
-                                        <a href="index.php?pg=notification_update&id=' . htmlspecialchars($notification_id) . '" class="btn btn-success">
-                                            <i class="bi bi-pencil-square me-1"></i> Chỉnh Sửa
-                                        </a>
-                                        <a href="index.php?pg=handle_subtraction_notification&id=' . htmlspecialchars($notification_id) . '" class="btn btn-danger">
-                                            <i class="bi bi-trash me-1"></i> Xóa
-                                        </a>
-                                    </td>
-                                </tr>';
+            $html_list_notification .= '<tr>
+                                            <td class="text-center">' . $i . '</td>
+                                            <td>' . htmlspecialchars($notification_title) . '</td>
+                                            <td class="text-center">' . htmlspecialchars($notification_message) . '</td>
+                                            <td class="text-center">' . htmlspecialchars($created_at) . '</td>
+                                            <td class="text-center">' . htmlspecialchars($updated_at) . '</td>
+                                            <td class="text-center">
+                                                <a href="index.php?pg=notification_update&id=' . htmlspecialchars($notification_id) . '" class="btn btn-success">
+                                                    <i class="bi bi-pencil-square me-1"></i> Chỉnh Sửa
+                                                </a>
+                                                <a href="index.php?pg=handle_subtraction_notification&id=' . htmlspecialchars($notification_id) . '" class="btn btn-danger">
+                                                    <i class="bi bi-trash me-1"></i> Xóa
+                                                </a>
+                                            </td>
+                                        </tr>';
         $i++;
     }
 

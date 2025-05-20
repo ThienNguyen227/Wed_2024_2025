@@ -140,6 +140,20 @@
                     </div>';
   }
 
+  // News hình ảnh signature
+  $html_news_signature_img = '';
+  foreach ($news_signature_img as $nsi) {
+    extract($nsi);
+    $html_news_signature_img .= '<div class="carousel-item active" data-bs-interval="3000">
+                                  <img
+                                    src="'.IMG_PATH_USER_NEWS.$image.'"
+                                    class="d-block w-100 zoom_up"
+                                    alt="slide 1"
+                                  />
+                                </div>';
+  }
+
+  // News doc signature
   $html_news_signature_doc = '';
   extract($news_signature_doc);
   $html_news_signature_doc = '<strong
@@ -158,10 +172,6 @@
                               >
                                 '.$content.'
                               </p>';
-
-  
-
-
 
 ?>
 
@@ -253,7 +263,7 @@
     </div>
 
     <!-- DANH SÁCH SẢN PHẨM MỚI -->
-    <h2 class="text-center text-col-rgb_229_121_5 mb-4 mt-4 fw-bold">SẢN PHẨM MỚI</h2>
+    <h2 class="text-center text-col-rgb_229_121_5 mb-4 mt-5 fw-bold">SẢN PHẨM MỚI</h2>
     <div class="row mb-2">
       <?=$html_product_new;?>
     </div>
@@ -303,31 +313,6 @@
         <!-- Text section -->
         <div class="col-12 col-lg-6 mb-4 mb-lg-0">
           <?=$html_news_signature_doc;?>
-          <!-- <strong
-            data-aos="zoom-in-up"
-            data-aos-duration="3000"
-            data-aos-easing="ease-in-out"
-            class="signature_size d-block text-center text-lg-start"
-          >
-            SIGNATURE BY T
-          </strong>
-          <p
-            data-aos="zoom-in"
-            data-aos-duration="3000"
-            data-aos-easing="ease-in-out"
-            class="text-justify text-center text-lg-start px-2"
-          >
-            Không chỉ là một loại đồ uống đặc trưng, mà còn là dấu ấn riêng,
-            là linh hồn tạo nên sự khác biệt và khiến khách hàng nhớ mãi. Đó
-            có thể là một ly cà phê đậm đà với hương thơm quyến rũ, một loại
-            trà sáng tạo mang vị thanh mát, hay thậm chí là một món nước thủ
-            công được pha chế từ những nguyên liệu đặc biệt, chỉ có tại
-            quán. Nhưng hơn cả hương vị, signature còn là cảm giác mà nó
-            mang lại. Khi khách hàng nhấp một ngụm, họ không chỉ thưởng thức
-            hương vị, mà còn cảm nhận được cái "chất" riêng của quán – thứ
-            khiến họ muốn quay lại, để tìm lại hương vị đặc trưng không thể
-            tìm thấy ở bất kỳ nơi nào khác.
-          </p> -->
         </div>
 
         <!-- Carousel section -->
@@ -341,27 +326,7 @@
             data-aos-easing="ease-out"
           >
             <div class="carousel-inner rounded shadow">
-              <div class="carousel-item active" data-bs-interval="3000">
-                <img
-                  src="layout/Img/s1.png"
-                  class="d-block w-100 zoom_up"
-                  alt="slide 1"
-                />
-              </div>
-              <div class="carousel-item" data-bs-interval="2000">
-                <img
-                  src="layout/Img/s2.png"
-                  class="d-block w-100 zoom_up"
-                  alt="slide 2"
-                />
-              </div>
-              <div class="carousel-item">
-                <img
-                  src="layout/Img/s3.png"
-                  class="d-block w-100 zoom_up"
-                  alt="slide 3"
-                />
-              </div>
+              <?=$html_news_signature_img;?>
             </div>
             <button
               class="carousel-control-prev"

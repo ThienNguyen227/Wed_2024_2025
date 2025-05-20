@@ -41,6 +41,7 @@
     $news_ad_type_product = get_ad();
     // doc
     $news_signature_doc = get_news_signature_doc();
+
     // img
     $news_signature_img = get_news_signature_img();
 

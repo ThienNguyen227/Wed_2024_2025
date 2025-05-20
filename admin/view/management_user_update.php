@@ -16,10 +16,10 @@
 
         <form action="index.php?pg=handle_edition_user" method="post">
 
-            <!-- 1. Tên khách hàng -->
+            <!-- 1. Tên người dùng -->
             <div class="mb-3">
             <label for="name" class="form-label"><i class="bi bi-person me-2"></i> Tên khách hàng/quản trị viên</label>
-            <input type="text" class="form-control" id="name" name="name" value="<?=$name?>" placeholder="Nhập tên khách hàng" required>
+            <input type="text" class="form-control" id="name" name="name" value="<?=$name?>" placeholder="Nhập tên người dùng ..." required>
             </div>
 
             <!-- Thông báo tên không hợp lệ -->
@@ -58,37 +58,26 @@
                 }
             ?>
 
-            <!-- 4. Mật khẩu -->
-            <!-- <div class="mb-3">
-            <label for="password" class="form-label">Mật khẩu</label>
-            <input type="password" class="form-control" id="password" name="password" value="<?=$password?>" placeholder="Nhập mật khẩu" required>
-            </div> -->
-
-            <!-- Thông báo Mật khẩu không hợp lệ -->
-            <!-- <?php
-                if (isset($_SESSION['tb_invalid_password']) && $_SESSION['tb_invalid_password'] != "") {
-                    echo '<div class="text-danger mb-3 fw-bold"><i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['tb_invalid_password'] . '</div>';
-                    unset($_SESSION['tb_invalid_password']);
-                }
-            ?> -->
-
-            <!-- 5. Địa chỉ -->
+            <!-- 4. Địa chỉ -->
             <div class="mb-3">
-            <label for="address" class="form-label"><i class="bi bi-geo-alt me-2"></i> Địa chỉ</label>
-            <input type="text" class="form-control editor" id="address" name="address" value="<?=$address?>" placeholder="Nhập địa chỉ">
+                <label for="address" class="form-label"><i class="bi bi-geo-alt me-2"></i> Địa chỉ</label>
+                <!-- <input type="text" class="form-control" id="address" name="address" value="<?=$address?>" placeholder="Nhập địa chỉ"> -->
+                <textarea class="form-control editor" id="address" name="address" rows="4" placeholder="Nhập địa chỉ ..." required><?=$address?></textarea>
             </div>
 
-            
-            <!-- 6. Vai trò (Role) -->
+            <!-- 5. Vai trò (Role) -->
             <div class="mb-3">
-            <label for="role" class="form-label"><i class="bi bi-shield-lock me-2"></i> Vai trò</label>
-            <select class="form-select" id="role" name="role" required>
-                <option value="">-- Chọn vai trò --</option>
-                <option value="0" <?= $role == 0 ? 'selected' : '' ?>>Người dùng</option>
-                <option value="1" <?= $role == 1 ? 'selected' : '' ?>>Quản trị viên</option>
-            </select>
+                <label for="role" class="form-label"><i class="bi bi-shield-lock me-2"></i> Vai trò</label>
+                <select class="form-select" id="role" name="role" required>
+                    <option value="">-- Chọn vai trò --</option>
+                    <option value="0" <?= $role == 0 ? 'selected' : '' ?>>Người dùng</option>
+                    <option value="1" <?= $role == 1 ? 'selected' : '' ?>>Quản trị viên</option>
+                </select>
             </div>
+
             <input type="hidden" name="id" value="<?=$id?>">
+
+            <!-- Nút cập nhật -->
             <button type="submit" name="edit_user" class="btn btn_200_105_5 d-block ms-auto">
                 <i class="bi bi-plus-circle"></i> Lưu thay đổi
             </button>

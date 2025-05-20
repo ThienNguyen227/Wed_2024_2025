@@ -29,10 +29,6 @@
                     </div>
                 </form>
 
-                <!-- Thông báo tìm kiếm thông báo-->
-                <div id="searchResultText_found" class="mb-3 fw-semibold text-success fs-5"></div>
-                <div id="searchResultText_notfound" class="mb-3 fw-semibold text-danger fs-5"></div>
-
             </div>
 
             <!-- Nút thêm thông báo -->
@@ -46,38 +42,32 @@
 
         </div>
     </div>
+
+
+    <div>
+        <!-- Thông báo tìm kiếm sản phẩm và lọc sản phẩm -->
+        <div id="searchResultText_found" class="mb-3 fw-semibold text-success fs-5"></div>
+        <div id="searchResultText_notfound" class="mb-3 fw-semibold text-danger fs-5"></div>
+
+        <!-- 1. Thông báo xanh -->
+        <?php
+            if (isset($_SESSION['tb_success']) && $_SESSION['tb_success'] != "") {
+                echo '<div class="text-success mb-3 fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success'] . '</div>';
+                unset($_SESSION['tb_success']);
+            }
+        ?>
+
+        <!-- 2. Thông báo đỏ -->
+        <?php
+            if (isset($_SESSION['tb_danger']) && $_SESSION['tb_danger'] != "") {
+                echo '<div class="text-danger  mb-3 fs-5"><i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['tb_danger'] . '</div>';
+                unset($_SESSION['tb_danger']);
+            }
+        ?>
+
+    </div>
     
-    <!-- Thông báo xóa thông báo thành công -->
-    <?php
-        if (isset($_SESSION['tb_success_delete']) && $_SESSION['tb_success_delete'] != "") {
-            echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_delete'] . '</div>';
-            unset($_SESSION['tb_success_delete']);
-        }
-    ?>
-
-    <!-- Thông báo không được xóa thông báo -->
-    <?php
-        if (isset($_SESSION['tb_invalid_delete']) && $_SESSION['tb_invalid_delete'] != "") {
-            echo '<div class="text-danger  mb-3 fw-bold fs-5"><i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['tb_invalid_delete'] . '</div>';
-            unset($_SESSION['tb_invalid_delete']);
-        }
-    ?>
-
-    <!-- Thông báo thêm thông báo thành công -->
-    <?php
-        if (isset($_SESSION['tb_success_addition']) && $_SESSION['tb_success_addition'] != "") {
-            echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_addition'] . '</div>';
-            unset($_SESSION['tb_success_addition']);
-        }
-    ?>
-
-    <!-- Thông báo chỉnh sửa thông báo thành công -->
-    <?php
-        if (isset($_SESSION['tb_success_edition']) && $_SESSION['tb_success_edition'] != "") {
-            echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_edition'] . '</div>';
-            unset($_SESSION['tb_success_edition']);
-        }
-    ?>
+    
 
     
     <!-- Bảng show danh sách thông báo -->

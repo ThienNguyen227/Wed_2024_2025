@@ -61,27 +61,27 @@
                                 </td>
                             </tr>
                             <!-- Modal xóa tin tức -->
-                                <div class="modal fade" id="exampleModal_'. $id.'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-danger">
-                                                <h1 class="modal-title fs-5 text-white" id="exampleModalLabel"><i class="bi bi-exclamation-diamond"></i> Xác nhận xóa tin tức</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
+                            <div class="modal fade" id="exampleModal_'. $id.'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-danger">
+                                            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel"><i class="bi bi-exclamation-diamond"></i> Xác nhận xóa tin tức</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
 
-                                            <div class="modal-body">
-                                                Bạn có chắc chắn muốn xóa tin tức này không?
-                                            </div>
+                                        <div class="modal-body">
+                                            Bạn có chắc chắn muốn xóa tin tức này không?
+                                        </div>
 
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Hủy</button>
-                                                <a href="index.php?pg=handle_subtraction_news&news_id=' . $id . '" class="btn btn-danger">
-                                                    <i class="bi bi-trash"></i> Xóa
-                                                </a>
-                                            </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Hủy</button>
+                                            <a href="index.php?pg=handle_subtraction_news&news_id=' . $id . '" class="btn btn-danger">
+                                                <i class="bi bi-trash"></i> Xóa
+                                            </a>
                                         </div>
                                     </div>
-                                </div>';
+                                </div>
+                            </div>';
         $i++;
     }
 

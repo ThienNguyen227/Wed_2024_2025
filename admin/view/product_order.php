@@ -16,14 +16,14 @@
                         <!-- Thanh lọc-->
                         <select class="form-select" id="filterSelectOrder" name="filterSelectOrder" style="flex: 0 0 30%;">
                             <option value="">-- Lọc theo loại --</option>
-                            <optgroup label="Trạng thái">
+                            <!-- <optgroup label="Trạng thái">
                                 <option value="choxacnhan">Chờ xác nhận</option>
                                 <option value="xacnhan">Xác nhận</option>
                                 <option value="danggiao">Đang giao</option>
                                 <option value="dagiao">Đã giao</option>
                                 <option value="dahuy">Đã hủy</option>
                                 <option value="dahoantra">Đã hoàn trả</option>
-                            </optgroup>
+                            </optgroup> -->
                             <optgroup label="Thời gian">
                                 <option value="newest">Mới nhất</option>
                                 <option value="oldest">Cũ nhất</option>

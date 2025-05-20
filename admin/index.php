@@ -11,20 +11,20 @@
     include "../dao/statistics.php";
     
 
+    // Nếu là trang đăng kí, đăng nhập, quên mật khẩu, otp, đổi mật khẩu thì không include header và footer vào
+    $no_header_footer = isset($_GET['pg']) && in_array($_GET['pg'], ['dangky', 'dangnhap', 'quenmatkhau', 'otp', 'doimatkhau']);
 
-
-    include "view/header.php";
-
-    // Thanh slide_bar
-    include "view/slide_bar.php";
-
-
+    if (!$no_header_footer) {
+        include "view/header.php";
+        include "view/slide_bar.php";
+    }
 
     if (isset($_GET['pg']))
     {
         $pg = $_GET['pg'];
         switch ($pg) 
         {
+            
             // Trang cập nhật thông báo
             case 'notification_update':
                 if(isset($_GET["id"]) && $_GET["id"]>0)
@@ -575,6 +575,7 @@
                     $address = $_POST["address"];
                     $role = $_POST["role"];
 
+                    var_dump($id, $name, $phone, $address, $email, $role);
                     // Check Phone
                     // 1. Check số lượng của số lẫn chữ
                     if (!preg_match('/^\d{10}$/', $phone)) {
@@ -640,6 +641,7 @@
                     ad_update_user($name, $phone, $email, $address, $role, $id);
 
                     $_SESSION['tb_success'] = "Cập nhật thông tin người dùng <strong>#".$id."</strong> thành công.";
+
                     header("Location: index.php?pg=management_user");
                     exit();
 
@@ -813,6 +815,8 @@
 
                     ad_add_notification($title, $content);
 
+                    $_SESSION['tb_success'] = "Thêm thông báo <strong>'".$title."'</strong> thành công.";
+
                     header('location: index.php?pg=notification_list');
 
                 }
@@ -827,6 +831,8 @@
 
                     ad_update_notification($title, $content, $id_notification);
 
+                    $_SESSION['tb_success'] = "Chỉnh sửa thông báo <strong>'".$title."'</strong> thành công.";
+
                     header('location: index.php?pg=notification_list');
 
                 }
@@ -840,9 +846,9 @@
                     {
                         ad_delete_notification($id_notification);
                         
-                        $_SESSION['tb_success_delete'] = "Xóa tin tức thành công.";
+                        $_SESSION['tb_success'] = "Xóa thông báo thành công.";
                     } catch (\Throwable $th) {
-                        $_SESSION['tb_invalid_delete'] = "Xóa tin tức thất bại.";
+                        $_SESSION['tb_danger'] = "Xóa thông báo thất bại.";
                     }
                     
                     header('location: index.php?pg=notification_list');
@@ -875,7 +881,9 @@
         include "view/home.php"; 
     }
 
-    include "view/footer.php"; 
+    if (!$no_header_footer) {
+        include "view/footer.php";
+    }
 
     ob_end_flush();
 ?>

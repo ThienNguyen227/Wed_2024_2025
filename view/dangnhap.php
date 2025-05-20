@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="layout/css/login.css">
 
     <!-- Favicon -->
-    <link rel="icon" href="layout/Img/ZRvS2r9P.ico" type="image/x-icon" />
+    <link rel="icon" href="/uploads/log/ZRvS2r9P.ico" type="image/x-icon" />
 
     <!-- Font Awesome -->
     <link
