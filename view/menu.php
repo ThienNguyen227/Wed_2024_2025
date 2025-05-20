@@ -61,7 +61,7 @@
                               />
                               '.$best_seller.'
                               <h5>'.$name.'</h5>
-                              <p>'.$price.' Đ</p>
+                              <p>'.number_format($price).' VND</p>
                             </a>
                           </div>';
   }

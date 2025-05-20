@@ -220,7 +220,7 @@
                                     />
                                     '.$best_seller.'
                                     <h5>'.$name.'</h5>
-                                    <p>'.$price.' Đ</p>
+                                    <p>'.number_format($price).' VNĐ</p>
                                   </a>
                                 </div>';
                           
@@ -273,7 +273,7 @@
                               <i class="fa-solid fa-heart-circle-plus favorite-icon '.($is_favorite ? 'text-danger' : 'text-muted').'"></i>
                             </button>
                             
-                            <p><strong>- Đơn giá: <span class="unit-price">'.$price.'</span> VNĐ</strong><p>
+                            <p><strong>- Đơn giá: <span class="unit-price">'.number_format($price).' VND</span> VNĐ</strong><p>
 
                             <form action="index.php?pg=addtocart" method="post">
                               <input type="hidden" name="name" value="'.$name.'"/>
@@ -304,7 +304,7 @@
                                       name="press-add" 
                                       id="hidden-quantity">
                                       <i class="fa-solid fa-cart-plus"></i> 
-                                      Thêm Vào Giỏ Hàng: <span class="total-price">'.$total_price.'</span> VNĐ
+                                      Thêm Vào Giỏ Hàng: <span class="total-price">'.number_format($total_price). '</span> VNĐ
                               </button>
                             </form>
                           </div>';

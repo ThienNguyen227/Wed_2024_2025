@@ -844,8 +844,8 @@
 
                     $orderInfo = "Thanh toán qua MoMo";
                     $orderId = $bill_id . "_" . time(); // Đảm bảo duy nhất
-                    $redirectUrl = "http://localhost/final_project_15_4/index.php?pg=check_payment";
-                    $ipnUrl = "http://localhost/final_project_15_4/index.php?pg=check_payment";
+                    $redirectUrl = "http://localhost/52300066_52300080/index.php?pg=check_payment";
+                    $ipnUrl = "http://localhost/52300066_52300080/index.php?pg=check_payment";
                     $extraData = "";
 
                     // Chuẩn bị các thông tin cần thiết

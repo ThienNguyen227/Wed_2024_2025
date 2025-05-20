@@ -109,7 +109,7 @@
                                   data-aos-duration="3000"
                                 />
                                 <h5>'.$name.'</h5>
-                                <p>'.number_format($price).'</p>
+                                <p>'.number_format($price).' VND</p>
                               </a>
                             </div>';
   }
