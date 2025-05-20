@@ -3,6 +3,31 @@ require_once 'pdo.php';
 
 // -------- ADMIN --------
 
+// Hàm ẩn sản phầm
+function ad_update_product_status_hidden($id_pro){
+    $sql = "UPDATE product SET product_status=1 WHERE id=?";
+    pdo_execute($sql, $id_pro);
+}
+
+// Hàm hiện sản phầm
+function ad_update_product_status_show($id_pro){
+    $sql = "UPDATE product SET product_status=0 WHERE id=?";
+    pdo_execute($sql, $id_pro);
+}
+
+// Hàm thêm bestseller
+function ad_update_product_bestseller($id_pro){
+    $sql = "UPDATE product SET bestseller=1 WHERE id=?";
+    pdo_execute($sql, $id_pro);
+}
+
+// Hàm gỡ bestseller
+function ad_update_product_cancel_bestseller($id_pro){
+    $sql = "UPDATE product SET bestseller=0 WHERE id=?";
+    pdo_execute($sql, $id_pro);
+}
+
+
 // 1. Hàm lấy ra danh sách sản phẩm admin
 function get_list_product_admin($limit_product)
 {
@@ -89,17 +114,39 @@ function get_bill_by_bill_id($bill_id){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // -------- User --------
 
 // Hàm lấy ra danh sách sản phẩm mới
 function get_list_product_new($limit_product){
-    $sql = "SELECT * FROM product ORDER BY id DESC LIMIT ".$limit_product;// Nếu không cách ra thì sẽ thành limit4
+    $sql = "SELECT * FROM product WHERE product_status = 0 ORDER BY id DESC LIMIT ".$limit_product;
     return pdo_query($sql);
 } 
 
 // Hàm lấy ra danh sách sản phẩm bestseller
 function get_list_product_bestseller($limit_product){
-    $sql = "SELECT * FROM product WHERE bestseller=1 ORDER BY id DESC LIMIT ".$limit_product;
+    $sql = "SELECT * FROM product WHERE bestseller = 1 AND product_status = 0 ORDER BY id DESC LIMIT ".$limit_product;
     return pdo_query($sql);
 
 }
@@ -115,7 +162,7 @@ function get_list_product($kyw, $product_categories_id, $limit_product){
     if($kyw != ""){
         $sql .=" AND name like '%".$kyw."%'";
     }
-    $sql .= " AND product_category_id IN (1, 2, 3, 4)";
+    $sql .= " AND product_category_id IN (1, 2, 3, 4) AND product_status = 0";
 
     $sql .= " ORDER BY id DESC LIMIT ".$limit_product;
     return pdo_query($sql);
@@ -283,7 +330,7 @@ function get_available_discounts_for_customer($userId){
 
 // Hàm lấy ra sản phẩm đóng gói
 function get_packed_products($limit_product){
-    $sql = "SELECT * FROM product WHERE product_category_id = 5 LIMIT ".$limit_product;
+    $sql = "SELECT * FROM product WHERE product_category_id = 5 AND product_status = 0 LIMIT ".$limit_product;
     return pdo_query($sql);
 }
 

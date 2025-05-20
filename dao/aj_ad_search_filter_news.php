@@ -11,8 +11,8 @@
     $keyword = "%$keyword%";
 
     // Tạo mảng tham số và điều kiện WHERE
-    $where = "WHERE content LIKE ?";
-    $params = [$keyword];
+    $where = "WHERE content LIKE ? OR title LIKE ?";
+    $params = [$keyword, $keyword];
 
     // Ánh xạ filter sang category_id nếu có
     $category_map = ['coffeeholic' => 1, 'teaholic' => 2, 'sales' => 3, 'bannerhome' => 4, 'adtypeproduct' => 5];
@@ -50,16 +50,38 @@
                                 <td><img src="'.IMG_PATH_ADMIN_NEWS.$image.'" alt="Hình ảnh tin tức 1" width="100"></td>
                                 <td>'.$created_at.'</td>
                                 <td>
-                                <a href="index.php?pg=management_news_update&news_id=' . $id . '" class="btn btn-success w-100">
+                                <a href="index.php?pg=management_news_update&news_id=' . $id . '" class="btn btn-success">
                                     <i class="bi bi-pencil-square"></i> Chỉnh sửa
                                 </a>
 
-                                <a href="index.php?pg=handle_subtraction_news&news_id=' . $id . '" class="btn btn-danger w-100">
-                                    <i class="bi bi-trash"></i> Xóa
-                                </a>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_'. $id.'">
+                                    <i class="bi bi-trash me-1"></i> Xóa
+                                </button>
                                 
                                 </td>
-                            </tr>';
+                            </tr>
+                            <!-- Modal xóa tin tức -->
+                                <div class="modal fade" id="exampleModal_'. $id.'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-danger">
+                                                <h1 class="modal-title fs-5 text-white" id="exampleModalLabel"><i class="bi bi-exclamation-diamond"></i> Xác nhận xóa tin tức</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                Bạn có chắc chắn muốn xóa tin tức này không?
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Hủy</button>
+                                                <a href="index.php?pg=handle_subtraction_news&news_id=' . $id . '" class="btn btn-danger">
+                                                    <i class="bi bi-trash"></i> Xóa
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
         $i++;
     }
 

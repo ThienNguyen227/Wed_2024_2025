@@ -13,9 +13,8 @@
     $keyword = "%$keyword%";
 
     // Tạo mảng tham số và điều kiện WHERE
-    $where = "WHERE receiver_name LIKE ?";
-    $params = [$keyword];
-
+    $where = "WHERE bill_id LIKE ? OR user_id LIKE ? OR receiver_name LIKE ? OR receiver_phone LIKE ?";
+    $params = [$keyword, $keyword, $keyword, $keyword];
 
     // Điều kiện sắp xếp
     $order = "ORDER BY bill_id DESC";
@@ -64,24 +63,24 @@
                  
         // Trạng thái thanh toán
         if($payment_status == 0){
-            $pay_status = "Chưa thanh toán";
+            $pay_status = '<span class="badge bg-danger">Chưa thanh toán</span>';
         }else{
-            $pay_status = "Đã thanh toán";
+            $pay_status = '<span class="badge bg-success">Đã thanh toán</span>';
         }
 
         // Trạng thái đơn hàng
         if($status == 0){
-            $order_status = "Chờ xác nhận";
+            $order_status = '<span class="badge bg-warning">Chờ xác nhận</span>';
         } elseif($status == 1){
-            $order_status = "Đã xác nhận";
+            $order_status = '<span class="badge bg-primary">Đã xác nhận</span>';
         }elseif($status == 2){
-            $order_status = "Đang giao";
+            $order_status = '<span class="badge bg-secondary">Đang giao</span>';
         }elseif($status == 3){
-            $order_status = "Đã giao";
+            $order_status = '<span class="badge bg-success">Đã giao</span>';
         }elseif($status == 4){
-            $order_status = "Đã hủy";
+            $order_status = '<span class="badge bg-danger">Đã hủy</span>';
         }elseif($status == 5){
-            $order_status = "Đã hoàn trả";
+            $order_status = '<span class="badge bg-dark">Đã hoàn trả/span>';
         }
 
         // format ngày giờ
@@ -154,12 +153,11 @@
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                            <button type="button" class="btn btn_200_105_5">Xuất hóa đơn</button>
+                                            <button type="button" class="btn btn_200_105_5" onclick="exportBill('.$bill_id.')">Xuất hóa đơn</button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            ';
+                            </div>';
         $i++;
     }
 

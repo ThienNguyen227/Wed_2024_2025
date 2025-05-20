@@ -15,7 +15,7 @@
     $params = [$keyword];
 
     // Ánh xạ filter sang category_id nếu có
-    $category_map = ['coffee' => 1, 'tea' => 2, 'cake' => 3, 'ame' => 4];
+    $category_map = ['Coffee' => 1, 'Tea' => 2, 'Cake' => 3, 'Ame' => 4];
     if (array_key_exists($filter, $category_map)) {
         $where .= " AND product_category_id = ?";
         $params[] = $category_map[$filter];
@@ -35,7 +35,7 @@
     $total_products = (int)pdo_query_value($sql_count, ...$params);
     $total_pages = ceil($total_products / $limit);
 
-    // Lấy danh sách sản phẩm
+    // Lấy danh sách sản phẩm loại 1234
     $list_product = pdo_query($sql, ...$params);
 
     // Tạo HTML danh sách sản phẩm
@@ -43,6 +43,27 @@
     $i = $offset + 1;
     foreach ($list_product as $ls_pro) {
         extract($ls_pro);
+
+        if($product_status==0){
+            $tb_status = '<span class="badge bg-success">Đang bán</span>'; 
+            $hidden_button_1 = "d-none";
+            $hidden_button_2 = "";
+        } elseif($product_status==1){
+            $tb_status = '<span class="badge bg-secondary">Ngừng bán</span>'; 
+            $hidden_button_1 = "";
+            $hidden_button_2 = "d-none";
+        }
+
+        if($bestseller==0){
+            $tb_bestseller = '<span class="badge bg-info text-dark">Bình thường</span>'; 
+            $hidden_button_3 = "d-none";
+            $hidden_button_4 = "";
+        } elseif($bestseller==1){
+            $tb_bestseller = '<span class="badge bg-warning text-dark">Bán chạy</span>'; 
+            $hidden_button_3 = "";
+            $hidden_button_4 = "d-none";
+        }
+
         $html_list_product .= ' <tr>
                                     <td class="text-center">' . $i . '</td>
                                     <td>' . htmlspecialchars($name) . '</td>
@@ -56,24 +77,71 @@
                                     </td>
                                     <td class="text-center">' . number_format($price) . ' VND</td>
                                     <td class="text-center">
-                                        Ngưng bán
-                                        
+                                        '.$tb_status.'
                                     </td>
                                     <td class="text-center">
-                                        <a href="index.php?pg=product_update&id=' . htmlspecialchars($id) . '" class="btn btn-success">
-                                            <i class="bi bi-pencil-square me-1"></i> Hiện
-                                        </a>
+                                        '.$tb_bestseller.'
+                                    </td>
+                                    <td class="text-center">
                                         
-                                    
-
+                                            
+                                            
+                                            
                                         <a href="index.php?pg=product_update&id=' . htmlspecialchars($id) . '" class="btn btn_200_105_55">
                                             <i class="bi bi-pencil-square me-1"></i> Chỉnh Sửa
                                         </a>
-                                        <a href="index.php?pg=handle_subtraction_product&id=' . htmlspecialchars($id) . '" class="btn btn-danger">
-                                            <i class="bi bi-trash me-1"></i> Xóa
+                                    
+                                    
+                                        <a href="index.php?pg=handle_hidden_product&id=' . htmlspecialchars($id) . '" class="btn btn-secondary '.$hidden_button_2.'">
+                                            <i class="bi bi-eye-slash me-1"></i> Ẩn
                                         </a>
+                                    
+                                    
+                                        <a href="index.php?pg=handle_show_product&id=' . htmlspecialchars($id) . '" class="btn btn-success '.$hidden_button_1.'">
+                                            <i class="bi bi-eye me-1"></i> Hiện
+                                        </a>
+                                    
+                                    
+                                        <a href="index.php?pg=handle_bestseller_product&id=' . htmlspecialchars($id) . '" class="btn btn-warning text-white '.$hidden_button_4.'">
+                                            <i class="bi bi-hand-thumbs-up-fill me-1"></i>Thêm Bestseller
+                                        </a>
+                                    
+                                    
+                                        <a href="index.php?pg=handle_cancel_bestseller_product&id=' . htmlspecialchars($id) . '" class="btn btn-info text-white '.$hidden_button_3.'">
+                                            <i class="bi bi-hand-thumbs-up-fill me-1"></i> Gỡ Bestseller
+                                        </a>
+                                    
+                                    
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_'. $id.'">
+                                            <i class="bi bi-trash me-1"></i> Xóa
+                                        </button>
+                                                
+                                          
+                                        
                                     </td>
-                                </tr>';
+                                </tr>
+                                <!-- Modal xóa sản phẩm-->
+                                <div class="modal fade" id="exampleModal_'. $id.'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-danger">
+                                                <h1 class="modal-title fs-5 text-white" id="exampleModalLabel"><i class="bi bi-exclamation-diamond"></i> Xác nhận xóa sản phẩm</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                Bạn có chắc chắn muốn xóa sản phẩm <strong>'. htmlspecialchars($name) .'</strong> không?
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Hủy</button>
+                                                <a href="index.php?pg=handle_subtraction_product&id=' . htmlspecialchars($id) . '" class="btn btn-danger">
+                                                    <i class="bi bi-trash me-1"></i> Xóa
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
         $i++;
     }
 

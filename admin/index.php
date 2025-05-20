@@ -9,6 +9,7 @@
     include "../dao/categories.php";
     include "../dao/user.php";
     include "../dao/statistics.php";
+    
 
 
 
@@ -155,10 +156,6 @@
                     include "view/product_update.php"; 
                 } 
                 break;
-            // Tran thêm danh mục sản phẩm
-            case 'product_add_categories':
-                include "view/product_add_categories.php"; 
-                break;
             // Trang cập nhật sản phẩm đóng gói
             case 'product_packed_update':
                 if(isset($_GET["id"]) && $_GET["id"]>0)
@@ -201,7 +198,7 @@
                     $target_file = IMG_PATH_ADMIN_PRODUCT.$img;
                     move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
 
-                    $_SESSION['tb_success_addition'] = "Thêm sản phẩm thành công !!!";
+                    $_SESSION['tb_success'] = "Thêm sản phẩm <strong>'".$name."'</strong> thành công.";
 
                     header('location: index.php?pg=product_list');
 
@@ -224,9 +221,9 @@
                         if(is_file($img)){
                             unlink($img);
                         }
-                        $_SESSION['tb_success_delete'] = "Xóa sản phẩm thành công !!!";
+                        $_SESSION['tb_success'] = "Xóa sản phẩm thành công.";
                     } catch (\Throwable $th) {
-                        $_SESSION['tb_invalid_delete'] = "Sản phẩm đã được đặt hàng không được quyền xóa!!!";
+                        $_SESSION['tb_danger'] = "Sản phẩm đã được đặt hàng không được quyền xóa.";
                     }
                     
                     
@@ -257,14 +254,64 @@
                     }
 
                     update_product($name, $category_id, $price, $description, $img, $id_pro);
-                    $_SESSION['tb_success_edition'] = "Chỉnh sửa sản phẩm thành công!";
+                    $_SESSION['tb_success'] = "Chỉnh sửa sản phẩm <strong>'".$name."'</strong> thành công.";
 
                     header('location: index.php?pg=product_list');
 
 
                 }
                 break;
+            // Chức năng xử lí ẩn sản phẩm
+            case 'handle_hidden_product':
+                if(isset($_GET["id"]) && $_GET["id"]>0){
+                    $id_pro = $_GET["id"];
 
+                    ad_update_product_status_hidden($id_pro);
+
+                    $_SESSION['tb_success'] = "Sản phẩm đã được ẩn thành công.";
+
+                    header('location: index.php?pg=product_list');
+                }
+                break;
+            
+
+            // Chức năng xử lí hiện sản phẩm
+            case 'handle_show_product':
+                if(isset($_GET["id"]) && $_GET["id"]>0){
+                    $id_pro = $_GET["id"];
+
+                    ad_update_product_status_show($id_pro);
+
+                    $_SESSION['tb_success'] = "Sản phẩm đã hiện thành công.";
+
+                    header('location: index.php?pg=product_list');
+                }
+                break;
+            // Chức năng thêm bestseller cho sản phẩm
+            case 'handle_bestseller_product':
+                if(isset($_GET["id"]) && $_GET["id"]>0){
+                    $id_pro = $_GET["id"];
+
+                    ad_update_product_bestseller($id_pro);
+
+                    $_SESSION['tb_success'] = "Đã thêm bestseller cho sản phẩm thành công.";
+
+                    header('location: index.php?pg=product_list');
+                }
+                break;
+
+            // Chức năng gỡ bestseller cho sản phẩm
+            case 'handle_cancel_bestseller_product':
+                if(isset($_GET["id"]) && $_GET["id"]>0){
+                    $id_pro = $_GET["id"];
+
+                    ad_update_product_cancel_bestseller($id_pro);
+
+                    $_SESSION['tb_danger'] = "Đã gỡ bestseller cho sản phẩm thành công.";
+
+                    header('location: index.php?pg=product_list');
+                }
+                break;
             // 4. Chức năng xử lí chỉnh sửa sản phẩm đóng gói
             case 'handle_edition_packed_product':
 
@@ -292,7 +339,7 @@
                     }
 
                     update_packed_product($name, $price,  $description, $product_quantity, $img, $id_pro);
-                    $_SESSION['tb_success_edition'] = "Chỉnh sửa sản phẩm thành công!";
+                    $_SESSION['tb_success'] = "Chỉnh sửa sản phẩm <strong>'".$name."'</strong> thành công.";
 
                     header('location: index.php?pg=product_list_packed');
 
@@ -316,7 +363,7 @@
                     $target_file = IMG_PATH_ADMIN_PRODUCT.$img;
                     move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
 
-                    $_SESSION['tb_success_addition'] = "Thêm sản phẩm thành công !!!";
+                    $_SESSION['tb_success'] = "Thêm sản phẩm <strong>'".$name."'</strong> thành công.";
 
                     header('location: index.php?pg=product_list_packed');
 
@@ -339,16 +386,67 @@
                         if(is_file($img)){
                             unlink($img);
                         }
-                        $_SESSION['tb_success_delete'] = "Xóa sản phẩm thành công !!!";
+                        $_SESSION['tb_success'] = "Xóa sản phẩm thành công.";
                     } catch (\Throwable $th) {
-                        $_SESSION['tb_invalid_delete'] = "Sản phẩm đã được đặt hàng không được quyền xóa!!!";
+                        $_SESSION['tb_danger'] = "Sản phẩm đã được đặt hàng không được quyền xóa sản phẩm!!!";
                     }
                     
                     
                     header('location: index.php?pg=product_list_packed');
                 }
                 break;
+            // Chức năng xử lí ẩn sản phẩm đóng gói
+            case 'handle_hidden_packed_product':
+                if(isset($_GET["id"]) && $_GET["id"]>0){
+                    $id_pro = $_GET["id"];
+
+                    ad_update_product_status_hidden($id_pro);
+
+                    $_SESSION['tb_success'] = "Sản phẩm đóng gói đã được ẩn thành công.";
+
+                    header('location: index.php?pg=product_list_packed');
+                }
+                break;
             
+
+            // Chức năng xử lí hiện sản phẩm
+            case 'handle_show_packed_product':
+                if(isset($_GET["id"]) && $_GET["id"]>0){
+                    $id_pro = $_GET["id"];
+
+                    ad_update_product_status_show($id_pro);
+
+                    $_SESSION['tb_success'] = "Sản phẩm đóng gói đã hiện thành công.";
+
+                    header('location: index.php?pg=product_list_packed');
+                }
+                break;
+            // Chức năng thêm bestseller cho sản phẩm
+            case 'handle_bestseller_packed_product':
+                if(isset($_GET["id"]) && $_GET["id"]>0){
+                    $id_pro = $_GET["id"];
+
+                    ad_update_product_bestseller($id_pro);
+
+                    $_SESSION['tb_success'] = "Đã thêm bestseller cho sản phẩm đóng gói thành công.";
+
+                    header('location: index.php?pg=product_list_packed');
+                }
+                break;
+
+            // Chức năng gỡ bestseller cho sản phẩm
+            case 'handle_cancel_bestseller_packed_product':
+                case 'handle_cancel_bestseller_product':
+                if(isset($_GET["id"]) && $_GET["id"]>0){
+                    $id_pro = $_GET["id"];
+
+                    ad_update_product_cancel_bestseller($id_pro);
+
+                    $_SESSION['tb_danger'] = "Đã gỡ bestseller cho sản phẩm đóng gói thành công.";
+
+                    header('location: index.php?pg=product_list_packed');
+                }
+                break;
             // 7. Chức năng xử lí điều chỉnh trạng thái(thanh toán, đơn hàng)
             case 'handle_edition_status_order':
                 if(isset($_POST["edit_status_order"])){
@@ -357,7 +455,7 @@
                     $status = $_POST["status"];
 
                     adjust_status($payment_status, $status, $bill_id);
-                    $_SESSION['tb_success_edition'] = "Cập nhật trạng thái của đơn hàng #" . $bill_id . " thành công.";
+                    $_SESSION['tb_success_edition'] = "Cập nhật trạng thái của đơn hàng <strong>#" . $bill_id . "</strong> thành công.";
                     header('location: index.php?pg=product_order');
                 }
                 break;
@@ -462,7 +560,7 @@
                     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                     
                     ad_add_user($name, $phone, $email, $hashed_password, $address, $role);
-                    $_SESSION['tb_success_add_user'] = "Thêm người dùng thành công.";
+                    $_SESSION['tb_success'] = "Thêm người dùng <strong>".$name."</strong> thành công.";
                     header('location: index.php?pg=management_user');
                     exit();
                 }
@@ -541,14 +639,14 @@
 
                     ad_update_user($name, $phone, $email, $address, $role, $id);
 
-                    $_SESSION['tb_update_thanhcong'] = "Cập nhật thông tin người dùng #".$id." thành công.";
+                    $_SESSION['tb_success'] = "Cập nhật thông tin người dùng <strong>#".$id."</strong> thành công.";
                     header("Location: index.php?pg=management_user");
                     exit();
 
                 }
                 break;
 
-            // 10. Chức năng xử lý xóa người dùng(ít sử dụng)
+            // 10. Chức năng xử lý xóa người dùng(hiếm sử dụng)
             case 'handle_subtraction_user': 
 
                 if(isset($_GET["user_id"]) && $_GET["user_id"]>0){
@@ -557,9 +655,9 @@
                     try 
                     {
                         ad_delete_user($user_id);
-                        $_SESSION['tb_success_delete'] = "Xóa người dùng thành công.";
+                        $_SESSION['tb_success'] = "Xóa người dùng thành công.";
                     } catch (\Throwable $th) {
-                        $_SESSION['tb_invalid_delete'] = "Xóa người dùng thất bại.";
+                        $_SESSION['tb_danger'] = "Xóa người dùng thất bại.";
                     }
                     
                     
@@ -581,10 +679,11 @@
                         $target_file = IMG_PATH_ADMIN_NEWS . $img;
                         move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
                     } else {
-                        $img = $old_image; // Giữ nguyên ảnh cũ nếu không chọn ảnh mới
+                        $img = $old_image; 
                     }
                 
                     ad_update_news($title, $content, $img, $news_id);
+                    $_SESSION['tb_success'] = "Chỉnh sửa tin tức <strong>#".$title."</strong> thành công.";
                     header('location: index.php?pg=management_news');
                 }
                 
@@ -625,7 +724,7 @@
                     $target_file = IMG_PATH_ADMIN_NEWS.$img;
                     move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
 
-                    $_SESSION['tb_success_addition'] = "Thêm tin tức thành công !!!";
+                    $_SESSION['tb_success'] = "Thêm tin tức <strong>".$title."</strong> thành công.";
 
                     header('location: index.php?pg=management_news');
 
@@ -649,7 +748,7 @@
 
                     ad_add_discount($code, $discount_percent, $discount_amount, $discount_apply, $start_date, $end_date);
 
-                    $_SESSION['tb_success_addition'] = "Thêm mã giảm giá thành công.";
+                    $_SESSION['tb_success'] = "Thêm mã giảm giá <strong>".$code."</strong> thành công.";
 
                     header('location: index.php?pg=discount_list');
 
@@ -666,7 +765,7 @@
                 
                     ad_update_discount($code, $discount_percent, $start_date, $end_date, $discount_id);
 
-                    $_SESSION['tb_success_edition'] = "Thêm mã giảm giá thành công.";
+                    $_SESSION['tb_success'] = "Chỉnh sửa mã giảm giá <strong>".$code."</strong> thành công.";
 
                     header('location: index.php?pg=discount_list');
                 }
@@ -681,9 +780,9 @@
                     {
                         ad_delete_discount($discount_id);
                         
-                        $_SESSION['tb_success_delete'] = "Xóa mã giảm giá thành công.";
+                        $_SESSION['tb_success'] = "Xóa mã giảm giá thành công.";
                     } catch (\Throwable $th) {
-                        $_SESSION['tb_invalid_delete'] = "Xóa mã giảm giá thất bại.";
+                        $_SESSION['tb_danger'] = "Xóa mã giảm giá thất bại.";
                     }
                     
                     header('location: index.php?pg=discount_list');

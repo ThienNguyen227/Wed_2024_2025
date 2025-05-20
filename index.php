@@ -39,6 +39,11 @@
     $news_sales = get_news_sales();
     $news_banner_home = get_news_banner_home();
     $news_ad_type_product = get_ad();
+    // doc
+    $news_signature_doc = get_news_signature_doc();
+    // img
+    $news_signature_img = get_news_signature_img();
+
 
 
     if (!isset($_GET['pg'])) {

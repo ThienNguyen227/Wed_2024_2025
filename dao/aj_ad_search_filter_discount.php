@@ -43,15 +43,21 @@
     $i = $offset + 1;
     foreach ($list_discount as $ls_ds) {
         extract($ls_ds);
+
+        $start_date_fmt = date('H:i:s d/m/Y', strtotime($start_date));
+        $end_date_fmt = date('H:i:s d/m/Y', strtotime($end_date));
+        $created_at_fmt = date('H:i:s d/m/Y', strtotime($created_at));
+        $update_at_fmt = date('H:i:s d/m/Y', strtotime($update_at));
+
         $html_list_discount .= ' <tr class="text-center">
                                     <td>' . $i . '</td>
                                     <td>' . htmlspecialchars($code) . '</td>
                                     <td>' .  htmlspecialchars($discount_percent) . '</td>
                                     <td>' .  htmlspecialchars($discount_amount) . '</td>
-                                    <td>' .  htmlspecialchars($start_date) . '</td>
-                                    <td>' .  htmlspecialchars($end_date) . '</td>
-                                    <td>' .  htmlspecialchars($created_at) . '</td>
-                                    <td>' .  htmlspecialchars($update_at) . '</td>
+                                    <td>' .  htmlspecialchars($start_date_fmt) . '</td>
+                                    <td>' .  htmlspecialchars($end_date_fmt) . '</td>
+                                    <td>' .  htmlspecialchars($created_at_fmt) . '</td>
+                                    <td>' .  htmlspecialchars($update_at_fmt) . '</td>
                                     <td>
                                         <a href="index.php?pg=discount_update&discount_id=' . htmlspecialchars($discount_id) . '" class="btn btn-success">
                                             <i class="bi bi-pencil-square me-1"></i> Chỉnh Sửa

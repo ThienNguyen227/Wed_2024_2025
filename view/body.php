@@ -8,7 +8,7 @@
     {
       $best_seller = '<div
                         class="position-absolute start-35 bg-danger text-white px-2 py-1 rounded"
-                        style=" bottom: 173px; left: 10px; font-weight: bold; font-size: 14px;"
+                        style=" bottom: 230px; left: 18px; font-weight: bold; font-size: 15px;"
                       >
                         <i class="fa-solid fa-thumbs-up me-1"></i> BEST SELLER
                       </div>';
@@ -29,7 +29,7 @@
                                 <img src="'.IMG_PATH_USER_PRODUCT.$img.'" class="card-img-top zoom_up" alt="..." />
                                 '.$best_seller.'
                                 <div class="card-body">
-                                  <h5 class="card-title">'.$name.'</h5>
+                                  <h5 class="card-title fw-bold">'.$name.'</h5>
                                   <p class="card-text">
                                     '.$short_description.'
                                   </p>
@@ -41,34 +41,30 @@
 
   // SẢN PHẨM BESTSELLER
   $html_product_bestseller = '';
-  foreach ($list_product_bestseller as $pro_bestseller) 
-  {
+  foreach ($list_product_bestseller as $pro_bestseller) {
     extract($pro_bestseller);
     $link = "index.php?pg=product_detail&id_product=".$id;
+    $short_description = mb_strimwidth($description, 0, 100, "...");
     $html_product_bestseller.=' <div class="col-12 col-sm-6 col-md-4 col-lg-3 px-5">
                                   <div
                                     class="card radius_shadow_2 position-relative h-100"
-                                    style="width: 16rem"
+                                    style="width: 18rem"
                                     data-aos="zoom-in"
                                     data-aos-duration="3000"
-                                  >
-                                    <a href="'.$link.'" class="text-dark text-decoration-none">
-                                      <img src="'.IMG_PATH_USER_PRODUCT.$img.'" class="card-img-top zoom_up" alt="'.$name.'" />
-                                      <!-- Add BEST SELLER -->
+                                  > <a href="'.$link.'" class="text-dark text-decoration-none">
+                                      <img src="'.IMG_PATH_USER_PRODUCT.$img.'" class="card-img-top zoom_up" alt="..." />
                                       <div
                                         class="position-absolute start-35 bg-danger text-white px-2 py-1 rounded"
-                                        style=" bottom: 173px; left: 10px; font-weight: bold; font-size: 14px;"
+                                        style=" bottom: 155px; left: 18px; font-weight: bold; font-size: 15px;"
                                       >
                                         <i class="fa-solid fa-thumbs-up me-1"></i> BEST SELLER
                                       </div>
-
                                       <div class="card-body">
-                                        <h5 class="card-title">'.$name.'</h5>
+                                        <h5 class="card-title fw-bold">'.$name.'</h5>
                                         <p class="card-text">
-                                          '.$description.'
+                                          '.$short_description.'
                                         </p>
                                       </div>
-
                                     </a>
                                   </div>
                                 </div>';
@@ -143,6 +139,25 @@
                       </div>
                     </div>';
   }
+
+  $html_news_signature_doc = '';
+  extract($news_signature_doc);
+  $html_news_signature_doc = '<strong
+                                data-aos="zoom-in-up"
+                                data-aos-duration="3000"
+                                data-aos-easing="ease-in-out"
+                                class="signature_size d-block text-center text-lg-start"
+                              >
+                                '.$title.'
+                              </strong>
+                              <p
+                                data-aos="zoom-in"
+                                data-aos-duration="3000"
+                                data-aos-easing="ease-in-out"
+                                class="text-justify text-center text-lg-start px-2"
+                              >
+                                '.$content.'
+                              </p>';
 
   
 
@@ -287,7 +302,8 @@
       <div class="row align-items-center">
         <!-- Text section -->
         <div class="col-12 col-lg-6 mb-4 mb-lg-0">
-          <strong
+          <?=$html_news_signature_doc;?>
+          <!-- <strong
             data-aos="zoom-in-up"
             data-aos-duration="3000"
             data-aos-easing="ease-in-out"
@@ -311,7 +327,7 @@
             hương vị, mà còn cảm nhận được cái "chất" riêng của quán – thứ
             khiến họ muốn quay lại, để tìm lại hương vị đặc trưng không thể
             tìm thấy ở bất kỳ nơi nào khác.
-          </p>
+          </p> -->
         </div>
 
         <!-- Carousel section -->

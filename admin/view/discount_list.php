@@ -3,7 +3,7 @@
     <h2 class="text-center"><span class="badge title_page mt-3 mb-4">Danh Sách Mã Giảm Giá</span></h2>
     
     <!-- Thanh tìm kiếm và thanh lọc mã giảm giá -->
-    <div class="mb-3">
+    <div>
         <div class="row">
             <div class="col-6">
                 
@@ -26,10 +26,6 @@
                     </div>
                 </form>
 
-                <!-- Thông báo tìm kiếm mã giảm giá-->
-                <div id="searchResultText_found" class="mb-3 fw-semibold text-success fs-5"></div>
-                <div id="searchResultText_notfound" class="mb-3 fw-semibold text-danger fs-5"></div>
-
             </div>
 
             <!-- Nút thêm mã giảm giá-->
@@ -44,51 +40,42 @@
         </div>
     </div>
 
-    <!-- Thông báo xóa mã giảm giá thành công -->
-    <?php
-        if (isset($_SESSION['tb_success_delete']) && $_SESSION['tb_success_delete'] != "") {
-            echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_delete'] . '</div>';
-            unset($_SESSION['tb_success_delete']);
-        }
-    ?>
+    <div>
+        <!-- Thông báo tìm kiếm sản phẩm và lọc sản phẩm -->
+        <div id="searchResultText_found" class="mb-3 fw-semibold text-success fs-5"></div>
+        <div id="searchResultText_notfound" class="mb-3 fw-semibold text-danger fs-5"></div>
 
-    <!-- Thông báo không được xóa được mã giảm giá -->
-    <?php
-        if (isset($_SESSION['tb_invalid_delete']) && $_SESSION['tb_invalid_delete'] != "") {
-            echo '<div class="text-danger mb-3 fw-bold fs-5"><i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['tb_invalid_delete'] . '</div>';
-            unset($_SESSION['tb_invalid_delete']);
-        }
-    ?>
+        <!-- 1. Thông báo xanh -->
+        <?php
+            if (isset($_SESSION['tb_success']) && $_SESSION['tb_success'] != "") {
+                echo '<div class="text-success mb-3 fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success'] . '</div>';
+                unset($_SESSION['tb_success']);
+            }
+        ?>
 
-    <!-- Thông báo thêm mã giảm giá thành công-->
-    <?php
-        if (isset($_SESSION['tb_success_addition']) && $_SESSION['tb_success_addition'] != "") {
-            echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_addition'] . '</div>';
-            unset($_SESSION['tb_success_addition']);
-        }
-    ?>
+        <!-- 2. Thông báo đỏ -->
+        <?php
+            if (isset($_SESSION['tb_danger']) && $_SESSION['tb_danger'] != "") {
+                echo '<div class="text-danger  mb-3 fs-5"><i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['tb_danger'] . '</div>';
+                unset($_SESSION['tb_danger']);
+            }
+        ?>
 
-    <!-- Thông báo chỉnh sửa mã giảm giá thành công-->
-    <?php
-        if (isset($_SESSION['tb_success_edition']) && $_SESSION['tb_success_edition'] != "") {
-            echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_edition'] . '</div>';
-            unset($_SESSION['tb_success_edition']);
-        }
-    ?>
+    </div>
     
     <!-- Bảng show danh sách mã giảm giá -->
     <div class="table-responsive">
         <table class="table table-bordered table-striped align-middle bg-white shadow-sm rounded">
             <thead class="table-warning text-center">
                 <tr>
-                    <th scope="col"><i class="bi bi-list-ol me-1"></i> STT</th>
+                    <th scope="col" style="width: 50px;"><i class="bi bi-list-ol me-1"></i> STT</th>
                     <th scope="col"><i class="bi bi-box2"></i> Mã giảm giá</th>
                     <th scope="col"><i class="bi bi-image"></i> Phần Trăm</th>
                     <th scope="col"><i class="bi bi-image"></i> Số lượng</th>
-                    <th scope="col"><i class="bi bi-alarm"></i> Ngày bắt đầu</th>
-                    <th scope="col"><i class="bi bi-alarm"></i> Ngày kết thúc</th>
-                    <th scope="col"><i class="bi bi-alarm"></i> Ngày tạo</th>
-                    <th scope="col"><i class="bi bi-alarm"></i> Ngày cập nhật</th>
+                    <th scope="col" style="width: 120px;"><i class="bi bi-alarm"></i> Ngày bắt đầu</th>
+                    <th scope="col" style="width: 120px;"><i class="bi bi-alarm"></i> Ngày kết thúc</th>
+                    <th scope="col" style="width: 120px;"><i class="bi bi-alarm"></i> Ngày tạo mã</th>
+                    <th scope="col" style="width: 120px;"><i class="bi bi-alarm"></i> Ngày cập nhật</th>
                     <th scope="col"><i class="bi bi-gear me-1"></i> Thao Tác</th>
                 </tr>
             </thead>

@@ -111,6 +111,89 @@ function get_ad(){
     return pdo_query_one($sql);
 }
 
+// 18. Hàm lấy ra doc signature
+function get_news_signature_doc(){
+    $sql = "SELECT title, content FROM news WHERE type = 6 ORDER BY id DESC";
+    return pdo_query_one($sql);
+}
+
+// 19. Hàm lấy ra img signature
+function get_news_signature_img(){
+    $sql = "SELECT image FROM news WHERE type = 6 ORDER BY id DESC";
+    return pdo_query($sql);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 18. Hàm thêm tin tức mới
 function ad_add_news($img, $title, $content, $type){
     $sql = "INSERT INTO news(image, title, content, type) VALUES (?, ?, ?, ?)";

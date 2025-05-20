@@ -3,7 +3,7 @@
     <h2 class="text-center"><span class="badge title_page mt-3 mb-4">Danh Sách Sản Phẩm</span></h2>
 
     <!-- Thanh tìm kiếm sản phẩm -->
-    <div class="mb-3">
+    <div>
         <div class="row">
             <div class="col-6">
                 
@@ -15,10 +15,10 @@
                         <!-- Thanh lọc-->
                         <select class="form-select" id="filterSelectProduct" name="filterSelectProduct" style="flex: 0 0 30%;">
                             <option value="">-- Lọc theo loại --</option>
-                            <option value="coffee">Coffee</option>
-                            <option value="tea">Tea</option>
-                            <option value="cake">Cake</option>
-                            <option value="ame">A-Mê</option>
+                            <option value="Coffee">Coffee</option>
+                            <option value="Tea">Tea</option>
+                            <option value="Cake">Cake</option>
+                            <option value="Ame">A-Mê</option>
                             <option value="newest">Mới nhất</option>
                             <option value="oldest">Cũ nhất</option>
                         </select>
@@ -29,10 +29,6 @@
                         </button>
                     </div>
                 </form>
-
-                <!-- Thông báo tìm kiếm sản phẩm -->
-                <div id="searchResultText_found" class="mb-3 fw-semibold text-success fs-5"></div>
-                <div id="searchResultText_notfound" class="mb-3 fw-semibold text-danger fs-5"></div>
 
             </div>
 
@@ -48,48 +44,40 @@
         </div>
     </div>
     
-    <!-- Thông báo xóa sản phẩm thành công -->
-    <?php
-        if (isset($_SESSION['tb_success_delete']) && $_SESSION['tb_success_delete'] != "") {
-            echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_delete'] . '</div>';
-            unset($_SESSION['tb_success_delete']);
-        }
-    ?>
+    <div>
+        <!-- Thông báo tìm kiếm sản phẩm và lọc sản phẩm -->
+        <div id="searchResultText_found" class="mb-3 fw-semibold text-success fs-5"></div>
+        <div id="searchResultText_notfound" class="mb-3 fw-semibold text-danger fs-5"></div>
 
-    <!-- Thông báo không được xóa sản phẩm -->
-    <?php
-        if (isset($_SESSION['tb_invalid_delete']) && $_SESSION['tb_invalid_delete'] != "") {
-            echo '<div class="text-danger  mb-3 fw-bold fs-5"><i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['tb_invalid_delete'] . '</div>';
-            unset($_SESSION['tb_invalid_delete']);
-        }
-    ?>
+        <!-- 1. Thông báo xanh -->
+        <?php
+            if (isset($_SESSION['tb_success']) && $_SESSION['tb_success'] != "") {
+                echo '<div class="text-success mb-3 fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success'] . '</div>';
+                unset($_SESSION['tb_success']);
+            }
+        ?>
 
-    <!-- Thông báo thêm sản phẩm thành công -->
-    <?php
-        if (isset($_SESSION['tb_success_addition']) && $_SESSION['tb_success_addition'] != "") {
-            echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_addition'] . '</div>';
-            unset($_SESSION['tb_success_addition']);
-        }
-    ?>
+        <!-- 2. Thông báo đỏ -->
+        <?php
+            if (isset($_SESSION['tb_danger']) && $_SESSION['tb_danger'] != "") {
+                echo '<div class="text-danger  mb-3 fs-5"><i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['tb_danger'] . '</div>';
+                unset($_SESSION['tb_danger']);
+            }
+        ?>
 
-    <!-- Thông báo chỉnh sửa sản phẩm thành công -->
-    <?php
-        if (isset($_SESSION['tb_success_edition']) && $_SESSION['tb_success_edition'] != "") {
-            echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_edition'] . '</div>';
-            unset($_SESSION['tb_success_edition']);
-        }
-    ?>
+    </div>
 
     <!-- Bảng show các sản phẩm -->
-    <div class="table-responsive">
+    <div class="table-responsive mb-5">
         <table class="table table-bordered table-striped align-middle bg-white shadow-sm rounded">
             <thead class="table-warning text-center">
                 <tr>
-                    <th scope="col"><i class="bi bi-list-ol me-1"></i> STT</th>
-                    <th scope="col"><i class="bi bi-box2"></i> Sản phẩm</th>
+                    <th scope="col" style="width: 50px;" ><i class="bi bi-list-ol me-1"></i> STT</th>
+                    <th scope="col" style="width: 140px;"><i class="bi bi-box2"></i> Sản phẩm</th>
                     <th scope="col"><i class="bi bi-image"></i> Hình ảnh</th>
                     <th scope="col"><i class="bi bi-tags"></i> Đơn giá</th>
-                    <th scope="col"><i class="bi bi-tags"></i> Trạng thái</th>
+                    <th scope="col" style="width: 100px;"><i class="bi bi-tags"></i> Trạng thái hoạt động</th>
+                    <th scope="col" style="width: 100px;"><i class="bi bi-tags"></i> Trạng thái bán</th>
                     <th scope="col"><i class="bi bi-gear me-1"></i> Hành động</th>
                 </tr>
             </thead>
@@ -133,9 +121,6 @@
         xhr.send();
     }
 
-    
-
-
     document
         .getElementById("searchButtonProduct")
         .addEventListener("click", function () {
@@ -163,11 +148,11 @@
                 let tb = "";
                 let tb_1 = "";
                 if (resultText_keyword && resultText_filter) {
-                    tb = `<i class="bi bi-arrow-right-circle"></i> Kết quả tìm kiếm với từ khóa: "<strong>${keyword}</strong>" và lọc theo: "<strong>${filter}</strong>"`;
+                    tb = `<i class="bi bi-arrow-right-circle"></i> Kết quả tìm kiếm với từ khóa: "<strong>${keyword}</strong>" và lọc theo: "<strong>${filter}</strong>".`;
                 } else if (resultText_keyword) {
-                    tb = `<i class="bi bi-arrow-right-circle"></i> Kết quả tìm kiếm với từ khóa: "<strong>${keyword}</strong>"`;
+                    tb = `<i class="bi bi-arrow-right-circle"></i> Kết quả tìm kiếm với từ khóa: "<strong>${keyword}</strong>".`;
                 } else if (resultText_filter) {
-                    tb = `<i class="bi bi-arrow-right-circle"></i> Kết quả tìm kiếm lọc theo: "<strong>${filter}</strong>"`;
+                    tb = `<i class="bi bi-arrow-right-circle"></i> Kết quả tìm kiếm lọc theo: "<strong>${filter}</strong>".`;
                 } else {
                     tb_1 = `<i class="bi bi-exclamation-circle"></i> Hãy nhập thông tin hoặc chọn lọc loại để tìm kiếm sản phẩm.`;
                 }

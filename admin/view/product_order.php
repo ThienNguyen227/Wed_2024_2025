@@ -16,8 +16,19 @@
                         <!-- Thanh lọc-->
                         <select class="form-select" id="filterSelectOrder" name="filterSelectOrder" style="flex: 0 0 30%;">
                             <option value="">-- Lọc theo loại --</option>
-                            <option value="newest">Mới nhất</option>
-                            <option value="oldest">Cũ nhất</option>
+                            <optgroup label="Trạng thái">
+                                <option value="choxacnhan">Chờ xác nhận</option>
+                                <option value="xacnhan">Xác nhận</option>
+                                <option value="danggiao">Đang giao</option>
+                                <option value="dagiao">Đã giao</option>
+                                <option value="dahuy">Đã hủy</option>
+                                <option value="dahoantra">Đã hoàn trả</option>
+                            </optgroup>
+                            <optgroup label="Thời gian">
+                                <option value="newest">Mới nhất</option>
+                                <option value="oldest">Cũ nhất</option>
+                            </optgroup>
+                            
                         </select>
 
                         <!-- Nút tìm kiếm -->
@@ -26,17 +37,37 @@
                         </button>
                     </div>
                 </form>
-                <!-- Thông báo tìm kiếm sản phẩm -->
-                <div id="searchResultText_found" class="mb-3 fw-semibold text-success fs-5"></div>
-                <div id="searchResultText_notfound" class="mb-3 fw-semibold text-danger fs-5"></div>
             </div>
         </div>
+    </div>
+
+    <div>
+        <!-- Thông báo tìm kiếm sản phẩm và lọc sản phẩm -->
+        <div id="searchResultText_found" class="mb-3 fw-semibold text-success fs-5"></div>
+        <div id="searchResultText_notfound" class="mb-3 fw-semibold text-danger fs-5"></div>
+
+        <!-- 1. Thông báo xanh -->
+        <?php
+            if (isset($_SESSION['tb_success']) && $_SESSION['tb_success'] != "") {
+                echo '<div class="text-success mb-3 fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success'] . '</div>';
+                unset($_SESSION['tb_success']);
+            }
+        ?>
+
+        <!-- 2. Thông báo đỏ -->
+        <?php
+            if (isset($_SESSION['tb_danger']) && $_SESSION['tb_danger'] != "") {
+                echo '<div class="text-danger  mb-3 fs-5"><i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['tb_danger'] . '</div>';
+                unset($_SESSION['tb_danger']);
+            }
+        ?>
+
     </div>
 
     <!-- Thông báo chỉnh sửa trạng thái thanh toán, trạng thái đơn hàng thành công -->
     <?php
         if (isset($_SESSION['tb_success_edition']) && $_SESSION['tb_success_edition'] != "") {
-            echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_edition'] . '</div>';
+            echo '<div class="text-success mb-3 fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_edition'] . '</div>';
             unset($_SESSION['tb_success_edition']);
         }
     ?>
@@ -72,6 +103,10 @@
 
 
 <script>
+
+    function exportBill(billId) {
+        window.open('../dao/export_invoice.php?bill_id=' + billId, '_blank');
+    }
   
   window.onload = function () 
   {

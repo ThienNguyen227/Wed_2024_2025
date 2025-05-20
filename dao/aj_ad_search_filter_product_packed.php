@@ -37,6 +37,25 @@
     $i = $offset + 1;
     foreach ($list_product as $ls_pro) {
         extract($ls_pro);
+        if($product_status==0){
+            $tb_status = '<span class="badge bg-success">Đang bán</span>'; 
+            $hidden_button_1 = "d-none";
+            $hidden_button_2 = "";
+        } elseif($product_status==1){
+            $tb_status = '<span class="badge bg-secondary">Ngừng bán</span>'; 
+            $hidden_button_1 = "";
+            $hidden_button_2 = "d-none";
+        }
+
+        if($bestseller==0){
+            $tb_bestseller = '<span class="badge bg-info text-dark">Bình thường</span>'; 
+            $hidden_button_3 = "d-none";
+            $hidden_button_4 = "";
+        } elseif($bestseller==1){
+            $tb_bestseller = '<span class="badge bg-warning text-dark">Bán chạy</span>'; 
+            $hidden_button_3 = "";
+            $hidden_button_4 = "d-none";
+        }
         $html_list_product .= '<tr>
                                     <td class="text-center">' . $i . '</td>
                                     <td>' . htmlspecialchars($name) . '</td>
@@ -50,16 +69,60 @@
                                     </td>
                                     <td class="text-center">'.$product_quantity.'</td>
                                     <td class="text-center">' . number_format($price) . '</td>
+                                    <td class="text-center">' . $tb_status . '</td>
+                                    <td class="text-center">' . $tb_bestseller . '</td>
                                     <td class="text-center">
-                                        <a href="index.php?pg=product_packed_update&id=' . $id . '" class="btn btn-success">
+                                        <a href="index.php?pg=product_packed_update&id=' . $id . '" class="btn btn_200_105_55">
                                             <i class="bi bi-pencil-square me-1"></i> Chỉnh Sửa
                                         </a>
-                                        <a href="index.php?pg=handle_subtraction_packed_product&id=' . $id . '" class="btn btn-danger">
-                                            <i class="bi bi-trash me-1"></i> Xóa
+
+
+                                        <a href="index.php?pg=handle_hidden_packed_product&id=' . htmlspecialchars($id) . '" class="btn btn-secondary '.$hidden_button_2.'">
+                                            <i class="bi bi-eye-slash me-1"></i> Ẩn
                                         </a>
+                                    
+                                    
+                                        <a href="index.php?pg=handle_show_packed_product&id=' . htmlspecialchars($id) . '" class="btn btn-success '.$hidden_button_1.'">
+                                            <i class="bi bi-eye me-1"></i> Hiện
+                                        </a>
+                                    
+                                    
+                                        <a href="index.php?pg=handle_bestseller_packed_product&id=' . htmlspecialchars($id) . '" class="btn btn-warning text-white '.$hidden_button_4.'">
+                                            <i class="bi bi-hand-thumbs-up-fill me-1"></i>Thêm Bestseller
+                                        </a>
+                                    
+                                    
+                                        <a href="index.php?pg=handle_cancel_bestseller_packed_product&id=' . htmlspecialchars($id) . '" class="btn btn-info text-white '.$hidden_button_3.'">
+                                            <i class="bi bi-hand-thumbs-up-fill me-1"></i> Gỡ Bestseller
+                                        </a>
+
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_'. $id.'">
+                                            <i class="bi bi-trash me-1"></i> Xóa
+                                        </button>
                                     </td>
                                 </tr>
-                                ';
+                                <!-- Modal xóa sản phẩm-->
+                                <div class="modal fade" id="exampleModal_'. $id.'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-danger">
+                                                <h1 class="modal-title fs-5 text-white" id="exampleModalLabel"><i class="bi bi-exclamation-diamond"></i> Xác nhận xóa sản phẩm</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                Bạn có chắc chắn muốn xóa sản phẩm <strong>'. htmlspecialchars($name) .'</strong> không?
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Hủy</button>
+                                                <a href="index.php?pg=handle_subtraction_packed_product&id=' . $id . '" class="btn btn-danger">
+                                                    <i class="bi bi-trash me-1"></i> Xóa
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
         $i++;
     }
 

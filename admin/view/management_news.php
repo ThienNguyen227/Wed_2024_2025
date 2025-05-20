@@ -1,5 +1,5 @@
 <div class="main">
-  <div class="mb-3">
+  <div>
     <!-- Tiêu đề -->
     <h2 class="text-center"><span class="badge title_page mt-3 mb-4">Danh Sách Tin Tức</span></h2>
 
@@ -13,14 +13,33 @@
 
             <!-- Thanh lọc-->
             <select class="form-select" id="filterSelectNews" name="filterSelectNews" style="flex: 0 0 30%;">
-              <option value="">-- Lọc theo loại --</option>
-              <option value="coffeeholic">COFFEE_HOLIC</option>
-              <option value="teaholic">TEA_HOLIC</option>
-              <option value="sales">SALES</option>
-              <option value="bannerhome">BANNER_HOME</option>
-              <option value="adtypeproduct">AD_TYPE_PRODUCT</option>
-              <option value="newest">Mới nhất</option>
-              <option value="oldest">Cũ nhất</option>
+              <option value="">-- Lọc vị trí --</option>
+              <optgroup label="Trang chủ">
+                <option value="bannerhome">BANNER_HOME</option>
+                <option value="adtypeproduct">AD_TYPE_PRODUCT</option>
+                <option value="coffeeholic">COFFEE_HOLIC</option>
+                <option value="teaholic">TEA_HOLIC</option>
+                <option value="sales">SALES</option>
+                
+              </optgroup>
+              <optgroup label="Trang về chúng tôi">
+                <option value="bannerhome">Giới thiệu</option>
+                <option value="adtypeproduct">Liên hệ</option>
+                <option value="coffeeholic">Tuyển dụng</option>
+              </optgroup>
+              <optgroup label="Trang khuyến mãi">
+                <option value="bannerhome">BANNER_HOME</option>
+                <option value="adtypeproduct">AD_TYPE_PRODUCT</option>
+                <option value="coffeeholic">COFFEE_HOLIC</option>
+                <option value="teaholic">TEA_HOLIC</option>
+                <option value="sales">SALES</option>
+                
+              </optgroup>
+              <optgroup label="Thời gian">
+                <option value="newest">Mới nhất</option>
+                <option value="oldest">Cũ nhất</option>
+              </optgroup>
+              
             </select>
 
             <!-- Nút tìm kiếm -->
@@ -29,10 +48,6 @@
             </button>
           </div>
         </form>
-
-        <!-- Thông báo tìm kiến tin tức thành công -->
-        <div id="searchResultText_found" class="mb-3 fw-semibold text-success fs-5"></div>
-        <div id="searchResultText_notfound" class="mb-3 fw-semibold text-danger fs-5"></div>
       </div>
 
       <!-- Nút thêm sản phẩm -->
@@ -47,37 +62,28 @@
     </div>
   </div>
 
-  <!-- Thông báo xóa tin tức thành công -->
-  <?php
-    if (isset($_SESSION['tb_success_delete']) && $_SESSION['tb_success_delete'] != "") {
-        echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_delete'] . '</div>';
-        unset($_SESSION['tb_success_delete']);
-    }
-  ?>
+  <div>
+    <!-- Thông báo tìm kiếm sản phẩm và lọc sản phẩm -->
+    <div id="searchResultText_found" class="mb-3 fw-semibold text-success fs-5"></div>
+    <div id="searchResultText_notfound" class="mb-3 fw-semibold text-danger fs-5"></div>
 
-  <!-- Thông báo không được xóa tin tức -->
-  <?php
-    if (isset($_SESSION['tb_invalid_delete']) && $_SESSION['tb_invalid_delete'] != "") {
-        echo '<div class="text-danger  mb-3 fw-bold fs-5"><i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['tb_invalid_delete'] . '</div>';
-        unset($_SESSION['tb_invalid_delete']);
-    }
-  ?>
+    <!-- 1. Thông báo xanh -->
+    <?php
+      if (isset($_SESSION['tb_success']) && $_SESSION['tb_success'] != "") {
+        echo '<div class="text-success mb-3 fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success'] . '</div>';
+        unset($_SESSION['tb_success']);
+      }
+    ?>
 
-  <!-- Thông báo thêm tin tức thành công -->
-  <?php
-    if (isset($_SESSION['tb_success_addition']) && $_SESSION['tb_success_addition'] != "") {
-        echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_addition'] . '</div>';
-        unset($_SESSION['tb_success_addition']);
-    }
-  ?>
+    <!-- 2. Thông báo đỏ -->
+    <?php
+      if (isset($_SESSION['tb_danger']) && $_SESSION['tb_danger'] != "") {
+        echo '<div class="text-danger  mb-3 fs-5"><i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['tb_danger'] . '</div>';
+        unset($_SESSION['tb_danger']);
+      }
+    ?>
 
-  <!-- Thông báo chỉnh sửa tin tức thành công -->
-  <?php
-    if (isset($_SESSION['tb_success_edition']) && $_SESSION['tb_success_edition'] != "") {
-        echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_edition'] . '</div>';
-        unset($_SESSION['tb_success_edition']);
-    }
-  ?>
+    </div>
 
 
   <!-- Bảng show các tin tức -->

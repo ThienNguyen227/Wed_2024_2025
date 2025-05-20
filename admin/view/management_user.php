@@ -1,5 +1,5 @@
 <div class="main">
-    <div class="mb-3">
+    <div>
 
         <!-- Tiêu đề -->
         <h2 class="text-center"><span class="badge title_page mt-3 mb-4">Danh Sách Người Dùng</span></h2>
@@ -25,10 +25,7 @@
                         </button>
                     </div>
                 </form>
-                <!-- Thông báo tìm kiếm người dùng -->
-                <div id="searchResultText_found" class="mb-3 fw-semibold text-success fs-5"></div>
-                <div id="searchResultText_notfound" class="mb-3 fw-semibold text-danger fs-5"></div>
-
+                
             </div>
 
             <!-- Nút thêm người dùng -->
@@ -42,39 +39,30 @@
 
         </div>
     </div>
-    <!-- Thông báo thêm người dùng thành công -->
-    <?php
-        if (isset($_SESSION['tb_success_add_user']) && $_SESSION['tb_success_add_user'] != "") {
-            echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_add_user'] . '</div>';
-            unset($_SESSION['tb_success_add_user']);
-        }
-    ?>
 
+    <div>
+        <!-- Thông báo tìm kiếm sản phẩm và lọc sản phẩm -->
+        <div id="searchResultText_found" class="mb-3 fw-semibold text-success fs-5"></div>
+        <div id="searchResultText_notfound" class="mb-3 fw-semibold text-danger fs-5"></div>
 
-    <!-- Thông báo cập nhật người dùng thành công -->
-    <?php
-        if (isset($_SESSION['tb_update_thanhcong']) && $_SESSION['tb_update_thanhcong'] != "") {
-            echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_update_thanhcong'] . '</div>';
-            unset($_SESSION['tb_update_thanhcong']);
-        }
-    ?>
+        <!-- 1. Thông báo xanh -->
+        <?php
+            if (isset($_SESSION['tb_success']) && $_SESSION['tb_success'] != "") {
+                echo '<div class="text-success mb-3 fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success'] . '</div>';
+                unset($_SESSION['tb_success']);
+            }
+        ?>
 
+        <!-- 2. Thông báo đỏ -->
+        <?php
+            if (isset($_SESSION['tb_danger']) && $_SESSION['tb_danger'] != "") {
+                echo '<div class="text-danger  mb-3 fs-5"><i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['tb_danger'] . '</div>';
+                unset($_SESSION['tb_danger']);
+            }
+        ?>
 
-    <!-- Thông báo xóa người dùng thành công -->
-    <?php
-        if (isset($_SESSION['tb_success_delete']) && $_SESSION['tb_success_delete'] != "") {
-            echo '<div class="text-success mb-3 fw-bold fs-5"><i class="bi bi-check-circle-fill"></i> ' . $_SESSION['tb_success_delete'] . '</div>';
-            unset($_SESSION['tb_success_delete']);
-        }
-    ?>
-
-    <!-- Thông báo không được xóa người dùng -->
-    <?php
-        if (isset($_SESSION['tb_invalid_delete']) && $_SESSION['tb_invalid_delete'] != "") {
-            echo '<div class="text-danger  mb-3 fw-bold fs-5"><i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['tb_invalid_delete'] . '</div>';
-            unset($_SESSION['tb_invalid_delete']);
-        }
-    ?>
+    </div>
+    
 
     <!-- Bảng list khách hàng -->
     <div class="table-responsive">
@@ -132,9 +120,6 @@
         };
         xhr.send();
     }
-
-    
-
 
     document
         .getElementById("searchButtonUser")

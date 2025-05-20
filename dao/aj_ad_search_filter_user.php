@@ -11,8 +11,8 @@
     $keyword = "%$keyword%";
 
     // Tạo mảng tham số và điều kiện WHERE
-    $where = "WHERE phone LIKE ? OR email LIKE ? OR name LIKE ? OR address LIKE ? OR id LIKE ? OR created_at LIKE ?";
-    $params = [$keyword, $keyword, $keyword, $keyword, $keyword, $keyword];
+    $where = "WHERE phone LIKE ? OR email LIKE ? OR name LIKE ? OR address LIKE ? OR id LIKE ?";
+    $params = [$keyword, $keyword, $keyword, $keyword, $keyword];
 
     // Điều kiện sắp xếp
     $order = "ORDER BY id DESC";

@@ -16,10 +16,5 @@ signature=003a1803ab55447df0ae3e4173ae7de91e2b4002d495d63a0613a03d2bb45531
 9704 0000 0000 0018
 NGUYEN VAN A
 03 / 07
+OTP
 
-
-
-AND NOT EXISTS (
-          SELECT 1 FROM customer_discounts cd
-          WHERE cd.customer_id = NEW.user_id AND cd.discount_id = d.discount_id
-      )
