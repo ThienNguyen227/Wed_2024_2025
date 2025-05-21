@@ -96,10 +96,12 @@
                 break;
             //Trang giới thiệu công ty
             case 'gioithieucongty':
+                $new_gt = get_new_gt();
                 include "view/gioithieucongty.php";
                 break;
             // Trang liên hệ
             case 'lienhe':
+                $new_lh = get_new_lh();
                 include "view/lienhe.php";
                 break;
             // Trang tuyển dụng
@@ -108,6 +110,7 @@
                 break;
             // Trang khuyến mãi
             case 'khuyenmai':
+                $news_banner_home = get_news_banner_home();
                 include "view/khuyenmai.php";
                 break;
 
@@ -320,11 +323,11 @@
                         exit();
                     }
                     // 5. Check xem email có không?
-                    // if (!check_email_exists($email)) {
-                    //     $_SESSION['tb_email_exists_1'] = "Email không tồn tại!";
-                    //     header('location: index.php?pg=quenmatkhau'); 
-                    //     exit();
-                    // }
+                    if (!check_email_exists_without_id($email)) {
+                        $_SESSION['tb_email_exists_1'] = "Email không tồn tại!";
+                        header('location: index.php?pg=quenmatkhau'); 
+                        exit();
+                    }
                     // 1. Sinh OTP và lưu vào session
                     $otp = rand(100000, 999999); // 6 chữ số
                     $_SESSION['otp'] = $otp;
@@ -371,7 +374,7 @@
                     }
             
                     if ($otp_input == $_SESSION['otp']) {
-                        // $_SESSION['otp_verified'] = true; // Có thể dùng để kiểm soát truy cập trang đổi mật khẩu
+                        
                         header('location: index.php?pg=doimatkhau');
                         exit();
                     } else {
@@ -623,10 +626,15 @@
                     $address = $_POST["address"];
                     $paymentmethod = $_POST["payment_method"];
                     $code = isset($_POST["code"]) && $_POST["code"] !== '' ? $_POST["code"] : null;
+
+
                     
+
                     if ($code !== null) 
                     {
                         insert_info_bill_with_code($id_user, $name, $phone, $email, $address, $paymentmethod, $code);
+                        
+
                         $id_code = get_code_id_from_code($code);
                         update_status_discount($id_code, $id_user);
 
@@ -654,6 +662,14 @@
                         insert_info_bill_detail($bill_id, $id, $quantity, $price, $unit_total, $total);
                     }
                     unset($_SESSION['cart']);
+
+                    $notification_title = "Thông báo đặt hàng";
+                    $notification_message = "Bạn vừa đặt đơn hàng với tổng hóa đơn là: " . number_format($total, 0, '.', ',') ." VNĐ";
+
+
+
+                    add_notification_order($id_user, $notification_title, $notification_message);
+
                     header("Location: index.php?pg=order"); 
                     exit();
 

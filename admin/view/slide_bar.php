@@ -69,5 +69,6 @@
   </a>
 
   <!-- 10. Cài đặt -->
-  <a href="#"><i class="bi bi-gear"></i>Cài đặt</a>
+  <a href="index.php?pg=setting" class="<?= ($pg == 'setting') ? 'active_slide_bar' : '' ?>">
+    <i class="bi bi-gear"></i>Cài đặt</a>
 </div>

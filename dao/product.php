@@ -112,6 +112,9 @@ function get_bill_by_bill_id($bill_id){
     return pdo_query_one($sql, $bill_id);
 }
 
+// ------------------------------ CHECK ----------------------------------
+
+
 
 
 
@@ -259,6 +262,11 @@ function delete_status_discount_used($id_code, $id_user){
 function update_amount_discount($code){
     $sql = "UPDATE total_discounts SET discount_amount=GREATEST(discount_amount - 1, 0) WHERE code=?";
     pdo_execute($sql, $code);
+}
+
+function add_notification_order($id_user, $notification_title, $notification_message){
+    $sql= "INSERT INTO total_notifications(user_id, notification_title, notification_message) VALUES(?, ?, ?)";
+    pdo_execute($sql, $id_user, $notification_title, $notification_message);
 }
 
 

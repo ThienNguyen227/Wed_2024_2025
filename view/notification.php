@@ -1,18 +1,24 @@
 <?php
     
+
+
     $html_discount_notification = '';
+
     if (!empty($discount_notification)) {
         foreach ($discount_notification as $dn) {
             extract($dn);
+
             $formatted_date = date('H:i:s - d/m/Y', strtotime($created_at));
-            $html_discount_notification .= '<div class="radius_shadow_2 bg-white p-4 mb-4">
-                                            <h4 class="text-col-rgb_229_121_5">'.$notification_title.'</h4>
-                                            <p>'.$notification_message.'</p>
-                                            <p class="text-end">'.$formatted_date.'</p>
-                                        </div>';
+            $read_class = ($notification_status == 1) ? 'read' : 'unread';
+
+            $html_discount_notification .= '<div class="radius_shadow_2 bg-white p-4 mb-4 '.$read_class.' notification-item">
+                                                <h4 class="text-col-rgb_229_121_5">'.htmlspecialchars($notification_title).'</h4>
+                                                <p>'.htmlspecialchars($notification_message).'</p>
+                                                <p class="text-end">'.$formatted_date.'</p>
+                                            </div>';
         }
     } else {
-        $html_discount_notification = '<p class="text-muted fst-italic">Hiện bạn chưa có thông báo cá nhân nào.</p>';
+        $html_discount_notification = '<p class="text-muted fst-italic">Hiện em chưa có thông báo cá nhân nào.</p>';
     }
 
     $html_public_notification = '';
@@ -90,17 +96,17 @@
     </section>
 
 
-    <div class="container py-5">
+    <div class="container py-2">
         <div class="text-center mb-4">
-            <h2 class="text-col-rgb_229_121_5 fs">Thông Báo</h2>
+            <h2 class="text-col-rgb_229_121_5 fs"><i class="bi bi-bell-fill"></i> Thông Báo</h2>
             <p class="ita">Những cập nhật mới nhất từ cửa hàng của chúng tôi</p>
         </div>
 
         <div class="row">
             <!-- Cột Thông báo chung -->
             <div class="col-md-6 mb-4">
-                <h4 class="text-primary mb-3"><i class="bi bi-newspaper"></i> Thông báo hệ thống</h4>
-                <div class="p-3 border rounded shadow-sm scrollable-notification">
+                <h4 class="text-primary mb-3 fw-bold"><i class="bi bi-newspaper"></i> THÔNG BÁO HỆ THỐNG </h4>
+                <div class="p-3 border rounded shadow-lg scrollable-notification">
                     
                     <?=$html_public_notification;?>
 
@@ -109,8 +115,8 @@
 
             <!-- Cột Thông báo cá nhân -->
             <div class="col-md-6 mb-4">
-                <h4 class="text-success mb-3"><i class="bi bi-file-person-fill"></i> Thông báo cá nhân</h4>
-                <div class="p-3 border rounded shadow-sm scrollable-notification">
+                <h4 class="text-success mb-3 fw-bold"><i class="bi bi-file-person-fill"></i> THÔNG BÁO CÁ NHÂN</h4>
+                <div class="p-3 border rounded shadow-lg scrollable-notification">
                     
                     <?=$html_discount_notification;?>
 
@@ -125,6 +131,16 @@
 
 
 </body>
+
+
+
+
+
+
+
+
+
+
 
 
 

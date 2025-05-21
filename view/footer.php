@@ -10,25 +10,25 @@
           <!-- Col Sản Phẩm -->
           <div class="col-12 col-sm-6 col-md-3">
             <ul class="list-menu">
-              <h4 class="mb-3">Sản Phẩm</h4>
+              <h4 class="mb-3"><i class="bi bi-list-stars"></i> Sản Phẩm</h4>
 
               <li class="li_menu mb-2">
-                <a href="index.php?pg=menu&product_categories_id=1" title="Coffee"
+                <a href="index.php?pg=menu&product_categories_id=1" title="Coffee" class = "text-coffee"
                   ><i class="fa-solid fa-mug-hot"></i> Coffee</a
                 >
               </li>
               <li class="li_menu mb-2">
-                <a href="index.php?pg=menu&product_categories_id=2" title="Tea"
+                <a href="index.php?pg=menu&product_categories_id=2" title="Tea" class = "text-tea"
                   ><i class="fa-solid fa-leaf"></i> Tea</a
                 >
               </li>
               <li class="li_menu mb-2">
-                <a href="index.php?pg=menu&product_categories_id=3" title="Cake">
+                <a href="index.php?pg=menu&product_categories_id=3" title="Cake" class = "text-cake">
                   <i class="fa-solid fa-cookie"></i> Cake</a
                 >
               </li>
               <li class="li_menu">
-                <a href="index.php?pg=menu&product_categories_id=4" title="A-mê"
+                <a href="index.php?pg=menu&product_categories_id=4" title="A-mê" class = "text-ame "
                   ><i class="fa-solid fa-glass-water"></i> A-mê</a
                 >
               </li>
@@ -37,19 +37,19 @@
           <!-- Col Về Chúng Tôi -->
           <div class="col-12 col-sm-6 col-md-3">
             <ul class="list-menu">
-              <h4 class="mb-3">Về Chúng Tôi</h4>
+              <h4 class="mb-3"><i class="bi bi-file-earmark-check-fill"></i> Về Chúng Tôi</h4>
               <li class="li_menu mb-2">
-                <a href="index.php?pg=gioithieucongty" title="Giới Thiệu"
+                <a href="index.php?pg=gioithieucongty" title="Giới Thiệu" class="text-gioithieu"
                   ><i class="fa-solid fa-building"></i> Giới Thiệu</a
                 >
               </li>
               <li class="li_menu mb-2">
-                <a href="index.php?pg=lienhe" title="Liên Hệ"
+                <a href="index.php?pg=lienhe" title="Liên Hệ" class="text-lienhe"
                   ><i class="fa-solid fa-headset"></i> Liên Hệ</a
                 >
               </li>
               <li class="li_menu">
-                <a href="index.php?pg=tuyendung" title="Tuyển Dụng"
+                <a href="index.php?pg=tuyendung" title="Tuyển Dụng" class="text-tuyendung"
                   ><i class="fa-solid fa-briefcase"></i> Tuyển Dụng</a
                 >
               </li>
@@ -58,39 +58,38 @@
           <!-- Col Chính Sách Bán Hàng -->
           <div class="col-12 col-sm-6 col-md-3">
             <ul class="list-menu">
-              <h4 class="mb-3">Chính Sách Bán Hàng</h4>
+              <h4 class="mb-3"><i class="bi bi-file-earmark-text-fill"></i> Chính Sách Bán Hàng</h4>
               <li class="li_menu mb-1">
-                <a href="#" title="Trang Chủ"
-                  ><i class="fa-solid fa-coins"></i> Thanh Toán</a
+                <a href="https://hol.com.vn/pages/chinh-sach-thanh-toan?srsltid=AfmBOorh5wDjzAB-eK0bOE4cvFNxD4gejrz3Ny1NC3QWDbteuYqtt25j" title="Trang Chủ"
+                  class="text-warning"><i class="fa-solid fa-coins"></i> Thanh Toán</a
                 >
               </li>
               <li class="li_menu mb-1">
-                <a href="#" title="Giao Hàng"
-                  ><i class="fa-solid fa-truck-fast"></i> Giao Hàng</a
+                <a href="https://www.maisononline.vn/pages/chinh-sach-giao-hang?srsltid=AfmBOop9m13ioC610m18ZRoSRGGBdQI9BdEKKK9TVDOfZfVatumzlxs6" title="Giao Hàng"
+                  class="text-giaohang"><i class="fa-solid fa-truck-fast"></i> Giao Hàng</a
                 >
               </li>
               <li class="li_menu mb-1">
-                <a href="#" title="Đổi Trả Hàng"
-                  ><i class="fa-solid fa-right-left"></i> Đổi Trả Hàng</a
+                <a href="https://conmuanho.com.vn/pages/chinh-sach-doi-tra-hang-hoa" title="Đổi Trả Hàng"
+                  class="text-doitra"><i class="fa-solid fa-right-left"></i> Đổi Trả Hàng</a
                 >
               </li>
               <li class="li_menu mb-1">
-                <a href="#" title="Bảo Hành"
-                  ><i class="fa-solid fa-file-lines"></i> Bảo Hành</a
+                <a href="https://www.thegioididong.com/chinh-sach-bao-hanh-san-pham" title="Bảo Hành"
+                  class="text-baohanh"><i class="fa-solid fa-file-lines"></i> Bảo Hành</a
                 >
               </li>
               <li class="li_menu mb-1">
                 <a
-                  href="#"
-                  title="Bảo Mật Thông Tin
-                Khách Hàng"
-                  ><i class="fa-solid fa-shield-halved"></i> Bảo Mật Thông Tin
+                  href="https://thuvienphapluat.vn/page/viewcontentleft.aspx?key=86"
+                  title="Bảo Mật Thông Tin Khách Hàng"
+                   class="text-baomat"><i class="fa-solid fa-shield-halved"></i> Bảo Mật Thông Tin
                   Khách Hàng</a
                 >
               </li>
               <li class="li_menu">
-                <a href="#" title="Hoàn Tiền"
-                  ><i class="fa-solid fa-money-check-dollar"></i> Hoàn Tiền</a
+                <a href="https://support.google.com/googleplay/answer/2479637?hl=vi" title="Hoàn Tiền"
+                  class="text-hoantien"><i class="fa-solid fa-money-check-dollar"></i> Hoàn Tiền</a
                 >
               </li>
             </ul>
@@ -98,24 +97,24 @@
           <!-- Col Theo dõi chúng tôi -->
           <div class="col-12 col-sm-6 col-md-3">
             <ul class="list-menu">
-              <h4 class="mb-3">Theo Dõi Chúng Tôi</h4>
+              <h4 class="mb-3"><i class="bi bi-arrow-down-circle-fill"></i> Theo Dõi Chúng Tôi</h4>
               <li class="li_menu mb-2">
-                <a href="https://thecoffeehouse.com/" title="Facebook"
+                <a href="https://www.facebook.com/buh.dak.7334" title="Facebook" 
                   ><i class="fa-brands fa-facebook"></i> Facebook</a
                 >
               </li>
               <li class="li_menu mb-2">
-                <a href="#" title="Instagram"
+                <a href="https://www.instagram.com/instagram/" title="Instagram" class="text-instagram"
                   ><i class="fa-brands fa-instagram"></i> Instagram</a
                 >
               </li>
               <li class="li_menu mb-2">
-                <a href="#" title="Tiktok"
+                <a href="https://www.tiktok.com/" title="Tiktok" class="text-tiktok"
                   ><i class="fa-brands fa-tiktok"></i> Tiktok</a
                 >
               </li>
               <li class="li_menu mb-2">
-                <a href="#" title="Youtube"
+                <a href="https://www.youtube.com/@THECOFFEEHOUSE2014" title="Youtube" class="text-youtube"
                   ><i class="fa-brands fa-youtube"></i> Youtube</a
                 >
               </li>
@@ -137,32 +136,35 @@
               </p>
             </div>
             <div class="row">
-              <!-- <h5>Nhận VouCher Siêu Khủng</h5>
-              <div class="input-group mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Nhập Email của bạn"
-                  aria-label="Nhập Email của bạn"
-                  aria-describedby="button-addon2"
-                />
-                <button
-                  class="btn btn-outline-secondary bg-danger text-white"
-                  type="button"
-                  id="button-addon2"
-                >
-                  Đăng Kí Ngay
-                </button>
-              </div> -->
               <div>
                 <span class=".box40 bg-danger"> </span>
               </div>
-              <div class="row mt-3">
+              <div class="row mt-4">
                 <div class="d-flex align-items-center gap-4">
-                  <i class="fa-brands fa-facebook fa-2x zoom_up"></i>
-                  <i class="fa-brands fa-instagram fa-2x zoom_up"></i>
-                  <i class="fa-brands fa-tiktok fa-2x zoom_up"></i>
-                  <i class="fa-brands fa-youtube fa-2x zoom_up"></i>
+                  
+                  <a href="https://www.facebook.com/buh.dak.7334" title="Facebook" class="fw-bold"
+                    ><i class="fa-brands fa-facebook fa-2x zoom_up"></i></a
+                  >
+                  
+                  
+                  <a href="https://www.instagram.com/instagram/" title="Instagram" class="text-instagram"
+                    ><i class="fa-brands fa-instagram fa-2x zoom_up"></i></a
+                  >
+                
+                
+                  <a href="https://www.tiktok.com/" title="Tiktok" class="text-tiktok"
+                    ><i class="fa-brands fa-tiktok fa-2x zoom_up"></i></a
+                  >
+                
+                
+                  <a href="https://www.youtube.com/@THECOFFEEHOUSE2014" title="Youtube" class="text-danger"
+                    ><i class="fa-brands fa-youtube fa-2x zoom_up"></i></a
+                  >
+                  
+                  
+                  
+                  
+                  
                 </div>
               </div>
             </div>
@@ -210,7 +212,6 @@
                       class="nav-link active bg-dark text-white"
                       aria-current="page"
                       href="index.php?pg=menu"
-                      target="_blank"
                       ><i class="fa-solid fa-list"></i> Menu</a
                     >
                     <a class="nav-link bg-dark text-white" href="index.php?pg=spdg"
@@ -218,13 +219,12 @@
                     >
                     <a
                       class="nav-link bg-dark text-white"
-                      target="_blank"
+                      
                       href="index.php?pg=gioithieucongty"
                       ><i class="fa-solid fa-scroll"></i> Về Chúng Tôi</a
                     >
                     <a
                       class="nav-link bg-dark text-white"
-                      target="_blank"
                       href="index.php?pg=khuyenmai"
                       ><i class="fa-solid fa-gift"></i> Khuyến Mãi</a
                     >

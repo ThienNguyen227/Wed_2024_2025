@@ -124,7 +124,22 @@ function get_news_signature_img(){
 }
 
 
+// 20. Lấy ra tin tức giới thiệu công ty
+function get_new_gt(){
+    $sql = "SELECT title, content FROM news WHERE type = 8 ORDER BY id";
+    return pdo_query($sql);
+}
 
+// 21. Lấy ra thông tin liên hệ
+function get_new_lh(){
+    $sql = "SELECT content FROM news WHERE type = 9";
+    return pdo_query_one($sql);
+}
+
+function get_total_notifications($user_id) {
+    $sql = "SELECT COUNT(*) FROM total_notifications WHERE user_id = ? OR user_id IS NULL";
+    return pdo_query_value($sql, $user_id);
+}
 
 
 

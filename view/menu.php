@@ -61,7 +61,7 @@
                               />
                               '.$best_seller.'
                               <h5>'.$name.'</h5>
-                              <p>'.number_format($price).' VND</p>
+                              <p>'.number_format($price).' VNĐ</p>
                             </a>
                           </div>';
   }
@@ -176,7 +176,7 @@
     </div>
   </div>
 </section> -->
-<section class="bgg mb-1 sticky-navbar" data-aos="fade-down" data-aos-duration="3000">
+<section class="bgg mb-3 sticky-navbar" data-aos="fade-down" data-aos-duration="3000">
   <div class="container py-2">
     
     <!-- Toggle Button -->
@@ -227,10 +227,6 @@
 
   </div>
 </section>
-
-
-
-
 
 
 <!-- ALl Menu -->

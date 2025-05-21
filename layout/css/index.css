@@ -10,7 +10,12 @@
   font-size: larger;
 }
 .height_card {
-  max-height: 500px;
+  max-height: 430px;
+}
+
+.card-img-top {
+  height: 280px;
+  object-fit: cover;
 }
 
 .nb {
@@ -114,7 +119,7 @@
 } */
 .li_menu a {
   text-decoration: none; /* Bỏ gạch dưới */
-  color: rgb(255, 254, 254) !important; /* Đổi màu chữ thành trắng */
+  /* Đổi màu chữ thành trắng */
 }
 .li_menu a:hover {
   color: #534b4b !important; /* Màu khi di chuột qua (tuỳ chỉnh nếu muốn) u*/
@@ -125,6 +130,8 @@
 .bf {
   border-left: 5px solid rgb(229, 121, 5);
   padding-left: 10px;
+  font-weight: bold;
+  font-style: italic;
 }
 /* Body */
 /* 1. Ảnh từ từ xuất hiện từ trong ra ngoài */
@@ -458,4 +465,109 @@ textarea.form-control:focus {
   text-overflow: ellipsis;
   word-break: break-word;
   white-space: normal !important;
+}
+
+.unread {
+  background-color: #fff7e6;
+  cursor: pointer;
+}
+.read {
+  background-color: #f0f0f0;
+}
+
+.text-instagram {
+  background: linear-gradient(
+    45deg,
+    #833ab4,
+    #c13584,
+    #e1306c,
+    #fd1d1d,
+    #f56040,
+    #ffdc80
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+.text-facebook {
+  color: #1877f2 !important; /* Facebook Blue */
+  font-weight: bold;
+}
+
+.text-tiktok {
+  background: linear-gradient(45deg, #25f4ee, #fe2c55);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+.text-youtube {
+  color: #ff0000 !important; /* YouTube Red */
+  font-weight: bold;
+}
+
+.text-coffee {
+  color: #a0522d; /* Nâu cà phê */
+  font-weight: bold;
+}
+
+.text-tea {
+  color: #a3c586; /* Xanh trà dịu */
+  font-weight: bold;
+}
+
+.text-cake {
+  color: #f4a460; /* Màu bánh: nâu cam nhẹ */
+  font-weight: bold;
+}
+
+.text-ame {
+  color: #8b4513; /* Đậm hơn cà phê thường – dùng cho Americano */
+  font-weight: bold;
+}
+
+.custom_card {
+  width: 18rem;
+  max-width: 100%;
+}
+
+.text-gioithieu {
+  color: #00bcd4;
+  font-weight: bold;
+}
+
+.text-lienhe {
+  color: #ff9800;
+  font-weight: bold;
+}
+
+.text-tuyendung {
+  color: #8bc34a;
+  font-weight: bold;
+}
+
+.text-giaohang {
+  color: #4fc3f7;
+  font-weight: bold;
+}
+
+.text-doitra {
+  color: #f06292;
+  font-weight: bold;
+}
+
+.text-baohanh {
+  color: #ba68c8;
+  font-weight: bold;
+}
+
+.text-baomat {
+  color: #ffd54f;
+  font-weight: bold;
+}
+
+.text-hoantien {
+  color: #81c784;
+  font-weight: bold;
 }

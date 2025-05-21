@@ -34,11 +34,14 @@
             <input type="file" class="form-control" id="image" name="image">
         </div>
 
+        
+
         <!-- 2. Tên sản phẩm -->
         <div class="mb-3">
             <label for="name" class="form-label"><i class="bi bi-box me-2"></i> Nhập tên mới cho sản phẩm</label>
             <input type="text" class="form-control" id="name" name="name" value="<?=$name_product?>" placeholder="Nhập tên sản phẩm" required>
         </div>
+
 
         <!-- 3. Danh mục sản phẩm -->
         <div class="mb-3">
@@ -54,6 +57,13 @@
             <label for="price" class="form-label"><i class="bi bi-currency-dollar me-2"></i> Nhập đơn giá mới (VNĐ)</label>
             <input type="text" class="form-control" id="price" name="price" value="<?=$price_product?>" min="0" placeholder="Nhập đơn giá" required>
         </div>
+
+        <?php
+            if (isset($_SESSION['tb_error']) && $_SESSION['tb_error'] != "") {
+            echo '<div class="text-danger fw-bold mb-3 fs-5"><i class="bi bi-exclamation-circle-fill"></i> ' . $_SESSION['tb_error'] . '</div>';
+            unset($_SESSION['tb_error']);
+            }
+        ?>
 
         <!-- 5. Mô tả sản phẩm -->
         <div class="mb-3">

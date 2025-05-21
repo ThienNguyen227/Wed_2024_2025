@@ -6,7 +6,7 @@
                       <i class="bi bi-person-circle fs-3"></i>
                     </div>
                     <div class="d-flex align-items-center">
-                      <a href="index.php?pg=user_account" class="text-decoration-none gap-1 zoom_up">'.$name. '</a>
+                      <a href="index.php?pg=user_account" class="text-decoration-none fw-bold gap-1 zoom_up">'.$name. '</a>
                     </div>';           
   } 
   else
@@ -31,9 +31,13 @@
     $bills = getBillsByUserId($user_id); // Gọi lại hàm để lấy đơn hàng
 
     $favorites = count_favorite_by_user_id($user_id);
+
+    $notifications = get_total_notifications($user_id);
   } else {
     $bills = []; // Nếu chưa đăng nhập thì danh sách đơn trống
     $favorites = 0;
+    
+    $notifications = 0;
   }
 ?>
 
@@ -111,7 +115,7 @@
           <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3 mb-md-0">
             <div class="row d-flex justify-content-center justify-content-md-start">
               <div class="col-6 col-sm-6 col-md-auto mt-2">
-                <a href="#" class="d-flex align-items-center gap-2 text-decoration-none text-dark">
+                <a href="tel:999999" class="d-flex align-items-center gap-2 text-decoration-none text-dark">
                   <i class="bi bi-telephone fs-3"></i>
                   <p class="mb-0">Hotline 999999</p>
                 </a>
@@ -132,9 +136,9 @@
               <div class="col-auto mt-2 zoom_up">
                 <a href="index.php?pg=notification" class="position-relative text-primary fw-bold">
                   <i class="bi bi-bell fs-2"></i>
-                  <?php if(isset($bills)):?>
+                  <?php if(isset($notifications)):?>
                     <span style="top: -10px;" class="position-absolute start-100 translate-middle badge rounded-pill bg-danger">
-                      <?=count($bills);?>
+                      <?=$notifications;?>
                     </span>
                   <?php else: ?>
                     <span style="top: -10px;" class="position-absolute start-100 translate-middle badge rounded-pill bg-danger">

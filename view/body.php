@@ -1,83 +1,67 @@
 <?php
   // SẢN PHẨM MỚI
   $html_product_new = '';
-  foreach ($list_product_new as $pro_new) {
-    extract($pro_new);
-    // Thêm kí hiệu bestseller
-    if($bestseller==1)
-    {
-      $best_seller = '<div
-                        class="position-absolute start-35 bg-danger text-white px-2 py-1 rounded"
-                        style=" bottom: 230px; left: 18px; font-weight: bold; font-size: 15px;"
-                      >
-                        <i class="fa-solid fa-thumbs-up me-1"></i> BEST SELLER
-                      </div>';
-    }
-    else
-    {
-      $best_seller = '';
-    }
-    $link = "index.php?pg=product_detail&id_product=".$id;
-    $short_description = mb_strimwidth($description, 0, 180, "...");
-    $html_product_new .= '<div class="col-12 col-sm-6 col-md-4 col-lg-3 px-5">
-                            <div
-                              class="card radius_shadow_2 position-relative h-100"
-                              style="width: 18rem"
-                              data-aos="zoom-in"
-                              data-aos-duration="3000"
-                            > <a href="'.$link.'" class="text-dark text-decoration-none">
-                                <img src="'.IMG_PATH_USER_PRODUCT.$img.'" class="card-img-top zoom_up" alt="..." />
-                                '.$best_seller.'
-                                <div class="card-body">
-                                  <h5 class="card-title fw-bold">'.$name.'</h5>
-                                  <p class="card-text">
-                                    '.$short_description.'
-                                  </p>
-                                </div>
-                              </a>
-                            </div>
-                          </div>';
-  }
+foreach ($list_product_new as $pro_new) {
+  extract($pro_new);
+  $best_seller = $bestseller == 1
+    ? '<div class="position-absolute bg-danger text-white px-2 py-1 rounded" style="bottom: 225px; left: 10px; font-weight: bold; font-size: 0.9rem;">
+         <i class="fa-solid fa-thumbs-up me-1"></i> BEST SELLER
+       </div>' : '';
+
+  $link = "index.php?pg=product_detail&id_product=" . $id;
+  $short_description = mb_strimwidth($description, 0, 180, "...");
+
+  $html_product_new .= '<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                          <div class="card radius_shadow_2 position-relative h-100 custom_card" data-aos="zoom-in" data-aos-duration="2000">
+                            <a href="' . $link . '" class="text-dark text-decoration-none">
+                              <img src="' . IMG_PATH_USER_PRODUCT . $img . '" class="card-img-top zoom_up" alt="' . htmlspecialchars($name) . '" />
+                              ' . $best_seller . '
+                              <div class="card-body">
+                                <h5 class="card-title fw-bold">' . $name . '</h5>
+                                <p class="card-text">' . $short_description . '</p>
+                              </div>
+                            </a>
+                          </div>
+                        </div>';
+}
 
   // SẢN PHẨM BESTSELLER
   $html_product_bestseller = '';
-  foreach ($list_product_bestseller as $pro_bestseller) {
-    extract($pro_bestseller);
-    $link = "index.php?pg=product_detail&id_product=".$id;
-    $short_description = mb_strimwidth($description, 0, 100, "...");
-    $html_product_bestseller.=' <div class="col-12 col-sm-6 col-md-4 col-lg-3 px-5">
-                                  <div
-                                    class="card radius_shadow_2 position-relative h-100"
-                                    style="width: 18rem"
-                                    data-aos="zoom-in"
-                                    data-aos-duration="3000"
-                                  > <a href="'.$link.'" class="text-dark text-decoration-none">
-                                      <img src="'.IMG_PATH_USER_PRODUCT.$img.'" class="card-img-top zoom_up" alt="..." />
-                                      <div
-                                        class="position-absolute start-35 bg-danger text-white px-2 py-1 rounded"
-                                        style=" bottom: 155px; left: 18px; font-weight: bold; font-size: 15px;"
-                                      >
-                                        <i class="fa-solid fa-thumbs-up me-1"></i> BEST SELLER
-                                      </div>
-                                      <div class="card-body">
-                                        <h5 class="card-title fw-bold">'.$name.'</h5>
-                                        <p class="card-text">
-                                          '.$short_description.'
-                                        </p>
-                                      </div>
-                                    </a>
-                                  </div>
-                                </div>';
-  }
+foreach ($list_product_bestseller as $pro_bestseller) {
+  extract($pro_bestseller);
+  $link = "index.php?pg=product_detail&id_product=" . $id;
+  $short_description = mb_strimwidth($description, 0, 95, "...");
+  $html_product_bestseller .= '
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card radius_shadow_2 position-relative h-100 custom_card height_card" data-aos="zoom-in" data-aos-duration="2000">
+        <a href="' . $link . '" class="text-dark text-decoration-none">
+          <img src="' . IMG_PATH_USER_PRODUCT . $img . '" class="card-img-top zoom_up" alt="' . htmlspecialchars($name) . '" />
+          <div
+  class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 rounded-end"
+  style="font-weight: bold; font-size: 14px; z-index: 1;"
+>
+  <i class="fa-solid fa-thumbs-up me-1"></i> BEST SELLER
+</div>
+          <div class="card-body">
+            <h5 class="card-title fw-bold">' . $name . '</h5>
+            <p class="card-text">' . $short_description . '</p>
+          </div>
+        </a>
+      </div>
+    </div>';
+}
+
 
   // News ad type product
-  $html_ad_type_product ='';
-  extract($news_ad_type_product);
-  $html_ad_type_product ='<div class="col-12 col-sm-12 col-md-4 col-lg-6" data-aos="fade-right" data-aos-duration="3000" >
-                            <a href="index.php?pg=menu&product_categories_id='.$link_connected.'">
-                              <img src="'.IMG_PATH_USER_NEWS.$image.'" class="img-fluid ad1 zoom_in"/>
-                            </a>
-                          </div>';
+  $html_ad_type_product = '';
+extract($news_ad_type_product);
+$html_ad_type_product = '
+  <div class="col-12 col-md-6 mb-4" data-aos="fade-right" data-aos-duration="2000">
+    <a href="index.php?pg=menu&product_categories_id=' . $link_connected . '">
+      <img src="' . IMG_PATH_USER_NEWS . $image . '" class="img-fluid radius_shadow_2 shadow-lg w-100 ad1 zoom_in" />
+    </a>
+  </div>';
+
 
   // News bannerhome
   $html_news_bannerhome = '';
@@ -162,7 +146,7 @@
                                 data-aos-easing="ease-in-out"
                                 class="signature_size d-block text-center text-lg-start"
                               >
-                                '.$title.'
+                                <i class="bi bi-bookmark-star"></i> '.$title.'
                               </strong>
                               <p
                                 data-aos="zoom-in"
@@ -250,22 +234,25 @@
   
   <!-- 2. Sản phẩm bestseller, sản phẩm mới,... -->
   <div class="container mt-3">
-    <h2 class="text-center text-col-rgb_229_121_5 mb-4 mt-3 fw-bold">BEST SELLERS</h2>
 
-    <div class="row mb-4 hf1">
+    
 
+
+    <!-- BEST SELLERS -->
+    <h2 class="text-center text-col-rgb_229_121_5 mb-4 mt-3 fw-bold"><i class="fa-solid fa-thumbs-up me-1"></i> BEST SELLERS</h2>
+
+    <div class="row mb-4 hf1 gx-3 gy-4">
       <!-- News loại sản phẩm -->
-      <?=$html_ad_type_product;?>
+      <?= $html_ad_type_product; ?>
 
       <!-- DANH SÁCH SẢN PHẨM BESTSELLER -->
-      <?=$html_product_bestseller;?>
-
+      <?= $html_product_bestseller; ?>
     </div>
 
-    <!-- DANH SÁCH SẢN PHẨM MỚI -->
-    <h2 class="text-center text-col-rgb_229_121_5 mb-4 mt-5 fw-bold">SẢN PHẨM MỚI</h2>
-    <div class="row mb-2">
-      <?=$html_product_new;?>
+    <!-- SẢN PHẨM MỚI -->
+    <h2 class="text-center text-col-rgb_229_121_5 mb-4 mt-5 fw-bold"><i class="bi bi-fire"></i> SẢN PHẨM MỚI</h2>
+    <div class="row mb-2 gx-3 gy-4">
+      <?= $html_product_new; ?>
     </div>
 
     <!-- Quảng Cáo -->
@@ -359,7 +346,7 @@
   <div class="container">
 
     <h3 class="text-center mb-2 pt-4 rgb_119_139_55">
-      <strong>TIN TỨC & KHUYẾN MÃI</strong>
+      <strong><i class="bi bi-newspaper"></i> TIN TỨC & KHUYẾN MÃI</strong>
     </h3>
 
     <p class="text-center rgb_119_139_55">

@@ -26,7 +26,7 @@
   </head>
   <body>
     <div class="form-container">
-      <img src="<?= IMG_PATH_USER_LOG . 'Logo-removebg-preview.png' ?>" alt="Logo" class="logo" />
+      <img src="<?= IMG_PATH_ADMIN_LOG . 'Logo-removebg-preview.png' ?>" alt="Logo" class="logo" />
       <h4 class="text-center mb-5">Quên Mật Khẩu <i class="fas fa-question-circle"></i></h4>
 
       <form action="index.php?pg=forgot" method="post">
@@ -76,7 +76,7 @@
           ?>
         </div>
         <div class="text-end ml-5">
-          <a href="index.php?pg=dangnhap" class="font-weight-bold text-decoration-none cl"><i class="fa-solid fa-right-to-bracket"></i> Đăng Nhập</a>
+          <a href="index.php?pg=login_admin" class="font-weight-bold text-decoration-none cl"><i class="fa-solid fa-right-to-bracket"></i> Đăng Nhập</a>
         </div>
         <!-- Submit Button -->
         <div>

@@ -9,10 +9,18 @@
     include "../dao/categories.php";
     include "../dao/user.php";
     include "../dao/statistics.php";
+
+    // Phần gửi Otp qua email để xác thực
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    require '../PHPMailer/src/Exception.php';
+    require '../PHPMailer/src/PHPMailer.php';
+    require '../PHPMailer/src/SMTP.php';
     
 
     // Nếu là trang đăng kí, đăng nhập, quên mật khẩu, otp, đổi mật khẩu thì không include header và footer vào
-    $no_header_footer = isset($_GET['pg']) && in_array($_GET['pg'], ['dangky', 'dangnhap', 'quenmatkhau', 'otp', 'doimatkhau']);
+    $no_header_footer = isset($_GET['pg']) && in_array($_GET['pg'], ['login_admin', 'login_forgot', 'quenmatkhau', 'otp', 'doimatkhau']);
 
     if (!$no_header_footer) {
         include "view/header.php";
@@ -24,6 +32,29 @@
         $pg = $_GET['pg'];
         switch ($pg) 
         {
+            // Trang đổi mật khẩu admin
+            case 'doimatkhau';
+                include "view/doimatkhau.php";
+                break;
+            // Trang quên mật khẩu ADMIN
+            case 'otp':
+                include "view/otp.php";
+                break;
+            // Trang quên mật khẩu ADMIN
+            case 'login_forgot':
+                include "view/login_forgot.php";
+                break;
+
+            // Trang cài đặt ADMIN
+            case 'setting':
+                include "view/setting.php";
+                break;
+
+            // Trang đăng nhập ADMIN
+            case 'login_admin':
+                include "view/login_admin.php";
+                break;
+
             
             // Trang cập nhật thông báo
             case 'notification_update':
@@ -191,7 +222,47 @@
                     $categories = $_POST["category_id"];
                     $price = $_POST["price"];
                     $description = $_POST["description"];
+
+                    // CK file hình ảnh
+                    if (!empty($img)) {
+                        $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+                        $file_type = $_FILES["image"]["type"];
+                        $file_size = $_FILES["image"]["size"];
+                        $max_size = 5 * 1024 * 1024; // Giới hạn 5MB
+
+                        // Kiểm tra định dạng file
+                        if (!in_array($file_type, $allowed_types)) {
+                            $_SESSION['tb_error'] = "Chỉ chấp nhận file hình ảnh (JPG, PNG, GIF).";
+                            header('location: index.php?pg=product_add');
+                            exit();
+                        }
+
+                        // Kiểm tra kích thước file
+                        if ($file_size > $max_size) {
+                            $_SESSION['tb_error'] = "Kích thước file không được vượt quá 5MB.";
+                            header('location: index.php?pg=product_add');
+                            exit();
+                        }
+                    } else {
+                        $_SESSION['tb_error'] = "Vui lòng chọn một file hình ảnh.";
+                        header('location: index.php?pg=product_add');
+                        exit();
+                    }
+
+                    // CK tên chỉ được chứa chữ cái và khoảng trắng
+                    if (!preg_match("/^[a-zA-Z\s]+$/", $name)) {
+                        $_SESSION['tb_error'] = "Tên sản phẩm chỉ được chứa chữ cái và khoảng trắng.";
+                        header('location: index.php?pg=product_add');
+                        exit(); 
+                    }
                     
+                    // CK giá phải là số dương
+                    if (!is_numeric($price) || $price <= 0) {
+                        $_SESSION['tb_error'] = "Giá sản phẩm phải là số dương.";
+                        header('location: index.php?pg=product_add');
+                        exit(); 
+                    }
+
                     add_product($img, $name, $categories, $price, $description);
 
                     // Upload hình ảnh vào file
@@ -246,6 +317,7 @@
 
 
                     $img = $_FILES['image']['name'];
+
                     if($img!=''){
                         $target_file = IMG_PATH_ADMIN_PRODUCT.$img;
                         move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
@@ -855,13 +927,265 @@
                 }
                 break;
             
+            // 21. Chức năng đăng nhập admin
+             case 'login':
+                if (isset($_POST["dangnhap"]) && ($_POST["dangnhap"])) {
+                    $phone = $_POST["phone"];
+                    $password = $_POST["password"];
+                    
+                    if(!check_phone_exists_without_id($phone)){
+                        $_SESSION['tb_wrong_account'] = "Tài khoản không tồn tại! Vui lòng đăng nhập lại!";
+                        header('location: index.php?pg=login_admin');
+                        exit();  
+                    }
+
+                    // Lấy thông tin người dùng theo phone
+                    $user = get_user_by_phone($phone);
+
+                    if (!$user || !password_verify($password, $user['password'])) {
+                        $_SESSION['tb_wrong_password'] = "Mật khẩu không chính xác! Vui lòng nhập lại.";
+                        header('location: index.php?pg=login_admin');
+                        exit();  
+                    }
+                     
+                    $role = get_role_by_phone($phone);
+                    if($role == 0){
+                        $_SESSION['tb_wrong_account'] = "Tài khoản không tồn tại! Vui lòng đăng nhập lại!";
+                        header('location: index.php?pg=login_admin');
+                    }elseif($role == 1){
+                        $_SESSION['admin_account'] = $user;
+                        header('location: index.php?pg=home');
+                    }
+
+                    exit();
+                }   
+                break;
+            
+            // 22. Chức năng đăng xuất tài khoản admin
+            case 'logout':
+                if(isset($_SESSION['admin_account']) && count($_SESSION['admin_account']) >0){
+                    unset($_SESSION['admin_account']);
+                }
+                header('location: index.php?pg=login_admin');
+                break;
+            // 23. Chức năng quên mật khẩu
+            case 'forgot':
+                if(isset($_POST["quenmatkhau"]) && ($_POST["quenmatkhau"])){
+                    $email = $_POST["email"];
+                    
+                    // Check email
+                    // 1. Check phần tên người dùng trước @
+                    if (!preg_match('/^[\w\.\-]+/', $email)) {
+                        $_SESSION['tb_invalid_email_5'] = "Tên email không hợp lệ. Chỉ được dùng chữ, số, dấu chấm (.) hoặc gạch ngang (-, _).";
+                        header('location: index.php?pg=quenmatkhau');
+                        exit();
+                    }
+
+                    // 2. Check có chứa ký tự @ không
+                    if (strpos($email, '@') === false) {
+                        $_SESSION['tb_invalid_email_6'] = "Email phải chứa ký tự @.";
+                        header('location: index.php?pg=quenmatkhau');
+                        exit();
+                    }
+
+                    // 3. Check có tên miền sau @ không (ví dụ: gmail, yahoo...)
+                    $parts = explode('@', $email);
+                    if (!isset($parts[1]) || !preg_match('/^[\w\-]+(\.[\w\-]+)*$/', $parts[1])) {
+                        $_SESSION['tb_invalid_email_7'] = "Thiếu hoặc sai tên miền.";
+                        header('location: index.php?pg=quenmatkhau');
+                        exit();
+                    }
+
+                    // 4. Check có đuôi miền (như .com, .vn) không
+                    if (!preg_match('/\.[a-zA-Z]{2,}$/', $email)) {
+                        $_SESSION['tb_invalid_email_8'] = "Thiếu đuôi miền (.com, .vn, ...).";
+                        header('location: index.php?pg=quenmatkhau');
+                        exit();
+                    }
+                    // 5. Check xem email có không?
+                    if (!check_email_exists_without_id($email)) {
+                        $_SESSION['tb_email_exists_1'] = "Email không tồn tại!";
+                        header('location: index.php?pg=quenmatkhau'); 
+                        exit();
+                    }
+                    // 1. Sinh OTP và lưu vào session
+                    $otp = rand(100000, 999999); // 6 chữ số
+                    $_SESSION['otp'] = $otp;
+                    $_SESSION['otp_email'] = $email; // Lưu lại email để xác nhận sau
+
+                    // 2. Gửi OTP qua email
+                    $mail = new PHPMailer(true);
+                    try {
+                        $mail->isSMTP();                                            
+                        $mail->Host       = 'smtp.gmail.com';                     
+                        $mail->SMTPAuth   = true;                                   
+                        $mail->Username   = 'nguyenhoangnhutthien6666@gmail.com';                     
+                        $mail->Password   = 'pcbd sutz uaxl zuhh';                               
+                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;           
+                        $mail->Port       = 465;                                    
+
+                        $mail->setFrom('nguyenhoangnhutthien6666@gmail.com', 'TCOFFEE');
+                        $mail->addAddress($email);
+
+                        $mail->isHTML(true);                                
+                        $mail->Subject = 'T COFFE OTP';
+                        $mail->Body    = 'Mã OTP của bạn là: <b>' . $otp . '</b>. Mã này sẽ hết hạn sau 5 phút.';
+                        $mail->AltBody = 'Mã OTP của bạn là: ' . $otp;
+
+                        $mail->send();
+                        echo 'Đã gửi OTP';
+                    } catch (Exception $e) {
+                        echo "Không gửi được mã OTP. Lỗi: {$mail->ErrorInfo}";
+                        exit();
+                    }
+                    header('location: index.php?pg=otp');
+                    exit();
+                }
+                break;
+
+            // 24. Chức năng xác nhận otp
+            case 'confirmotp':
+                if(isset($_POST["confirm_otp"]) && ($_POST["confirm_otp"])){
+                    $otp_input = $_POST['otp'];
+
+                    if (!isset($_SESSION['otp']) || !isset($_SESSION['otp_email'])) {
+                        $_SESSION['tb_otp_error'] = "Quá thời gian xác nhận. Vui lòng thử lại!";
+                        header('location: index.php?pg=otp');
+                        exit();
+                    }
+            
+                    if ($otp_input == $_SESSION['otp']) {
+                        
+                        header('location: index.php?pg=doimatkhau');
+                        exit();
+                    } else {
+                        $_SESSION['tb_otp_error'] = "Mã OTP không đúng. Vui lòng thử lại!";
+                        header('location: index.php?pg=otp');
+                        exit();
+                    }
+                }
+                break;
+            // 25. Chức năng đổi mật khẩu admin
+            case 'resetpassword':
+                if (isset($_POST["reset_password"]) && $_POST["reset_password"]) {
+                    $password = $_POST['password'];
+            
+                    // Kiểm tra mật khẩu đủ mạnh chưa
+                    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $password)) {
+                        $_SESSION['tb_invalid_change_password'] = "Mật khẩu phải có ít nhất 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt.";
+                        header('location: index.php?pg=doimatkhau');
+                        exit();
+                    }
+            
+                    // Kiểm tra email đã xác minh OTP có tồn tại không
+                    if (!isset($_SESSION['otp_email']) || empty($_SESSION['otp_email'])) {
+                        $_SESSION['tb_invalid_change_password'] = "Không tìm thấy tài khoản để đổi mật khẩu.";
+                        header('location: index.php?pg=doimatkhau');
+                        exit();
+                    }
+            
+                    $email = $_SESSION['otp_email'];
+                    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                    
+                    // Gọi hàm cập nhật và xử lý kết quả
+                    if (update_password_by_email($hashed_password, $email)) {
+                        unset($_SESSION['otp']);
+                        unset($_SESSION['otp_email']);
+                        $_SESSION['tb_success_reset'] = "Đổi mật khẩu thành công. Vui lòng đăng nhập lại.";
+                        header('location: index.php?pg=doimatkhau');
+                        exit();
+                    } else {
+                        $_SESSION['tb_invalid_change_password'] = "Đổi mật khẩu thất bại. Vui lòng thử lại.";
+                        header('location: index.php?pg=doimatkhau');
+                        exit();
+                    }
+                }
+                break;
             
             
-            
-            
-            
-            
-            
+            // 26. Chức năng cập nhật thông tin admin
+            case 'user_update':
+                if (isset($_POST["capnhat"])) {
+                    $name = $_POST["name"];
+                    $phone = $_POST["phone"];
+                    $email = $_POST["email"];
+                    $address = $_POST["address"];
+                    $id = $_POST["id"];
+                    // Check Phone
+                    // 1. Check số lượng của số lẫn chữ
+                    if (!preg_match('/^\d{10}$/', $phone)) {
+                        $_SESSION['tb_phone_update'] = "Số điện thoại không hợp lệ. Số điện thoại phải có đúng 10 chữ số!";
+                        header('location: index.php?pg=setting');
+                        exit();
+                    }
+                    // 2. Check bắt đầu bằng số 0
+                    if (!preg_match('/^0\d{9}$/', $phone)) {
+                        $_SESSION['tb_phone_update'] = "Số điện thoại không hợp lệ. Phải bắt đầu bằng số 0!";
+                        header('location: index.php?pg=setting');
+                        exit();
+                    }
+                    // 3. Check đúng định dạng số điện thoại Việt Nam
+                    if (!preg_match('/^(03[2-9]|05[6|8|9]|07[0|6-9]|08[1-9]|09[0-9])\d{7}$/', $phone)) {
+                        $_SESSION['tb_phone_update'] = "Số điện thoại không hợp lệ. Hãy nhập đúng định dạng số di động Việt Nam!";
+                        header('location: index.php?pg=setting');
+                        exit();
+                    }
+                    // 4. Check phone đã tồn tại hay chưa?
+                    if (check_phone_exists($phone, $id)) {
+                        $_SESSION['tb_phone_update'] = "Số điện thoại đã được đăng ký!";
+                        header('location: index.php?pg=setting'); 
+                        exit();
+                    }
+
+                    // Check email
+                    // 1. Check phần tên người dùng trước @
+                    if (!preg_match('/^[\w\.\-]+/', $email)) {
+                        $_SESSION['tb_email_update'] = "Tên email không hợp lệ. Chỉ được dùng chữ, số, dấu chấm (.) hoặc gạch ngang (-, _).";
+                        header('location: index.php?pg=setting');
+                        exit();
+                    }
+
+                    // 2. Check có chứa ký tự @ không
+                    if (strpos($email, '@') === false) {
+                        $_SESSION['tb_email_update'] = "Email phải chứa ký tự @.";
+                        header('location: index.php?pg=setting');
+                        exit();
+                    }
+
+                    // 3. Check có tên miền sau @ không (ví dụ: gmail, yahoo...)
+                    $parts = explode('@', $email);
+                    if (!isset($parts[1]) || !preg_match('/^[\w\-]+(\.[\w\-]+)*$/', $parts[1])) {
+                        $_SESSION['tb_email_update'] = "Thiếu hoặc sai tên miền.";
+                        header('location: index.php?pg=setting');
+                        exit();
+                    }
+
+                    // 4. Check có đuôi miền (như .com, .vn) không
+                    if (!preg_match('/\.[a-zA-Z]{2,}$/', $email)) {
+                        $_SESSION['tb_email_update'] = "Thiếu đuôi miền (.com, .vn, ...).";
+                        header('location: index.php?pg=setting');
+                        exit();
+                    }
+                    // 5. Check tồn tại email
+                    if (check_email_exists($email, $id)) {
+                        $_SESSION['tb_email_update'] = "Email đã được đăng ký!";
+                        header('location: index.php?pg=setting'); 
+                        exit();
+                    }
+
+                    update_user($name, $phone, $email, $address, $id);
+
+                    // Cập nhật lại $_SESSION['s_user'] nếu cần
+                    $_SESSION['admin_account']['name'] = $name;
+                    $_SESSION['admin_account']['phone'] = $phone;
+                    $_SESSION['admin_account']['email'] = $email;
+                    $_SESSION['admin_account']['address'] = $address;
+
+                    $_SESSION['tb_update_thanhcong'] = "Cập Nhật Thông Tin Thành Công!";
+                    header("Location: index.php?pg=setting");
+                    exit(); 
+                }
+                break;
             
             
             
@@ -878,6 +1202,10 @@
                 break;
         }
     }else{
+        if(!isset($_SESSION["admin_account"])){
+            header("Location: index.php?pg=login_admin"); 
+            exit();
+        }
         include "view/home.php"; 
     }
 

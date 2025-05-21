@@ -163,13 +163,13 @@
             <input type="hidden" name="id" value="<?= $_SESSION['s_user']['id'] ?>">
             <!-- Tên khách hàng -->
             <div class="col-md-6 mb-3">
-              <label for="name" class="form-label text-col-rgb_229_121_5"><strong>Tên khách hàng</strong></label>
+              <label for="name" class="form-label text-col-rgb_229_121_5"><strong><i class="bi bi-person-circle"></i> Tên khách hàng</strong></label>
               <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên của bạn ..." value="<?=$name;?>">
             </div>
 
             <!-- Số điện thoại -->
             <div class="col-md-6 mb-3">
-              <label for="customerPhone" class="form-label text-col-rgb_229_121_5"><strong>Số điện thoại</strong></label>
+              <label for="customerPhone" class="form-label text-col-rgb_229_121_5"><strong><i class="bi bi-telephone-fill"></i> Số điện thoại</strong></label>
 
               <input type="text" class="form-control" id="phone" name="phone" value="<?=$phone;?>">
 
@@ -184,7 +184,7 @@
 
             <!-- Email -->
             <div class="col-md-6 mb-3">
-              <label for="customerEmail" class="form-label text-col-rgb_229_121_5"><strong>Email</strong></label>
+              <label for="customerEmail" class="form-label text-col-rgb_229_121_5"><strong> <i class="bi bi-envelope-fill"></i> Email</strong></label>
               <input type="email" class="form-control" id="email" name="email" value="<?=$email;?>">
               <!-- Thông báo khi không hợp lệ email -->
               <?php
@@ -197,7 +197,7 @@
 
             <!-- Địa chỉ -->
             <div class="col-md-6 mb-3">
-              <label for="customerAddress" class="form-label text-col-rgb_229_121_5"><strong>Địa Chỉ</strong></label>
+              <label for="customerAddress" class="form-label text-col-rgb_229_121_5"><strong> <i class="bi bi-geo-alt-fill"></i>Địa Chỉ</strong></label>
               <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ của bạn của bạn ..." value="<?= $address;?>">
             </div>
 
