@@ -44,6 +44,7 @@
                         <form action="index.php?pg=handle_edition_status_order" method="post" class="flex-grow-1 d-flex flex-column justify-content-between">
                             
                             <input type="hidden" name="bill_id" value="<?= $bill_id ?>">
+                            <input type="hidden" name="id_user" value="<?= $user_id ?>">
 
                             <div class="mb-5">
                                 <label for="payment_status" class="form-label"><strong><i class="bi bi-cash-coin"></i> Trạng thái thanh toán:</strong></label>

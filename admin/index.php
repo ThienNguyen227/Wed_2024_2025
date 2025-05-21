@@ -525,8 +525,45 @@
                     $bill_id = $_POST["bill_id"];
                     $payment_status = $_POST["payment_status"];
                     $status = $_POST["status"];
+                    $id_user = $_POST["id_user"];
+
+                    // $bill_detail = get_bill_detail_by_bill_id($bill_id);
+                    
+                    // $total_price = $bill_detail['total_price'];
+                    
+                    // $targets = get_target_total_bill();
+                    // $selected_target = 0;
+                    // foreach ($targets as $target) {
+                    //     $threshold = $target['target_total_bill'];
+
+                       
+                    //     if ($total_price >= $threshold) {
+                           
+                    //         if ($selected_target === null || $threshold > $selected_target) {
+                    //             $selected_target = $threshold;
+                    //         }
+                    //     }
+                    // }
+
+                    // if ($selected_target !== null) {
+                    //     $id_discount_categories = get_id_discount($selected_target);
+                    //     $id_discountss = get_id_discount_main($id_discount_categories);
+                    //     $id_discount = $id_discountss['discount_id'];
+                    //     $code = $id_discountss['code'];
+                    //     $percent = $id_discountss['discount_percent'];
+
+                    //     insert_customer_discount($id_discount, $id_user);
+
+                    //     $title = "Thông báo nhận mã giảm giá.";
+                    //     $message = "Bạn đã nhận được mã giảm giá $code giảm $percent(%)";
+
+                    //     insert_notification($id_user, $title, $message);
+                    // }                     
 
                     adjust_status($payment_status, $status, $bill_id);
+
+
+
                     $_SESSION['tb_success_edition'] = "Cập nhật trạng thái của đơn hàng <strong>#" . $bill_id . "</strong> thành công.";
                     header('location: index.php?pg=product_order');
                 }

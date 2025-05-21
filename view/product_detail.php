@@ -273,7 +273,7 @@
                               <i class="fa-solid fa-heart-circle-plus favorite-icon '.($is_favorite ? 'text-danger' : 'text-muted').'"></i>
                             </button>
                             
-                            <p><strong>- Đơn giá: <span class="unit-price">'.number_format($price).' VND</span> VNĐ</strong><p>
+                            <p><strong>- Đơn giá: <span class="unit-price">'.number_format($price).' </span> VNĐ</strong><p>
 
                             <form action="index.php?pg=addtocart" method="post">
                               <input type="hidden" name="name" value="'.$name.'"/>

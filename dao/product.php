@@ -101,9 +101,9 @@ function get_detail_bill_by_bill_id($id){
 }
 
 // 9. Hàm điều chỉnh trạng thái thanh toán, trạng thánh đơn hàng thông qua bill_id
-function adjust_status($payment_status, $status, $bill_id){
-    $sql = "UPDATE bill SET payment_status=?, status=? WHERE bill_id=?";
-    pdo_execute($sql, $payment_status, $status, $bill_id);
+function adjust_status($status, $payment_status, $bill_id){
+    $sql = "UPDATE bill SET status=?, payment_status=? WHERE bill_id=?";
+    pdo_execute($sql, $status, $payment_status, $bill_id);
 }
 
 // 10. Hàm lấy ra bill qua bill_id
@@ -270,10 +270,48 @@ function add_notification_order($id_user, $notification_title, $notification_mes
 }
 
 
+function get_bill_detail_by_bill_id($bill_id){
+    $sql = "SELECT *
+            FROM bill b
+            JOIN bill_detail bd ON b.bill_id = bd.bill_id
+            WHERE b.bill_id = ?";
 
 
+    return pdo_query_one($sql, $bill_id);
+}
 
 
+function get_target_total_bill(){
+    $sql = "SELECT target_total_bill
+            FROM apply_discount_categories";
+
+    return pdo_query($sql);
+
+}
+
+function get_id_discount($selected_target){
+    $sql = "SELECT id_apply_to
+            FROM apply_discount_categories WHERE target_total_bill=?";
+
+    return pdo_query_value($sql, $selected_target);
+}
+
+function insert_customer_discount($id_discount, $id_user){
+    $sql= "INSERT INTO customer_discounts(discount_id, customer_id) VALUES(?, ?)";
+    pdo_execute($sql, $id_discount, $id_user);
+}
+
+function get_id_discount_main($id_discount_categories){
+    $sql = "SELECT *
+            FROM total_discounts WHERE apply_to=?";
+
+    return pdo_query_one($sql, $id_discount_categories);
+}
+
+function insert_notification($id_user, $title, $message){
+    $sql= "INSERT INTO total_notifications(user_id, notification_title, notification_message) VALUES(?, ?, ?)";
+    pdo_execute($sql, $id_user, $title, $message);
+}
 
 
 
