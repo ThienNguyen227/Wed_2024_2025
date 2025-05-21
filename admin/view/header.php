@@ -39,7 +39,6 @@
     <!-- Link tạo biểu đồ -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <link rel="stylesheet" href="layout/css/style.css">
 		<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/45.1.0/ckeditor5.css" crossorigin>
 		<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5-premium-features/45.1.0/ckeditor5-premium-features.css" crossorigin>
 
@@ -48,7 +47,7 @@
   <body>
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <span class="navbar-brand fw-bold text-dark">Trang quản trị</span>
+        <span class="navbar-brand fw-bold text-dark">Trang Quản Trị</span>
         <div class="ms-auto">
           <?=$html_admin_account;?>
           <i class="bi bi-person-circle fs-4"></i>

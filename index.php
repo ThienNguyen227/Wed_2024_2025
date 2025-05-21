@@ -111,6 +111,7 @@
             // Trang khuyến mãi
             case 'khuyenmai':
                 $news_banner_home = get_news_banner_home();
+                $news_sales = get_news_sales();
                 include "view/khuyenmai.php";
                 break;
 
@@ -946,9 +947,32 @@
                     
                 }
                 break;
+            // 19. Chức năng xóa thông báo cá nhân
+            case 'handle_subtraction_personal_notification':
+                if(isset($_GET["id"]) && $_GET["id"]>0){
+                    $notification_id = $_GET["id"];
+                    $id_user = $_SESSION['s_user']['id'];
 
+                    var_dump($notification_id, $id_user);
+                    delete_personal_notification($notification_id, $id_user);
 
+                    $_SESSION['tb_success'] = "Xóa thông báo cá nhân thành công!";
+                    
+                    header('location: index.php?pg=notification');
+                }
+                break;
+            // 20. Chức năng xóa tất cả thông báo cá nhân
+            case 'handle_delete_all_discount_notifications':
+                
+                $id_user = $_SESSION['s_user']['id'];
 
+                delete_all_personal_notification($id_user);
+
+                $_SESSION['tb_success'] = "Xóa tất cả thông báo cá nhân thành công!";
+                
+                header('location: index.php?pg=notification');
+                
+                break;
 
                 
 

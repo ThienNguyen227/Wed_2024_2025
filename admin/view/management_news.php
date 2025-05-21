@@ -14,31 +14,15 @@
             <!-- Thanh lọc-->
             <select class="form-select" id="filterSelectNews" name="filterSelectNews" style="flex: 0 0 30%;">
               <option value="">-- Lọc vị trí --</option>
-              <optgroup label="Trang chủ">
-                <option value="bannerhome">BANNER_HOME</option>
-                <option value="adtypeproduct">AD_TYPE_PRODUCT</option>
-                <option value="coffeeholic">COFFEE_HOLIC</option>
-                <option value="teaholic">TEA_HOLIC</option>
-                <option value="sales">SALES</option>
-                
-              </optgroup>
-              <optgroup label="Trang về chúng tôi">
-                <option value="bannerhome">Giới thiệu</option>
-                <option value="adtypeproduct">Liên hệ</option>
-                <option value="coffeeholic">Tuyển dụng</option>
-              </optgroup>
-              <optgroup label="Trang khuyến mãi">
-                <option value="bannerhome">BANNER_HOME</option>
-                <option value="adtypeproduct">AD_TYPE_PRODUCT</option>
-                <option value="coffeeholic">COFFEE_HOLIC</option>
-                <option value="teaholic">TEA_HOLIC</option>
-                <option value="sales">SALES</option>
-                
-              </optgroup>
-              <optgroup label="Thời gian">
-                <option value="newest">Mới nhất</option>
-                <option value="oldest">Cũ nhất</option>
-              </optgroup>
+              <option value="coffeeholic">COFFEE_HOLIC</option>
+              <option value="teaholic">TEA_HOLIC</option>
+              <option value="sales">SALES</option>
+              <option value="bannerhome">BANNER_HOME</option>
+              <option value="adtypeproduct">AD_TYPE_PRODUCT</option>
+              <option value="signature">SIGNATURE</option>
+              <option value="signature_by_t">SIGNATURE_BY_T</option>
+              <option value="company_info">COMPANY_INFO</option>
+              <option value="contact_info">CONTACT_INFO</option>
               
             </select>
 

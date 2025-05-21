@@ -113,26 +113,26 @@ function get_ad(){
 
 // 18. Hàm lấy ra doc signature
 function get_news_signature_doc(){
-    $sql = "SELECT title, content FROM news WHERE type = 7 ORDER BY id DESC";
+    $sql = "SELECT * FROM news WHERE type = 7";
     return pdo_query_one($sql);
 }
 
 // 19. Hàm lấy ra img signature
 function get_news_signature_img(){
-    $sql = "SELECT image FROM news WHERE type = 6 ORDER BY id DESC";
+    $sql = "SELECT * FROM news WHERE type = 6 ORDER BY id DESC";
     return pdo_query($sql);
 }
 
 
 // 20. Lấy ra tin tức giới thiệu công ty
 function get_new_gt(){
-    $sql = "SELECT title, content FROM news WHERE type = 8 ORDER BY id";
+    $sql = "SELECT * FROM news WHERE type = 8 ORDER BY id";
     return pdo_query($sql);
 }
 
 // 21. Lấy ra thông tin liên hệ
 function get_new_lh(){
-    $sql = "SELECT content FROM news WHERE type = 9";
+    $sql = "SELECT * FROM news WHERE type = 9";
     return pdo_query_one($sql);
 }
 
@@ -141,7 +141,15 @@ function get_total_notifications($user_id) {
     return pdo_query_value($sql, $user_id);
 }
 
+function delete_personal_notification($notification_id, $id_user){
+    $sql = "DELETE FROM total_notifications WHERE notification_id=? AND user_id=?";
+    pdo_execute($sql, $notification_id, $id_user);
+}
 
+function delete_all_personal_notification($id_user){
+    $sql = "DELETE FROM total_notifications WHERE user_id=?";
+    pdo_execute($sql, $id_user);
+}
 
 
 

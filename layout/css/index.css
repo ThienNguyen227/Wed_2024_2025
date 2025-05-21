@@ -571,3 +571,7 @@ textarea.form-control:focus {
   color: #81c784;
   font-weight: bold;
 }
+
+.row.align-items-stretch > div {
+  min-height: 100%;
+}
